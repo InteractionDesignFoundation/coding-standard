@@ -1,4 +1,8 @@
-# IxDF Coding Standard for Laravel applications
+# IxDF Coding Standard for Laravel
+
+An opinoned ruleset focused on strict types.
+Suitable for both applications and packages.
+
 
 ## Installation
 
