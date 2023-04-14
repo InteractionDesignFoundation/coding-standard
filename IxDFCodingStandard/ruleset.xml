@@ -249,7 +249,6 @@
             <property name="maxLinesLength" value="40"/><!-- Default value is 20. -->
         </properties>
     </rule>
-    <rule ref="SlevomatCodingStandard.Files.TypeNameMatchesFileName"/>
     <rule ref="SlevomatCodingStandard.Functions.ArrowFunctionDeclaration"/>
     <rule ref="SlevomatCodingStandard.Functions.DisallowEmptyFunction"/>
     <rule ref="SlevomatCodingStandard.Functions.DisallowNamedArguments">
@@ -273,7 +272,6 @@
     <rule ref="SlevomatCodingStandard.Functions.StaticClosure"/>
     <rule ref="SlevomatCodingStandard.Functions.StrictCall"/>
     <rule ref="SlevomatCodingStandard.Functions.UnusedInheritedVariablePassedToClosure"/>
-    <rule ref="SlevomatCodingStandard.Functions.UnusedParameter"/>
     <rule ref="SlevomatCodingStandard.Functions.UselessParameterDefaultValue"/>
     <rule ref="SlevomatCodingStandard.Namespaces.AlphabeticallySortedUses"/>
     <rule ref="SlevomatCodingStandard.Namespaces.DisallowGroupUse"/>
