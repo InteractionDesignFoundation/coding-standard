@@ -1,6 +1,9 @@
+[![PHP Psalm](https://github.com/InteractionDesignFoundation/coding-standard/actions/workflows/psalm.yml/badge.svg)](https://github.com/InteractionDesignFoundation/coding-standard/actions/workflows/psalm.yml)
+[![Type coverage](https://shepherd.dev/github/interaction-design-foundation/coding-standard/coverage.svg)](https://shepherd.dev/github/interaction-design-foundation/coding-standard)
+
 # IxDF Coding Standard for Laravel
 
-An opinoned ruleset focused on strict types.
+An opinionated ruleset focused on strict types.
 Suitable for both applications and packages.
 
 
@@ -41,13 +44,13 @@ composer require --dev interaction-design-foundation/coding-standard
 - To run checks only:
 
 ```shell
-composer cs-check
+composer cs:check
 ```
 
 - To automatically fix many CS issues:
 
 ```shell
-composer cs-fix
+composer cs:fix
 ```
 
 ## Ignoring parts of a File
