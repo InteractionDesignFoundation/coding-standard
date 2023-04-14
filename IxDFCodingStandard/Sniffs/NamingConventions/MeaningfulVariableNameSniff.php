@@ -56,11 +56,13 @@ final class MeaningfulVariableNameSniff extends AbstractVariableSniff
      * @param int|string $stackPtr The position of the double-quoted string.
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
-    protected function processVariableInString(File $phpcsFile, $stackPtr): void
+    protected function processVariableInString(File $phpcsFile, $stackPtr): void // phpcs:ignore SlevomatCodingStandard.Complexity.Cognitive.ComplexityTooHigh
     {
         $tokens = $phpcsFile->getTokens();
 
-        if (preg_match_all('|[^\\\]\$([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)|', $tokens[$stackPtr]['content'], $matches) !== 0) {
+        $subject = $tokens[$stackPtr]['content'];
+
+        if (preg_match_all('|[^\\\]\$([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)|', $subject, $matches) !== 0) {
             foreach ($matches[1] as $varName) {
                 // If it’s a php reserved var, then it's ok.
                 if (isset($this->phpReservedVars[$varName]) === true) {

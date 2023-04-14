@@ -41,7 +41,11 @@ final class CamelCaseRouteNameSniff implements Sniff
         $routeName = $tokens[$routeNameLocation]['content'];
 
         if (!$this->isCamelCase($routeName)) {
-            $phpcsFile->addError('Route names must be in camel case', $routeNameLocation, self::CODE_NOT_CAMEL_CASE_ROUTE_NAME);
+            $phpcsFile->addError(
+                'Route name is not camel cased',
+                $routeNameLocation,
+                self::CODE_NOT_CAMEL_CASE_ROUTE_NAME
+            );
         }
     }
 

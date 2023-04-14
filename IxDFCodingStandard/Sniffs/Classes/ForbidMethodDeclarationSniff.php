@@ -43,7 +43,11 @@ final class ForbidMethodDeclarationSniff implements Sniff
                 continue;
             }
 
-            $phpcsFile->addError(sprintf('Method “%s” is forbidden, use “%s” instead.', $typeAndMethod, $replacement), $classPointer, self::FORBIDDEN_METHOD_DECLARATION);
+            $phpcsFile->addError(
+                sprintf('Method “%s” is forbidden, use “%s” instead.', $typeAndMethod, $replacement),
+                $classPointer,
+                self::FORBIDDEN_METHOD_DECLARATION
+            );
         }
     }
 }

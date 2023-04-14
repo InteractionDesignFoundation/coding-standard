@@ -10,9 +10,11 @@ final class NonExistingBladeTemplateSniff implements Sniff
 {
     private const INVALID_METHOD_CALL = 'Invalid method call';
 
-    private const INCLUDE_BLADE_DIRECTIVE = '/@(include|component|extends)\(\'([^\']++)\'/'; // @include
+    // @include
+    private const INCLUDE_BLADE_DIRECTIVE = '/@(include|component|extends)\(\'([^\']++)\'/';
 
-    private const CONDITIONAL_INCLUDE_BLADE_DIRECTIVE = '/@(includeIf|includeWhen)\([^,]++,\s*+\'([^\']++)\'/'; // @includeIf
+    // @includeIf
+    private const CONDITIONAL_INCLUDE_BLADE_DIRECTIVE = '/@(includeIf|includeWhen)\([^,]++,\s*+\'([^\']++)\'/';
 
     /** @var array<string, bool> */
     private array $checkedFiles = [];
@@ -27,7 +29,7 @@ final class NonExistingBladeTemplateSniff implements Sniff
     }
 
     /** @inheritDoc */
-    public function process(File $phpcsFile, $stackPtr): int // phpcs:ignore Generic.Metrics.CyclomaticComplexity.MaxExceeded
+    public function process(File $phpcsFile, $stackPtr): int // phpcs:ignore Generic.Metrics.CyclomaticComplexity.MaxExceeded, SlevomatCodingStandard.Complexity.Cognitive.ComplexityTooHigh
     {
         $tokens = $phpcsFile->getTokens();
 
@@ -162,7 +164,7 @@ final class NonExistingBladeTemplateSniff implements Sniff
     }
 
     /** @param array<array<string>> $tokens */
-    private function getViewFacadeTemplateName(array $tokens, int $position): string
+    private function getViewFacadeTemplateName(array $tokens, int $position): string // phpcs:ignore SlevomatCodingStandard.Complexity.Cognitive.ComplexityTooHigh
     {
         if (! $this->isViewFacade($tokens, $position)) {
             throw new BadMethodCallException(self::INVALID_METHOD_CALL);
@@ -193,7 +195,7 @@ final class NonExistingBladeTemplateSniff implements Sniff
     }
 
     /** @param array<array<string>> $tokens */
-    private function getViewFunctionFactoryTemplateName(array $tokens, int $position): string
+    private function getViewFunctionFactoryTemplateName(array $tokens, int $position): string // phpcs:ignore SlevomatCodingStandard.Complexity.Cognitive.ComplexityTooHigh
     {
         if (! $this->isViewFunctionFactory($tokens, $position)) {
             throw new BadMethodCallException(self::INVALID_METHOD_CALL);

@@ -1,4 +1,4 @@
-# Ideas for new sniffs
+# Ideas for new Laravel sniffs
 
 1. Validation rule syntax: don’t use user’s input in unique rule (security)
 1. Validation rule syntax: prefer an array instead `|`

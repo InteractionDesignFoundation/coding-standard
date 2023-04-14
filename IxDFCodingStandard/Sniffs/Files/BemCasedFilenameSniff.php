@@ -8,10 +8,14 @@ use PHP_CodeSniffer\Sniffs\Sniff;
 /** Checks that all file names are BEM-cased. */
 final class BemCasedFilenameSniff implements Sniff
 {
+    private const ERROR_TOO_MANY_DELIMITERS = 'TooManyElementModifiers';
+    private const ERROR_TOO_MANY_MODIFIERS = 'TooManyElementModifiers';
+    private const ERROR_INVALID_CHARACTERS = 'InvalidCharacters';
+
     private const MODIFIER_DELIMITER = '--';
     private const ELEMENT_DELIMITER = '__';
-    private const BEM_FILE_NAME_PATTERN = '/^(?:(?:(?:__)?[a-z][a-zA-Z0-9]*)(?:(?:--)[\w][a-zA-Z0-9]*)?)+?\.blade\.php$/';
-    private const BLADE_COMPONENT_FILE_NAME_PATTERN = '/^([a-z]+(\-[a-z]+)+)\.blade\.php$/';
+    private const BEM_FILE_NAME_PATTERN = '/^(?:(?:__)?[a-z][a-zA-Z0-9]*(?:--[\w][a-zA-Z0-9]*)?)+?\.blade\.php$/';
+    private const BLADE_COMPONENT_FILE_NAME_PATTERN = '/^([a-z]+(-[a-z]+)+)\.blade\.php$/';
 
     /** @var array<string, bool> */
     private array $checkedFiles = [];
@@ -23,9 +27,12 @@ final class BemCasedFilenameSniff implements Sniff
     }
 
     /** @inheritDoc */
-    public function process(File $phpcsFile, $stackPtr): int
+    public function process(File $phpcsFile, $stackPtr): int // phpcs:ignore SlevomatCodingStandard.Complexity.Cognitive.ComplexityTooHigh
     {
         $filename = $phpcsFile->getFilename();
+        if (! str_ends_with($filename, '.blade.php')) {
+            return 0;
+        }
 
         $hash = md5($filename);
         if (isset($this->checkedFiles[$hash]) || $filename === 'STDIN') {
@@ -40,7 +47,7 @@ final class BemCasedFilenameSniff implements Sniff
             $phpcsFile->addError(
                 'Filename “%s” has too many element delimiters',
                 $stackPtr,
-                'TooManyElementDelimiters',
+                self::ERROR_TOO_MANY_DELIMITERS,
                 [$filename]
             );
             $phpcsFile->recordMetric($stackPtr, 'BEM element delimiters', 'no');
@@ -52,7 +59,7 @@ final class BemCasedFilenameSniff implements Sniff
             $phpcsFile->addError(
                 'Filename “%s” has to many element modifiers',
                 $stackPtr,
-                'TooManyElementModifiers',
+                self::ERROR_TOO_MANY_MODIFIERS,
                 [$filename]
             );
             $phpcsFile->recordMetric($stackPtr, 'BEM element modifiers', 'no');
@@ -64,7 +71,7 @@ final class BemCasedFilenameSniff implements Sniff
             $phpcsFile->recordMetric($stackPtr, 'BEM case filename', 'yes');
         } else {
             $error = 'Filename “%s” does not match the expected BEM filename convention';
-            $phpcsFile->addError($error, $stackPtr, 'InvalidCharacters', [$filename]);
+            $phpcsFile->addError($error, $stackPtr, self::ERROR_INVALID_CHARACTERS, [$filename]);
             $phpcsFile->recordMetric($stackPtr, 'BEM case filename', 'no');
         }
 
@@ -79,7 +86,9 @@ final class BemCasedFilenameSniff implements Sniff
 
     private function hasCorrectFileName(string $filename): bool
     {
-        return $this->isBemFilename($filename) || $this->isComponentFileName($filename) || $this->isErrorPage($filename);
+        return $this->isBemFilename($filename)
+            || $this->isComponentFileName($filename)
+            || $this->isErrorPage($filename);
     }
 
     private function isBemFilename(string $filename): bool

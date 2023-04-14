@@ -2,23 +2,23 @@
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.1/phpunit.xsd"
          bootstrap="tests/bootstrap.php"
-         cacheDirectory=".phpunit.cache"
+         cacheDirectory=".cache/phpunit/phpunit.cache"
          executionOrder="depends,defects"
          requireCoverageMetadata="true"
          beStrictAboutCoverageMetadata="true"
          beStrictAboutOutputDuringTests="true"
-         convertDeprecationsToExceptions="true"
          failOnRisky="true"
-         failOnWarning="true">
-    <testsuites>
-        <testsuite name="default">
-            <directory suffix="Test.php">./tests/</directory>
-        </testsuite>
-    </testsuites>
-
-    <coverage>
-        <include>
-            <directory suffix=".php">IxDFCodingStandard</directory>
-        </include>
-    </coverage>
+         failOnWarning="true"
+>
+  <testsuites>
+    <testsuite name="default">
+      <directory suffix="Test.php">./tests/</directory>
+    </testsuite>
+  </testsuites>
+  <coverage/>
+  <source>
+    <include>
+      <directory suffix=".php">IxDFCodingStandard</directory>
+    </include>
+  </source>
 </phpunit>

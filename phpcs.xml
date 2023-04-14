@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<ruleset name="IxDFCodingStandard (package version)">
+    <!-- Include all rules from the IxDF Coding Standard -->
+    <rule ref="./IxDFCodingStandard/ruleset.xml"/>
+
+    <rule ref="Generic.Files.LineLength.TooLong">
+        <severity>1</severity>
+        <properties>
+            <property name="lineLimit" value="150"/>
+            <property name="absoluteLineLimit" value="150"/>
+            <property name="ignoreComments" value="true"/>
+        </properties>
+    </rule>
+    <rule ref="PSR1.Methods.CamelCapsMethodName.NotCamelCaps">
+        <exclude-pattern>./tests*</exclude-pattern>
+    </rule>
+
+    <!-- Paths to check -->
+    <file>IxDFCodingStandard</file>
+    <file>tests</file>
+</ruleset>

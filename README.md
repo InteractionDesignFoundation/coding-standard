@@ -17,8 +17,8 @@ composer require --dev interaction-design-foundation/coding-standard
 2. Add composer scripts into your `composer.json`:
 ```json
 "scripts": {
-  "cs:check": "phpcs",
-  "cs:fix": "phpcbf"
+  "cs:check": "phpcs -p -s --colors --report-full --report-summary",
+  "cs:fix": "phpcbf -p --colors"
 }
 ```
 
