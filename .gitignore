@@ -6,4 +6,5 @@ composer.lock
 /.phpunit.cache
 /.phpunit.result.cache
 
+# Common cache dir for all tools
 .cache
