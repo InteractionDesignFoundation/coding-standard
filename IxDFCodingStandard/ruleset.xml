@@ -403,6 +403,7 @@
     <rule ref="Squiz.Classes.ClassFileName"/><!-- Forbid class being in a file with different name -->
     <rule ref="Squiz.Operators.ValidLogicalOperators"/><!-- Forbid `AND` and `OR`, require `&&` and `||` -->
     <rule ref="Squiz.NamingConventions.ValidVariableName"><!-- Force camelCase variables -->
+        <exclude name="Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps"/><!-- Eloquent attributes -->
         <exclude name="Squiz.NamingConventions.ValidVariableName.PrivateNoUnderscore" />
     </rule>
     <rule ref="Squiz.PHP.GlobalKeyword"/><!-- Forbid `global` -->
