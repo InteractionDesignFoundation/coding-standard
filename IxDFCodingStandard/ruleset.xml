@@ -502,7 +502,6 @@
 
                 <element key="e" value="Avoid contractions"/>
                 <element key="ex" value="Avoid contractions"/>
-                <element key="err" value="Avoid contractions"/>
             </property>
         </properties>
     </rule>
