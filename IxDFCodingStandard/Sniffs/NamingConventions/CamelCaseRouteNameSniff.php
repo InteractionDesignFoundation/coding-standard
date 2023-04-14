@@ -31,8 +31,8 @@ final class CamelCaseRouteNameSniff implements Sniff
     }
 
     /**
-     * Finds the route name and tests it against the camel case pattern. If an issue is found,
-     * it adds an error.
+     * Finds the route name and tests it against the camel case pattern.
+     * If an issue is found, it adds an error.
      * @param array<string, int, array<string>> $tokens
      **/
     public function processRouteName(File $phpcsFile, int $stackPtr, array $tokens): void
