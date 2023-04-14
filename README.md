@@ -1,5 +1,5 @@
 [![PHP Psalm](https://github.com/InteractionDesignFoundation/coding-standard/actions/workflows/psalm.yml/badge.svg)](https://github.com/InteractionDesignFoundation/coding-standard/actions/workflows/psalm.yml)
-[![Type coverage](https://shepherd.dev/github/interaction-design-foundation/coding-standard/coverage.svg)](https://shepherd.dev/github/interaction-design-foundation/coding-standard)
+[![Type coverage](https://shepherd.dev/github/InteractionDesignFoundation/coding-standard/coverage.svg)](https://shepherd.dev/github/InteractionDesignFoundation/coding-standard)
 
 # IxDF Coding Standard for Laravel
 
