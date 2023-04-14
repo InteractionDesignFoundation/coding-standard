@@ -1,0 +1,23 @@
+name: Ruleset validator
+
+on:
+  workflow_dispatch:
+  pull_request:
+    types: [ready_for_review]
+  release:
+    types: [published]
+
+jobs:
+  validator:
+    name: Ruleset validator
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Validate ruleset
+        uses: szepeviktor/phpcs-ruleset-validator@v0.4.0
+        with:
+          xml_ruleset: IxDFCodingStandard/ruleset.xml
