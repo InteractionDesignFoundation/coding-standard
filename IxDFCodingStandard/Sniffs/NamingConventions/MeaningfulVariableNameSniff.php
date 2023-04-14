@@ -11,7 +11,7 @@ use PHP_CodeSniffer\Sniffs\AbstractVariableSniff;
  */
 final class MeaningfulVariableNameSniff extends AbstractVariableSniff
 {
-    /** @var array<string, bool> */
+    /** @var array<string, string> */
     public array $forbiddenNames = [];
 
     /**
