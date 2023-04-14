@@ -49,18 +49,18 @@ jobs:
             ${{ runner.os }}-phpcs-
 
       - name: Detect PHP coding style issues
-        id: lint_php
-        run: composer cs:lint
+        id: check_php_cs
+        run: composer cs:check
         continue-on-error: true
 
       - name: Fix detected PHP coding style issues (if any)
-        if: ${{ steps.lint_php.outcome == 'failure' }}
+        if: ${{ steps.check_php_cs.outcome == 'failure' }}
         id: fix_php
         run: composer cs:fix
         continue-on-error: true
 
       - name: Commit PHP code-style fixes (if any)
-        if: ${{ steps.lint_php.outcome == 'failure' }}
+        if: ${{ steps.check_php_cs.outcome == 'failure' }}
         uses: EndBug/add-and-commit@v9
         with:
           message: "#15000 🪄️ Apply coding style fixes to PHP"
@@ -70,9 +70,9 @@ jobs:
           pull: '--rebase --autostash'
 
       - name: Lint PHP coding style issues (if previously detected)
-        if: ${{ steps.lint_php.outcome == 'failure' }}
+        if: ${{ steps.check_php_cs.outcome == 'failure' }}
         run: composer cs:check -- --report-full --report-checkstyle=./phpcs-report.xml
 
       - name: Show PHPCS results in on GitHub UI
-        if: ${{ steps.lint_php.outcome == 'failure' }}
+        if: ${{ steps.check_php_cs.outcome == 'failure' }}
         run: cs2pr ./phpcs-report.xml
