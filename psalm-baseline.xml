@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="5.9.0@8b9ad1eb9e8b7d3101f949291da2b9f7767cd163">
+  <file src="IxDFCodingStandard/Sniffs/Classes/ForbidDirectClassInheritanceSniff.php">
+    <UndefinedClass>
+      <code>Sniff</code>
+    </UndefinedClass>
+  </file>
+  <file src="IxDFCodingStandard/Sniffs/Classes/ForbidMethodDeclarationSniff.php">
+    <UndefinedClass>
+      <code>Sniff</code>
+    </UndefinedClass>
+  </file>
+  <file src="IxDFCodingStandard/Sniffs/Files/BemCasedFilenameSniff.php">
+    <UndefinedClass>
+      <code>Sniff</code>
+    </UndefinedClass>
+  </file>
+  <file src="IxDFCodingStandard/Sniffs/Functions/ForbiddenFunctionsSniff.php">
+    <UndefinedClass>
+      <code>BaseForbiddenFunctionsSniff</code>
+    </UndefinedClass>
+  </file>
+  <file src="IxDFCodingStandard/Sniffs/Laravel/DisallowGuardedAttributeSniff.php">
+    <UndefinedClass>
+      <code>AbstractScopeSniff</code>
+    </UndefinedClass>
+  </file>
+  <file src="IxDFCodingStandard/Sniffs/Laravel/NonExistingBladeTemplateSniff.php">
+    <UndefinedClass>
+      <code>Sniff</code>
+    </UndefinedClass>
+  </file>
+  <file src="IxDFCodingStandard/Sniffs/Laravel/RequireCustomAbortMessageSniff.php">
+    <UndefinedClass>
+      <code>Sniff</code>
+    </UndefinedClass>
+  </file>
+  <file src="IxDFCodingStandard/Sniffs/NamingConventions/CamelCaseRouteNameSniff.php">
+    <UndefinedClass>
+      <code>Sniff</code>
+    </UndefinedClass>
+  </file>
+  <file src="IxDFCodingStandard/Sniffs/NamingConventions/MeaningfulVariableNameSniff.php">
+    <UndefinedClass>
+      <code>AbstractVariableSniff</code>
+    </UndefinedClass>
+  </file>
+  <file src="IxDFCodingStandard/TokenHelper.php">
+    <InternalClass>
+      <code>\SlevomatCodingStandard\Helpers\TokenHelper</code>
+    </InternalClass>
+  </file>
+</files>
