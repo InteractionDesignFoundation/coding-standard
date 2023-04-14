@@ -120,7 +120,7 @@ final class NonExistingBladeTemplateSniff implements Sniff
 
         return sprintf(
             '%s/%s/%s.blade.php',
-            dirname(__DIR__, 5),
+            dirname(__DIR__, 6),
             $this->templatePaths[$namespace],
             str_replace('.', '/', $withoutNamespace)
         );
