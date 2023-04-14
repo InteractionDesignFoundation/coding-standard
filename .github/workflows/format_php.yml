@@ -43,7 +43,7 @@ jobs:
       - name: Retrieve PHPCS‘s cache
         uses: actions/cache@v3
         with:
-          path: .phpcs.cache
+          path: .cache/phpcs
           key: ${{ runner.os }}-phpcs-${{ hashFiles('phpcs.xml') }}
           restore-keys: |
             ${{ runner.os }}-phpcs-
