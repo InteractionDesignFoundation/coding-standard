@@ -1,10 +1,5 @@
 <?xml version="1.0"?>
-
-<ruleset
-    name="IxDFCodingStandard"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="../vendor/squizlabs/php_codesniffer/phpcs.xsd">
-
+<ruleset name="IxDFCodingStandard" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../vendor/squizlabs/php_codesniffer/phpcs.xsd">
     <description>The IxDF coding standard for Laravel applications.</description>
 
     <arg name="extensions" value="php"/><!--CS can also check js, inc, lib file - omit them-->
@@ -447,7 +442,7 @@
                 <element key="auth" value="null"/>
                 <element key="app" value="null"/>
                 <element key="resolve" value="null"/>
-                <element key="back" value="redirect()->back"/>
+                <element key="back" value="redirect()-&gt;back"/>
                 <element key="blank" value="null"/>
                 <element key="broadcast" value="null"/>
                 <element key="cache" value="null"/>
@@ -512,5 +507,4 @@
     <exclude-pattern>*/*.blade.php</exclude-pattern>
     <exclude-pattern>*/autoload.php</exclude-pattern>
     <exclude-pattern>*/vendor/*</exclude-pattern>
-
 </ruleset>
