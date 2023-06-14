@@ -25,10 +25,7 @@ final class ForbidMethodDeclarationSniff implements Sniff
         ];
     }
 
-    /**
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
-     * @param int $classPointer
-     */
+    /** @param int $classPointer */
     public function process(File $phpcsFile, $classPointer): void
     {
         /** @var class-string $fqcn */

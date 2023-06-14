@@ -29,10 +29,7 @@ final class RequireCustomAbortMessageSniff implements Sniff
         return [\T_STRING];
     }
 
-    /**
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
-     * @param int $functionPointer
-     */
+    /** @param int $functionPointer */
     public function process(File $phpcsFile, $functionPointer): void // phpcs:ignore Generic.Metrics.CyclomaticComplexity.MaxExceeded, SlevomatCodingStandard.Functions.FunctionLength.FunctionLength, SlevomatCodingStandard.Files.FunctionLength.FunctionLength, SlevomatCodingStandard.Complexity.Cognitive.ComplexityTooHigh
     {
         $tokens = $phpcsFile->getTokens();

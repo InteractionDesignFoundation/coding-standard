@@ -18,7 +18,6 @@ final class MeaningfulVariableNameSniff extends AbstractVariableSniff
      * Processes this test, when one of its tokens is encountered.
      * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
      * @param int|string $stackPtr The position of the current token in the stack passed in $tokens.
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
     protected function processVariable(File $phpcsFile, $stackPtr): void
     {
@@ -36,7 +35,6 @@ final class MeaningfulVariableNameSniff extends AbstractVariableSniff
      * Processes class member variables.
      * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
      * @param int|string $stackPtr The position of the current token in the stack passed in $tokens.
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
     protected function processMemberVar(File $phpcsFile, $stackPtr): void
     {
@@ -54,7 +52,6 @@ final class MeaningfulVariableNameSniff extends AbstractVariableSniff
      * Processes the variable found within a double-quoted string.
      * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
      * @param int|string $stackPtr The position of the double-quoted string.
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
     protected function processVariableInString(File $phpcsFile, $stackPtr): void // phpcs:ignore SlevomatCodingStandard.Complexity.Cognitive.ComplexityTooHigh
     {
