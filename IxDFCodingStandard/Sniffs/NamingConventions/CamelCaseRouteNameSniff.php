@@ -7,9 +7,9 @@ use PHP_CodeSniffer\Sniffs\Sniff;
 
 final class CamelCaseRouteNameSniff implements Sniff
 {
-    private const CAMEL_CASE_PATTERN = '/^[^-_\s]++$/';
-
     public const CODE_NOT_CAMEL_CASE_ROUTE_NAME = 'NotCamelCaseRouteName';
+
+    private const PATTERN_CAMEL_CASE = '/^[^-_\s]++$/';
 
     /** @inheritDoc */
     public function register(): array
@@ -18,16 +18,16 @@ final class CamelCaseRouteNameSniff implements Sniff
     }
 
     /** @inheritDoc */
-    public function process(File $phpcsFile, $stackPtr): void
+    public function process(File $phpcsFile, $stringPointer): void
     {
         $tokens = $phpcsFile->getTokens();
-        $currentToken = $tokens[$stackPtr];
+        $currentToken = $tokens[$stringPointer];
 
         if ($currentToken['content'] !== 'name') {
             return;
         }
 
-        $this->processRouteName($phpcsFile, $stackPtr, $tokens);
+        $this->processRouteName($phpcsFile, $stringPointer, $tokens);
     }
 
     /**
@@ -35,9 +35,9 @@ final class CamelCaseRouteNameSniff implements Sniff
      * If an issue is found, it adds an error.
      * @param array<string, int, array<string>> $tokens
      **/
-    public function processRouteName(File $phpcsFile, int $stackPtr, array $tokens): void
+    public function processRouteName(File $phpcsFile, int $stackPointer, array $tokens): void
     {
-        $routeNameLocation = $phpcsFile->findNext(\T_CONSTANT_ENCAPSED_STRING, $stackPtr);
+        $routeNameLocation = $phpcsFile->findNext(\T_CONSTANT_ENCAPSED_STRING, $stackPointer);
         $routeName = $tokens[$routeNameLocation]['content'];
 
         if (!$this->isCamelCase($routeName)) {
@@ -58,7 +58,7 @@ final class CamelCaseRouteNameSniff implements Sniff
         $parts = explode('.', $routeName);
 
         foreach ($parts as $part) {
-            if (preg_match(self::CAMEL_CASE_PATTERN, $part) !== 1) {
+            if (preg_match(self::PATTERN_CAMEL_CASE, $part) !== 1) {
                 return false;
             }
         }

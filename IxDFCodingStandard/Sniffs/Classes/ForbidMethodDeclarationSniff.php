@@ -11,8 +11,7 @@ final class ForbidMethodDeclarationSniff implements Sniff
     public const FORBIDDEN_METHOD_DECLARATION = 'ForbiddenMethodDeclaration';
 
     /**
-     * A list of methods which should not be declared
-     * in specific.
+     * A list of forbidden to declare methods.
      * @var array<string, string>
      */
     public $forbiddenMethods = [];
