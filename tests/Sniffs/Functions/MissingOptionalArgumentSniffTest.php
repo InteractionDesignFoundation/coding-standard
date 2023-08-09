@@ -20,7 +20,7 @@ final class MissingOptionalArgumentSniffTest extends TestCase
     }
 
     /** @test */
-    public function it_reports_about_missing_argument(): void
+    public function it_reports_about_missing_function_argument(): void
     {
         $report = self::checkFile(__DIR__.'/data/missingOptionalArgumentErrors.php', [
             'functions' => [
@@ -31,5 +31,18 @@ final class MissingOptionalArgumentSniffTest extends TestCase
         self::assertSame(2, $report->getErrorCount());
         self::assertSniffError($report, 3, MissingOptionalArgumentSniff::CODE_MISSING_OPTIONAL_ARGUMENT);
         self::assertSniffError($report, 4, MissingOptionalArgumentSniff::CODE_MISSING_OPTIONAL_ARGUMENT);
+    }
+
+    /** @test */
+    public function it_reports_about_missing_method_argument(): void
+    {
+        $report = self::checkFile(__DIR__.'/data/missingOptionalArgumentErrors.php', [
+            'staticMethods' => [
+                'Some::route' => 3,
+            ],
+        ]);
+
+        self::assertSame(1, $report->getErrorCount());
+        self::assertSniffError($report, 6, MissingOptionalArgumentSniff::CODE_MISSING_OPTIONAL_ARGUMENT);
     }
 }

@@ -2,3 +2,5 @@
 
 route('name');
 route('name', []);
+
+Some::route('name', []);
