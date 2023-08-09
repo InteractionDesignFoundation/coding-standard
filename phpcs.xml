@@ -18,4 +18,7 @@
     <!-- Paths to check -->
     <file>IxDFCodingStandard</file>
     <file>tests</file>
+
+    <exclude-pattern>.cache</exclude-pattern>
+    <exclude-pattern>tests/**/data/*</exclude-pattern>
 </ruleset>
