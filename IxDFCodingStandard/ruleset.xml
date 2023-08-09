@@ -570,7 +570,7 @@
         <exclude-pattern>*/*\.blade.php</exclude-pattern>
     </rule>
     <rule ref="IxDFCodingStandard.NamingConventions.CamelCaseRouteName">
-        <include-pattern>routes/</include-pattern>
+        <include-pattern>*/routes/*</include-pattern>
     </rule>
     <rule ref="IxDFCodingStandard.NamingConventions.MeaningfulVariableName">
         <properties>

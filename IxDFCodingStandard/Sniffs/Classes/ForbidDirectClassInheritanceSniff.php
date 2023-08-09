@@ -10,7 +10,7 @@ final class ForbidDirectClassInheritanceSniff implements Sniff
     public const FORBIDDEN_CLASS_INHERITED = 'ForbiddenInheritance';
 
     /**
-     * A list of forbidden classes not allowed to inherit directly.
+     * A list of forbidden classes isn't allowed to inherit directly.
      * Usually used to force developers to use our custom wrappers instead of framework or library functionality.
      * @var array<class-string, class-string|null>
      */
