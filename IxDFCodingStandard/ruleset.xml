@@ -70,22 +70,6 @@
     <rule ref="Generic.CodeAnalysis.UnnecessaryFinalModifier"/>
     <!-- Forbid useless empty method overrides -->
     <rule ref="Generic.CodeAnalysis.UselessOverridingMethod"/>
-    <rule ref="Generic.CodeAnalysis.UnusedFunctionParameter">
-        <!-- But allow specifying unused params not the last parameters that are used. Needed for code not owned by us. -->
-        <exclude name="Generic.CodeAnalysis.UnusedFunctionParameter.FoundBeforeLastUsed"/>
-        <!-- But allow specifying unused params for methods declared in parent classes -->
-        <exclude name="Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClass"/>
-        <!-- But allow specifying unused params for methods declared in parent classes -->
-        <exclude name="Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClassBeforeLastUsed"/>
-        <!-- But allow specifying unused params for methods declared in parent classes -->
-        <exclude name="Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClassAfterLastUsed"/>
-        <!-- But allow specifying unused params for methods declared in parent interface -->
-        <exclude name="Generic.CodeAnalysis.UnusedFunctionParameter.FoundInImplementedInterface"/>
-        <!-- But allow specifying unused params for methods declared in parent interface -->
-        <exclude name="Generic.CodeAnalysis.UnusedFunctionParameter.FoundInImplementedInterfaceBeforeLastUsed"/>
-        <!-- But allow specifying unused params for methods declared in parent interface -->
-        <exclude name="Generic.CodeAnalysis.UnusedFunctionParameter.FoundInImplementedInterfaceAfterLastUsed"/>
-    </rule>
     <!-- Detects the usage of one and the same incrementer into an outer and an inner -->
     <rule ref="Generic.CodeAnalysis.JumbledIncrementer"/>
     <rule ref="Generic.CodeAnalysis.UnconditionalIfStatement"/>
