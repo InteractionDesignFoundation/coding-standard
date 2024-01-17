@@ -33,7 +33,7 @@ jobs:
           echo "composer_dir={$(composer config cache-files-dir)}" >> $GITHUB_OUTPUT
 
       - name: Retrieve Composer‘s cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ${{ steps.composer-cache.outputs.composer_dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -46,7 +46,7 @@ jobs:
       # the way cache keys are set up will always cause a cache miss
       # but will restore the cache generated during the previous run based on partial match
       - name: Retrieve Psalm’s cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ./cache/psalm
           key: ${{ runner.os }}-psalm-cache-${{ hashFiles('psalm.xml', 'psalm-baseline.xml') }}
