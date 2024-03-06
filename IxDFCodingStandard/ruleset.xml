@@ -187,6 +187,11 @@
     <rule ref="Generic.VersionControl.GitMergeConflict"/>
     <!-- Generic ruleset end. -->
 
+    <!-- @see https://github.com/squizlabs/PHP_CodeSniffer/issues/3875 , remove the exclusion when then fix it released plus update min version -->
+    <rule ref="Generic.WhiteSpace.ScopeIndent">
+        <exclude name="Generic.WhiteSpace.ScopeIndent.IncorrectExact"/>
+    </rule>
+
     <!-- Zend ruleset: -->
     <!-- Runs the Zend Code Analyzer (from Zend Studio) on the file. -->
     <rule ref="Zend.Debug.CodeAnalyzer"/>
