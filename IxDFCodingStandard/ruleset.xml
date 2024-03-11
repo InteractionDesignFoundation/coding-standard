@@ -299,12 +299,6 @@
     <rule ref="SlevomatCodingStandard.Exceptions.ReferenceThrowableOnly"/>
     <rule ref="SlevomatCodingStandard.Exceptions.RequireNonCapturingCatch"/>
     <rule ref="SlevomatCodingStandard.Files.FileLength"/>
-    <rule ref="SlevomatCodingStandard.Files.FunctionLength">
-        <properties>
-            <!-- Default value is 20. -->
-            <property name="maxLinesLength" value="40"/>
-        </properties>
-    </rule>
     <rule ref="SlevomatCodingStandard.Functions.ArrowFunctionDeclaration"/>
     <rule ref="SlevomatCodingStandard.Functions.DisallowEmptyFunction"/>
     <rule ref="SlevomatCodingStandard.Functions.DisallowNamedArguments">
