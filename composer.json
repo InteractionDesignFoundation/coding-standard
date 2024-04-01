@@ -31,6 +31,7 @@
         }
     },
     "scripts": {
+        "cs": "@cs:fix",
         "cs:check": "phpcs -p -s --colors --report-full --report-summary --cache=.cache/phpcs",
         "cs:fix": "phpcbf -p --colors --cache=.cache/phpcs",
         "test": "phpunit",
