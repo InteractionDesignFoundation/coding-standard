@@ -107,14 +107,6 @@
     -->
     <!--Ensures that variables are not passed by reference when calling a function.-->
     <rule ref="Generic.Functions.CallTimePassByReference"/>
-    <rule ref="Generic.Metrics.CyclomaticComplexity">
-        <properties>
-            <!-- The cyclomatic complexity above which this sniff will generate warnings -->
-            <property name="complexity" value="7"/>
-            <!-- The cyclomatic complexity above which this sniff will generate errors -->
-            <property name="absoluteComplexity" value="7"/>
-        </properties>
-    </rule>
     <!-- Checks how many level deep that code is nested within a function. -->
     <rule ref="Generic.Metrics.NestingLevel">
         <properties>
