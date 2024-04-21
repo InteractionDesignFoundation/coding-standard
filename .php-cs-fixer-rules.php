@@ -78,6 +78,7 @@ return [
             'method',
         ]
     ],*/
+    'php_unit_attributes' => true,
     'php_unit_construct' => true,
     'php_unit_dedicate_assert' => ['target' => 'newest'],
     'php_unit_expectation' => true,
@@ -87,7 +88,6 @@ return [
     'php_unit_set_up_tear_down_visibility' => true,
     'php_unit_strict' => true,
     'php_unit_test_annotation' => ['style' => 'annotation'],
-    'php_unit_test_class_requires_covers' => true,
     'phpdoc_align' => ['align' => 'left'],
     'phpdoc_array_type' => true,
     'phpdoc_indent' => true,
