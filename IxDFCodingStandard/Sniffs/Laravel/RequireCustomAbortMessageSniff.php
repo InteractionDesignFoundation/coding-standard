@@ -110,7 +110,7 @@ final class RequireCustomAbortMessageSniff implements Sniff
                 && $tokens[$nextEffectiveTokenPosition]['type'] === 'T_VARIABLE'
                 && count($functionParameterDividerCommas) === 0
             ) {
-                // Skip as we don’t know is is the variable type: it can be Response or Responsable instance
+                // Skip because we don't know what the variable type is: it can be Response or Responsable instance
                 // @todo Implement it
                 return;
             }
