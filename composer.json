@@ -6,13 +6,13 @@
     "require": {
         "php": "^8.2",
         "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
-        "slevomat/coding-standard": "^8.14",
-        "squizlabs/php_codesniffer": "^3.9"
+        "slevomat/coding-standard": "^8.15",
+        "squizlabs/php_codesniffer": "^3.10"
     },
     "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.59",
         "phpunit/phpunit": "^10.5",
-        "vimeo/psalm": "^5.22",
-        "friendsofphp/php-cs-fixer": "^3.54"
+        "vimeo/psalm": "^5.25"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -35,7 +35,7 @@
         "cs": "@cs:fix",
         "cs:check": "phpcs -p -s --colors --report-full --report-summary --cache=.cache/phpcs",
         "cs:fix": "phpcbf -p --colors --cache=.cache/phpcs",
-        "test": "phpunit",
-        "psalm": "psalm"
+        "psalm": "psalm",
+        "test": "phpunit"
     }
 }
