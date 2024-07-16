@@ -564,6 +564,7 @@
                 <element key="report" value="null"/>
                 <element key="dump" value="null"/>
                 <element key="dd" value="null"/>
+                <element key="ray" value="null"/>
                 <element key="session" value="null"/>
                 <element key="validator" value="null"/>
             </property>
