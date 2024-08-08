@@ -10,6 +10,7 @@
 return [
     // Basic PER Coding Style 2.0 ruleset plus our overrides for it, see https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/master/doc/ruleSets/PER-CS2.0.rst
     '@PER-CS2.0' => true, // https://www.php-fig.org/per/coding-style/}
+    'new_with_parentheses' => ['anonymous_class' => false], // @todo remove after migration to PHP-CS-Fixer v4.0, see https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/pull/8148
     // overrides for PER-CS2.0
     'concat_space' => ['spacing' => 'none'], // make strings shorter "'hello' . $name . '!'" => "'hello'.$name.'!'"
     'blank_line_after_opening_tag' => false, // it makes "<?php declare(strict_types=1);" multiline (and more verbose)
