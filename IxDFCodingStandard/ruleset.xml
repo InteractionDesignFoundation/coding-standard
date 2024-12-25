@@ -327,7 +327,7 @@
     <rule ref="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation">
         <properties>
             <property name="ignoredAnnotationNames" type="array">
-                <element value="phpstan-type"/>
+                <element value="@phpstan-type"/>
             </property>
         </properties>
     </rule>
