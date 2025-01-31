@@ -301,7 +301,11 @@
         <exclude-pattern>tests/*\.php</exclude-pattern>
     </rule>
     <rule ref="SlevomatCodingStandard.Functions.DisallowTrailingCommaInCall"/>
-    <rule ref="SlevomatCodingStandard.Functions.DisallowTrailingCommaInClosureUse"/>
+    <rule ref="SlevomatCodingStandard.Functions.DisallowTrailingCommaInClosureUse">
+        <properties>
+            <property name="onlySingleLine" value="true"/>
+        </properties>
+    </rule>
     <rule ref="SlevomatCodingStandard.Functions.DisallowTrailingCommaInDeclaration"/>
     <!-- Forbid long functions and methods -->
     <rule ref="SlevomatCodingStandard.Functions.FunctionLength">
@@ -317,7 +321,7 @@
         </properties>
     </rule>
     <rule ref="SlevomatCodingStandard.Functions.RequireSingleLineCall"/>
-    <rule ref="SlevomatCodingStandard.Functions.RequireTrailingCommaInClosureUse"/>
+<!--    <rule ref="SlevomatCodingStandard.Functions.RequireTrailingCommaInClosureUse"/>-->
     <rule ref="SlevomatCodingStandard.Functions.StaticClosure"/>
     <rule ref="SlevomatCodingStandard.Functions.StrictCall"/>
     <rule ref="SlevomatCodingStandard.Functions.UnusedInheritedVariablePassedToClosure"/>
