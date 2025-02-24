@@ -381,6 +381,7 @@
         </properties>
     </rule>
     <rule ref="SlevomatCodingStandard.TypeHints.DisallowMixedTypeHint"/>
+    <rule ref="SlevomatCodingStandard.TypeHints.DNFTypeHintFormat"/>
     <rule ref="SlevomatCodingStandard.TypeHints.LongTypeHints"/>
     <rule ref="SlevomatCodingStandard.TypeHints.NullTypeHintOnLastPosition"/>
     <rule ref="SlevomatCodingStandard.TypeHints.NullableTypeForNullDefaultValue"/>
@@ -431,7 +432,6 @@
         <exclude name="SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingNativeTypeHint"/>
     </rule>
     <rule ref="SlevomatCodingStandard.TypeHints.ReturnTypeHintSpacing"/>
-    <rule ref="SlevomatCodingStandard.TypeHints.UnionTypeHintFormat"/>
     <rule ref="SlevomatCodingStandard.TypeHints.UselessConstantTypeHint"/>
     <rule ref="SlevomatCodingStandard.Variables.DisallowSuperGlobalVariable"/>
     <rule ref="SlevomatCodingStandard.Variables.DisallowVariableVariable"/>
