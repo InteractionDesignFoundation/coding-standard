@@ -105,8 +105,6 @@
     <!--
     <rule ref="Generic.Formatting.SpaceAfterNot"/>&lt;!&ndash; Force whitespace after `!` &ndash;&gt;
     -->
-    <!--Ensures that variables are not passed by reference when calling a function.-->
-    <rule ref="Generic.Functions.CallTimePassByReference"/>
     <!-- Checks how many level deep that code is nested within a function. -->
     <rule ref="Generic.Metrics.NestingLevel">
         <properties>
@@ -183,11 +181,6 @@
     <rule ref="Generic.WhiteSpace.ScopeIndent">
         <exclude name="Generic.WhiteSpace.ScopeIndent.IncorrectExact"/>
     </rule>
-
-    <!-- Zend ruleset: -->
-    <!-- Runs the Zend Code Analyzer (from Zend Studio) on the file. -->
-    <rule ref="Zend.Debug.CodeAnalyzer"/>
-    <!-- Zend ruleset end. -->
 
     <!-- SlevomatCoding ruleset: -->
     <rule ref="SlevomatCodingStandard.Arrays.DisallowImplicitArrayCreation"/>

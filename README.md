@@ -22,7 +22,7 @@ composer require --dev interaction-design-foundation/coding-standard
 }
 ```
 
-3. Create file `phpcs.xml` on base path of your repository with content
+3. Create file `phpcs.xml` on the base path of your repository with content
 ```xml
 <?xml version="1.0"?>
 <ruleset name="My Coding Standard">

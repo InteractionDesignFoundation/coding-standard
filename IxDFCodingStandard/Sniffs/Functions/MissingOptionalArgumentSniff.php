@@ -21,7 +21,7 @@ final class MissingOptionalArgumentSniff implements Sniff
     /** @return array<int, (int|string)> */
     public function register(): array
     {
-        return TokenHelper::getOnlyNameTokenCodes();
+        return TokenHelper::ONLY_NAME_TOKEN_CODES;
     }
 
     /** @inheritDoc */

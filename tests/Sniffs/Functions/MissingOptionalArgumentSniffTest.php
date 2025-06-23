@@ -3,11 +3,13 @@
 namespace IxDFCodingStandard\Sniffs\Functions;
 
 use IxDFCodingStandard\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 
-/** @covers \IxDFCodingStandard\Sniffs\Functions\MissingOptionalArgumentSniff */
+#[CoversClass(MissingOptionalArgumentSniff::class)]
 final class MissingOptionalArgumentSniffTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_does_not_report_when_all_arguments_passed(): void
     {
         $report = self::checkFile(__DIR__.'/data/missingOptionalArgumentNoErrors.php', [
@@ -19,7 +21,7 @@ final class MissingOptionalArgumentSniffTest extends TestCase
         self::assertNoSniffErrorInFile($report);
     }
 
-    /** @test */
+    #[Test]
     public function it_reports_about_missing_function_argument(): void
     {
         $report = self::checkFile(__DIR__.'/data/missingOptionalArgumentErrors.php', [
@@ -33,7 +35,7 @@ final class MissingOptionalArgumentSniffTest extends TestCase
         self::assertSniffError($report, 4, MissingOptionalArgumentSniff::CODE_MISSING_OPTIONAL_ARGUMENT);
     }
 
-    /** @test */
+    #[Test]
     public function it_reports_about_missing_method_argument(): void
     {
         $report = self::checkFile(__DIR__.'/data/missingOptionalArgumentErrors.php', [
