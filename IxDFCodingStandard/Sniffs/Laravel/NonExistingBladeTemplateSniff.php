@@ -24,6 +24,12 @@ final class NonExistingBladeTemplateSniff implements Sniff
     /** @var array<string, bool> */
     private array $checkedFiles = [];
 
+    /** @var array<string, bool> Cache for template existence checks */
+    private array $templateExistsCache = [];
+
+    /** @var string|null Cached base directory */
+    private ?string $resolvedBaseDir = null;
+
     private BladeTemplateExtractor $bladeExtractor;
     private PhpViewExtractor $phpExtractor;
 
@@ -42,8 +48,6 @@ final class NonExistingBladeTemplateSniff implements Sniff
     /** @inheritDoc */
     public function process(File $phpcsFile, $stackPtr): int // phpcs:ignore Generic.Metrics.CyclomaticComplexity.MaxExceeded, SlevomatCodingStandard.Complexity.Cognitive.ComplexityTooHigh
     {
-        $tokens = $phpcsFile->getTokens();
-
         $filename = $phpcsFile->getFilename();
 
         $hash = md5($filename);
@@ -51,7 +55,13 @@ final class NonExistingBladeTemplateSniff implements Sniff
             return 0;
         }
 
+        // Early exit: Skip processing for non-Blade and non-PHP files
+        if (!str_ends_with($filename, '.php')) {
+            return 0;
+        }
+
         $this->checkedFiles[$hash] = true;
+        $tokens = $phpcsFile->getTokens();
 
         foreach ($tokens as $position => $token) {
             $tokenContent = $token['content'];
@@ -81,18 +91,28 @@ final class NonExistingBladeTemplateSniff implements Sniff
      */
     private function templateIsMissing(string $templateName): bool
     {
+        if (isset($this->templateExistsCache[$templateName])) {
+            return !$this->templateExistsCache[$templateName];
+        }
+
         foreach ($this->getTemplatePathCandidates($templateName) as $candidateFilePath) {
             if (\file_exists($candidateFilePath)) {
+                $this->templateExistsCache[$templateName] = true;
                 return false;
             }
         }
 
+        $this->templateExistsCache[$templateName] = false;
         return true;
     }
 
     private function resolveLaravelBaseDir(): string
     {
-        return $this->baseDir ?? dirname(__DIR__, 6); // assume this file in the classic vendor dir
+        if ($this->resolvedBaseDir === null) {
+            $this->resolvedBaseDir = $this->baseDir ?? dirname(__DIR__, 6); // assume this file in the classic vendor dir for phpcs installed as a dependency
+        }
+
+        return $this->resolvedBaseDir;
     }
 
     /**
