@@ -6,7 +6,7 @@ Do not allow using [Mass Assignment](https://laravel.com/docs/master/eloquent#ma
 
 ### IxDFCodingStandard.Laravel.NonExistingBladeTemplate
 
-Detects missing Blade templates in `@include`, `view()`, and `View::make()` calls.
+Detects missing Blade templates in `@include`, `@includeFirst`, `@componentFirst`, `@each`, and `view()` calls.
 
 ```xml
 <rule ref="IxDFCodingStandard.Laravel.NonExistingBladeTemplate">
