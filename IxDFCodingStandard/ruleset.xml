@@ -314,7 +314,6 @@
         </properties>
     </rule>
     <rule ref="SlevomatCodingStandard.Functions.RequireSingleLineCall"/>
-<!--    <rule ref="SlevomatCodingStandard.Functions.RequireTrailingCommaInClosureUse"/>-->
     <rule ref="SlevomatCodingStandard.Functions.StaticClosure"/>
     <rule ref="SlevomatCodingStandard.Functions.StrictCall"/>
     <rule ref="SlevomatCodingStandard.Functions.UnusedInheritedVariablePassedToClosure"/>
