@@ -6,7 +6,6 @@
 An opinionated ruleset focused on strict types.
 Suitable for both applications and packages.
 
-
 ## Installation
 
 1. Install the package via composer by running:

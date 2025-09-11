@@ -1,0 +1,1 @@
+<div>Known namespace existing template</div>
