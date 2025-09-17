@@ -2,9 +2,9 @@
 
 namespace IxDFCodingStandard\Sniffs\Laravel;
 
+use IxDFCodingStandard\Helpers\ClassHelper;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\AbstractScopeSniff;
-use SlevomatCodingStandard\Helpers\ClassHelper;
 
 final class DisallowGuardedAttributeSniff extends AbstractScopeSniff
 {

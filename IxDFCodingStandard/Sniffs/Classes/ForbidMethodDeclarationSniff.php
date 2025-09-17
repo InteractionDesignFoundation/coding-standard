@@ -2,9 +2,9 @@
 
 namespace IxDFCodingStandard\Sniffs\Classes;
 
+use IxDFCodingStandard\Helpers\ClassHelper;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
-use SlevomatCodingStandard\Helpers\ClassHelper;
 
 final class ForbidMethodDeclarationSniff implements Sniff
 {

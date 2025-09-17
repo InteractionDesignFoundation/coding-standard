@@ -46,7 +46,7 @@ final class NonExistingBladeTemplateSniff implements Sniff
     }
 
     /** @inheritDoc */
-    public function process(File $phpcsFile, $stackPtr): int // phpcs:ignore Generic.Metrics.CyclomaticComplexity.MaxExceeded, SlevomatCodingStandard.Complexity.Cognitive.ComplexityTooHigh
+    public function process(File $phpcsFile, $stackPtr): int // phpcs:ignore SlevomatCodingStandard.Complexity.Cognitive.ComplexityTooHigh
     {
         $filename = $phpcsFile->getFilename();
 
