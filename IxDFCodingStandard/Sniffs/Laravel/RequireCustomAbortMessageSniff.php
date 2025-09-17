@@ -30,7 +30,7 @@ final class RequireCustomAbortMessageSniff implements Sniff
     }
 
     /** @param int $functionPointer */
-    public function process(File $phpcsFile, $functionPointer): void // phpcs:ignore Generic.Metrics.CyclomaticComplexity.MaxExceeded, SlevomatCodingStandard.Functions.FunctionLength.FunctionLength, SlevomatCodingStandard.Files.FunctionLength.FunctionLength, SlevomatCodingStandard.Complexity.Cognitive.ComplexityTooHigh
+    public function process(File $phpcsFile, $functionPointer): void // phpcs:ignore SlevomatCodingStandard.Complexity.Cognitive.ComplexityTooHigh,SlevomatCodingStandard.Functions.FunctionLength.FunctionLength
     {
         $tokens = $phpcsFile->getTokens();
 

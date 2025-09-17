@@ -2,10 +2,10 @@
 
 namespace IxDFCodingStandard\Sniffs\Functions;
 
+use IxDFCodingStandard\Helpers\TokenHelper;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
 use PHP_CodeSniffer\Util\Tokens;
-use SlevomatCodingStandard\Helpers\TokenHelper;
 
 /** Inspired by {@see \SlevomatCodingStandard\Sniffs\Functions\StrictCallSniff}. */
 final class MissingOptionalArgumentSniff implements Sniff
@@ -21,7 +21,7 @@ final class MissingOptionalArgumentSniff implements Sniff
     /** @return array<int, (int|string)> */
     public function register(): array
     {
-        return TokenHelper::ONLY_NAME_TOKEN_CODES;
+        return TokenHelper::NAME_TOKEN_CODES;
     }
 
     /** @inheritDoc */

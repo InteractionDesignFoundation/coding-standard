@@ -4,6 +4,7 @@ namespace IxDFCodingStandard\Sniffs\Laravel;
 
 use BadMethodCallException;
 
+/** phpcs:disable IxDFCodingStandard.Laravel.NonExistingBladeTemplate.TemplateNotFound */
 final class BladeTemplateExtractor
 {
     private const INVALID_METHOD_CALL = 'Invalid method call';
@@ -53,7 +54,7 @@ final class BladeTemplateExtractor
             throw new BadMethodCallException(self::INVALID_METHOD_CALL);
         }
 
-        return (string) $matches[2];
+        return $matches[2];
     }
 
     public function getConditionalBladeTemplateName(string $tokenContent): string
@@ -69,7 +70,7 @@ final class BladeTemplateExtractor
             throw new BadMethodCallException(self::INVALID_METHOD_CALL);
         }
 
-        return (string) $matches[2];
+        return $matches[2];
     }
 
     public function getEachBladeTemplateName(string $tokenContent): string
@@ -85,7 +86,7 @@ final class BladeTemplateExtractor
             throw new BadMethodCallException(self::INVALID_METHOD_CALL);
         }
 
-        return (string) $matches[1];
+        return $matches[1];
     }
 
     public function getFirstBladeTemplateName(string $tokenContent): string
@@ -101,6 +102,6 @@ final class BladeTemplateExtractor
             throw new BadMethodCallException(self::INVALID_METHOD_CALL);
         }
 
-        return (string) $matches[2];
+        return $matches[2];
     }
 }
