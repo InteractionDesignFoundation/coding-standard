@@ -12,7 +12,20 @@ use PHP_CodeSniffer\Sniffs\AbstractVariableSniff;
 final class MeaningfulVariableNameSniff extends AbstractVariableSniff
 {
     /** @var array<string, string> */
-    public array $forbiddenNames = [];
+    public array $forbiddenNames = [
+        // type-like names
+        'bool' => 'Provide more context',
+        'boolean' => 'Provide more context',
+        'int' => 'Provide more context',
+        'integer' => 'Provide more context',
+        'float' => 'Provide more context',
+        'double' => 'Provide more context',
+        'str' => 'Provide more context',
+        'var' => 'Provide more context',
+        'arr' => 'Provide more context',
+        'col' => 'Provide more context',
+        'coll' => 'Provide more context',
+    ];
 
     /**
      * Processes this test, when one of its tokens is encountered.
