@@ -6,7 +6,7 @@
     "require": {
         "php": "^8.3",
         "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
-        "slevomat/coding-standard": "^8.23",
+        "slevomat/coding-standard": "dev-1801-this-traversable as 8.23.1",
         "squizlabs/php_codesniffer": "^4.0"
     },
     "require-dev": {
@@ -14,6 +14,12 @@
         "phpunit/phpunit": "^12.3",
         "vimeo/psalm": "^6.13"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/alies-dev/slevomat-coding-standard"
+        }
+    ],
     "minimum-stability": "dev",
     "prefer-stable": true,
     "autoload": {
