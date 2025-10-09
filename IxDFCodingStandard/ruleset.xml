@@ -274,9 +274,6 @@
         </properties>
     </rule>
     <rule ref="SlevomatCodingStandard.Functions.DisallowEmptyFunction"/>
-    <rule ref="SlevomatCodingStandard.Functions.DisallowNamedArguments">
-        <exclude-pattern>tests/*\.php</exclude-pattern>
-    </rule>
     <rule ref="SlevomatCodingStandard.Functions.DisallowTrailingCommaInCall"/>
     <rule ref="SlevomatCodingStandard.Functions.DisallowTrailingCommaInClosureUse">
         <properties>
