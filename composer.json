@@ -6,7 +6,7 @@
     "require": {
         "php": "^8.3",
         "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
-        "slevomat/coding-standard": "dev-1801-this-traversable as 8.23.1",
+        "slevomat/coding-standard": "dev-1801-this-traversable as 8.24.1",
         "squizlabs/php_codesniffer": "^4.0"
     },
     "require-dev": {
