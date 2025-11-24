@@ -10,16 +10,10 @@
         "squizlabs/php_codesniffer": "^4.0"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.88",
+        "friendsofphp/php-cs-fixer": "^3.89",
         "phpunit/phpunit": "^12.4",
         "vimeo/psalm": "^6.13"
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/alies-dev/slevomat-coding-standard"
-        }
-    ],
     "minimum-stability": "dev",
     "prefer-stable": true,
     "autoload": {
@@ -42,7 +36,9 @@
         "cs": "@cs:fix",
         "cs:check": "phpcs -p -s --colors --report-full --report-summary --cache=.cache/phpcs",
         "cs:fix": "phpcbf -p --colors --cache=.cache/phpcs",
-        "psalm": "psalm",
+        "sa": "@psalm",
+        "psalm": "psalm --config=psalm.xml",
+        "psalm:bl": "@psalm --set-baseline=psalm-baseline.xml --long-progress --no-cache",
         "test": "phpunit"
     }
 }
