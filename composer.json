@@ -6,12 +6,12 @@
     "require": {
         "php": "^8.3",
         "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
-        "slevomat/coding-standard": "dev-1801-this-traversable as 8.24.1",
+        "slevomat/coding-standard": "^8.25",
         "squizlabs/php_codesniffer": "^4.0"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.88",
-        "phpunit/phpunit": "^12.3",
+        "phpunit/phpunit": "^12.4",
         "vimeo/psalm": "^6.13"
     },
     "repositories": [
