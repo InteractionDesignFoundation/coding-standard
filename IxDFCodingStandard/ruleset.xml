@@ -33,6 +33,8 @@
         <exclude name="PSR12.Files.FileHeader"/>
         <exclude name="PSR12.ControlStructures.ControlStructureSpacing.FirstExpressionLine"/>
 
+        <!-- Conflicts with PHP-CS-Fixer's single_line_empty_body from PER2x0-->
+        <exclude name="PSR2.Classes.ClassDeclaration.OpenBraceNewLine"/>
         <!-- checked by PSR12.ControlStructures.ControlStructureSpacing -->
         <exclude name="PSR2.ControlStructures.ControlStructureSpacing.SpacingAfterOpenBrace"/>
         <!-- checked by SlevomatCodingStandard.Namespaces.UseSpacing -->
