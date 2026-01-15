@@ -56,7 +56,9 @@ return [
     'no_short_bool_cast' => true,
     'no_singleline_whitespace_before_semicolons' => true,
     'no_spaces_around_offset' => true,
-    'no_trailing_comma_in_singleline' => false, // it's a good marker that there are more elements in an array
+    'no_trailing_comma_in_singleline' => [
+        'elements' => ['arguments', 'array', 'group_import'], // excludes 'array_destructuring' enabled by default
+    ],
     'no_unneeded_braces' => true,
     'no_unneeded_control_parentheses' => true,
     'no_unneeded_final_method' => true,
