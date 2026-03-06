@@ -69,7 +69,22 @@ $rules = \IxDFCodingStandard\PhpCsFixer\Rules::get();
 
 ## Usage
 
+Add composer scripts to your `composer.json`:
+
+```json
+"scripts": {
+    "cs:check": "phpcs -p -s --colors --report-full --report-summary",
+    "cs:fix": "phpcbf -p --colors",
+    "cs-fixer:check": "php-cs-fixer fix --dry-run --diff",
+    "cs-fixer:fix": "php-cs-fixer fix"
+}
+```
+
+Then run:
+
 ```shell
-composer cs:check   # check only
-composer cs:fix     # auto-fix
+composer cs:check        # PHP_CodeSniffer: check only
+composer cs:fix          # PHP_CodeSniffer: auto-fix
+composer cs-fixer:check  # PHP-CS-Fixer: check only
+composer cs-fixer:fix    # PHP-CS-Fixer: auto-fix
 ```
