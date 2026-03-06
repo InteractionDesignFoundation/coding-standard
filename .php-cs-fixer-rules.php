@@ -72,7 +72,6 @@ return [
     'normalize_index_brace' => true,
     'nullable_type_declaration' => ['syntax' => 'question_mark'],
     'nullable_type_declaration_for_default_null_value' => true,
-    'numeric_literal_separator' => ['strategy' => 'use_separator', 'override_existing' => true],
     'object_operator_without_whitespace' => true,
     'ordered_imports' => ['imports_order' => ['class', 'function', 'const']],
     /*
