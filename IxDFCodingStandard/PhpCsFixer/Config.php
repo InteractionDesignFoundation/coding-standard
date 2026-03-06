@@ -8,19 +8,13 @@ use PhpCsFixer\Runner\Parallel\ParallelConfigFactory;
 
 /**
  * Pre-configured PHP-CS-Fixer config factory for IxDF projects.
- *
  * @see README.md for usage examples
  */
 final class Config
 {
-    /**
-     * @param array<string, mixed> $ruleOverrides Rules to merge on top of the shared ruleset
-     */
-    public static function create(
-        string $projectDir,
-        array $ruleOverrides = [],
-        ?Finder $finder = null,
-    ): BaseConfig {
+    /** @param array<string, mixed> $ruleOverrides Rules to merge on top of the shared ruleset */
+    public static function create(string $projectDir, array $ruleOverrides = [], ?Finder $finder = null): BaseConfig
+    {
         $finder ??= self::defaultFinder($projectDir);
 
         return (new BaseConfig())
