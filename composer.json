@@ -1,16 +1,16 @@
 {
     "name": "interaction-design-foundation/coding-standard",
-    "description": "IxDF Standard for PHP_CodeSniffer complements Consistence Coding Standard by providing sniffs with additional checks.",
+    "description": "IxDF coding standard: PHP_CodeSniffer rules and shared PHP-CS-Fixer configuration.",
     "license": "MIT",
     "type": "phpcodesniffer-standard",
     "require": {
         "php": "^8.3",
         "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+        "friendsofphp/php-cs-fixer": "^3.89",
         "slevomat/coding-standard": "^8.25",
         "squizlabs/php_codesniffer": "^4.0"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.89",
         "phpunit/phpunit": "^12.4",
         "vimeo/psalm": "^6.13"
     },

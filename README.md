@@ -3,107 +3,100 @@
 [![PHP Psalm Level](https://shepherd.dev/github/InteractionDesignFoundation/coding-standard/level.svg)](https://shepherd.dev/github/InteractionDesignFoundation/coding-standard)
 [![PHP Psalm Type Coverage](https://shepherd.dev/github/InteractionDesignFoundation/coding-standard/coverage.svg)](https://shepherd.dev/github/InteractionDesignFoundation/coding-standard)
 
-# IxDF Coding Standard for Laravel
+# IxDF Coding Standard
 
-An opinionated ruleset focused on strict types.
-Suitable for both applications and packages.
+An opinionated coding standard for PHP/Laravel projects. Provides two independent tools — use either one or both together:
+
+- **PHP_CodeSniffer** — custom sniffs for strict types and Laravel conventions
+- **PHP-CS-Fixer** — shared config with 80+ rules based on PER-CS 3.0
 
 ## Installation
 
-1. Install the package via composer by running:
 ```shell
 composer require --dev interaction-design-foundation/coding-standard
 ```
 
-2. Add composer scripts into your `composer.json`:
-```json
-"scripts": {
-  "cs:check": "phpcs -p -s --colors --report-full --report-summary",
-  "cs:fix": "phpcbf -p --colors"
-}
-```
+## PHP_CodeSniffer
 
-3. Create file `phpcs.xml` on the base path of your repository with content
+Create `phpcs.xml` in your project root:
 ```xml
 <?xml version="1.0"?>
 <ruleset name="My Coding Standard">
-    <!-- Include all rules from the IxDF Coding Standard -->
     <rule ref="IxDFCodingStandard"/>
-
-    <!-- Paths to check -->
     <file>app</file>
     <file>config</file>
     <file>database</file>
-    <file>lang</file>
     <file>routes</file>
     <file>tests</file>
 </ruleset>
 ```
 
+## PHP-CS-Fixer
+
+Create `.php-cs-fixer.php` in your project root:
+
+```php
+<?php declare(strict_types=1);
+
+use IxDFCodingStandard\PhpCsFixer\Config;
+
+return Config::create(__DIR__);
+```
+
+With rule overrides:
+
+```php
+return Config::create(__DIR__, ruleOverrides: [
+    'final_public_method_for_abstract_class' => false,
+]);
+```
+
+With a custom Finder:
+
+```php
+use IxDFCodingStandard\PhpCsFixer\Config;
+use PhpCsFixer\Finder;
+
+$finder = Finder::create()->in(__DIR__)->name('*.php');
+
+return Config::create(__DIR__, finder: $finder);
+```
+
+If you only need the rules array:
+```php
+$rules = \IxDFCodingStandard\PhpCsFixer\Rules::get();
+```
+
 ## Usage
 
-- To run checks only:
+```shell
+vendor/bin/phpcs          # check with PHP_CodeSniffer
+vendor/bin/phpcbf         # fix with PHP_CodeSniffer
+vendor/bin/php-cs-fixer fix --dry-run --diff   # check with PHP-CS-Fixer
+vendor/bin/php-cs-fixer fix                    # fix with PHP-CS-Fixer
+```
+
+### Composer scripts (recommended)
+
+Add to your `composer.json`:
+
+```json
+"scripts": {
+    "cs": "@cs:fix",
+    "cs:check": ["@php-cs-fixer:dry", "@phpcs"],
+    "cs:fix": ["@php-cs-fixer", "@phpcbf"],
+    "phpcs": "phpcs -p -s --colors --report-full --report-summary",
+    "phpcbf": "phpcbf -p --colors",
+    "php-cs-fixer": "php-cs-fixer fix --no-interaction --ansi --quiet",
+    "php-cs-fixer:dry": "php-cs-fixer fix --no-interaction --ansi --verbose --dry-run"
+}
+```
+
+Then run:
 
 ```shell
-composer cs:check
+composer cs:check       # run both tools in check mode
+composer cs:fix         # run both tools in fix mode
+composer phpcs          # PHP_CodeSniffer only
+composer php-cs-fixer   # PHP-CS-Fixer only
 ```
-
-- To automatically fix many CS issues:
-
-```shell
-composer cs:fix
-```
-
-## Ignoring parts of a File
-
-Disable parts of a file:
-
-```php
-$xmlPackage = new XMLPackage;
-// phpcs:disable
-$xmlPackage['error_code'] = get_default_error_code_value();
-$xmlPackage->send();
-// phpcs:enable
-```
-
-Disable a specific rule:
-
-```php
-// phpcs:disable Generic.Commenting.Todo.Found
-$xmlPackage = new XMLPackage;
-$xmlPackage['error_code'] = get_default_error_code_value();
-// TODO: Add an error message here.
-$xmlPackage->send();
-// phpcs:enable
-```
-
-Ignore a specific violation:
-
-```php
-$xmlPackage = new XMLPackage;
-$xmlPackage['error_code'] = get_default_error_code_value();
-// phpcs:ignore Generic.Commenting.Todo.Found
-// TODO: Add an error message here.
-$xmlPackage->send();
-```
-
-## Development
-
-### Versioning
-> **New rules or Sniffs may not be introduced in minor or bugfix releases and should always be based on the develop
-branch and queued for the next major release, unless considered a bugfix for existing rules.**
-
-
-## Reference
-
-Rules can be added, excluded or tweaked locally, depending on your preferences.
-More information on how to do this can be found here:
-
-- [Coding Standard Tutorial](https://github.com/squizlabs/PHP_CodeSniffer/wiki/Coding-Standard-Tutorial)
-- [Configuration Options](https://github.com/squizlabs/PHP_CodeSniffer/wiki/Configuration-Options)
-- [Selectively Applying Rules](https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-Ruleset#selectively-applying-rules)
-- [Customisable Sniff Properties](https://github.com/squizlabs/PHP_CodeSniffer/wiki/Customisable-Sniff-Properties)
-- Other coding standards (inspiring us):
-  - [Slevomat coding standard](https://github.com/slevomat/coding-standard)
-  - [Doctrine coding standard](https://github.com/doctrine/coding-standard)
-  - [Laminas coding standard](https://github.com/laminas/laminas-coding-standard)

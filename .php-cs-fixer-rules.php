@@ -44,6 +44,7 @@ return [
     ],
     'modernize_types_casting' => true,
     'mb_str_functions' => true,
+    'multiline_whitespace_before_semicolons' => ['strategy' => 'no_multi_line'],
     'no_alias_functions' => true,
     'no_binary_string' => true,
     'no_empty_comment' => true,
@@ -69,7 +70,9 @@ return [
     'no_whitespace_before_comma_in_array' => true,
     'normalize_index_brace' => true,
     'nullable_type_declaration' => ['syntax' => 'question_mark'],
+    'nullable_type_declaration_for_default_null_value' => true,
     'object_operator_without_whitespace' => true,
+    'ordered_imports' => ['imports_order' => ['class', 'function', 'const']],
     /*
      * @see https://github.com/slevomat/coding-standard/issues/1620#issuecomment-1758006718
      * 'ordered_class_elements' => [
