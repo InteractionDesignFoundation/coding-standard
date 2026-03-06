@@ -5,7 +5,10 @@
 
 # IxDF Coding Standard
 
-An opinionated coding standard for PHP/Laravel projects. Provides **PHP_CodeSniffer** rules and a shared **PHP-CS-Fixer** configuration.
+An opinionated coding standard for PHP/Laravel projects. Provides two independent tools — use either one or both together:
+
+- **PHP_CodeSniffer** — custom sniffs for strict types and Laravel conventions
+- **PHP-CS-Fixer** — shared config with 80+ rules based on PER-CS 3.0
 
 ## Installation
 
