@@ -73,18 +73,21 @@ Add composer scripts to your `composer.json`:
 
 ```json
 "scripts": {
-    "cs:check": "phpcs -p -s --colors --report-full --report-summary",
-    "cs:fix": "phpcbf -p --colors",
-    "cs-fixer:check": "php-cs-fixer fix --dry-run --diff",
-    "cs-fixer:fix": "php-cs-fixer fix"
+    "cs": "@cs:fix",
+    "cs:check": ["@php-cs-fixer:dry", "@phpcs"],
+    "cs:fix": ["@php-cs-fixer", "@phpcbf"],
+    "phpcs": "phpcs -p -s --colors --report-full --report-summary",
+    "phpcbf": "phpcbf -p --colors",
+    "php-cs-fixer": "php-cs-fixer fix --no-interaction --ansi --quiet",
+    "php-cs-fixer:dry": "php-cs-fixer fix --no-interaction --ansi --verbose --dry-run"
 }
 ```
 
 Then run:
 
 ```shell
-composer cs:check        # PHP_CodeSniffer: check only
-composer cs:fix          # PHP_CodeSniffer: auto-fix
-composer cs-fixer:check  # PHP-CS-Fixer: check only
-composer cs-fixer:fix    # PHP-CS-Fixer: auto-fix
+composer cs:check       # run both tools in check mode
+composer cs:fix         # run both tools in fix mode
+composer phpcs          # PHP_CodeSniffer only
+composer php-cs-fixer   # PHP-CS-Fixer only
 ```
