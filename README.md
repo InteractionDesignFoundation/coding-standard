@@ -69,7 +69,16 @@ $rules = \IxDFCodingStandard\PhpCsFixer\Rules::get();
 
 ## Usage
 
-Add composer scripts to your `composer.json`:
+```shell
+vendor/bin/phpcs          # check with PHP_CodeSniffer
+vendor/bin/phpcbf         # fix with PHP_CodeSniffer
+vendor/bin/php-cs-fixer fix --dry-run --diff   # check with PHP-CS-Fixer
+vendor/bin/php-cs-fixer fix                    # fix with PHP-CS-Fixer
+```
+
+### Composer scripts (recommended)
+
+Add to your `composer.json`:
 
 ```json
 "scripts": {
