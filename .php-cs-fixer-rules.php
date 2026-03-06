@@ -21,7 +21,7 @@ return [
     'array_indentation' => true,
     'assign_null_coalescing_to_coalesce_equal' => true,
     'binary_operator_spaces' => ['default' => 'single_space'],
-    'blank_line_before_statement' => ['statements' => ['continue', 'declare', 'return', 'throw', 'try']],
+    'blank_line_before_statement' => ['statements' => ['continue', 'declare', 'try']],
     'cast_spaces' => ['space' => 'single'],
     'class_attributes_separation' => ['elements' => ['method' => 'one']],
     'declare_strict_types' => true,
