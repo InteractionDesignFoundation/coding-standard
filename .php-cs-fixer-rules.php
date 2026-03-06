@@ -21,6 +21,7 @@ return [
     'array_indentation' => true,
     'assign_null_coalescing_to_coalesce_equal' => true,
     'binary_operator_spaces' => ['default' => 'single_space'],
+    'blank_line_before_statement' => ['statements' => ['continue', 'declare', 'return', 'throw', 'try']],
     'cast_spaces' => ['space' => 'single'],
     'class_attributes_separation' => ['elements' => ['method' => 'one']],
     'declare_strict_types' => true,
@@ -44,8 +45,10 @@ return [
     ],
     'modernize_types_casting' => true,
     'mb_str_functions' => true,
+    'multiline_whitespace_before_semicolons' => ['strategy' => 'no_multi_line'],
     'no_alias_functions' => true,
     'no_binary_string' => true,
+    'no_superfluous_phpdoc_tags' => ['remove_inheritdoc' => true],
     'no_empty_comment' => true,
     'no_empty_phpdoc' => true,
     'no_empty_statement' => true,
@@ -69,7 +72,10 @@ return [
     'no_whitespace_before_comma_in_array' => true,
     'normalize_index_brace' => true,
     'nullable_type_declaration' => ['syntax' => 'question_mark'],
+    'nullable_type_declaration_for_default_null_value' => true,
+    'numeric_literal_separator' => ['strategy' => 'use_separator', 'override_existing' => true],
     'object_operator_without_whitespace' => true,
+    'ordered_imports' => ['imports_order' => ['class', 'function', 'const']],
     /*
      * @see https://github.com/slevomat/coding-standard/issues/1620#issuecomment-1758006718
      * 'ordered_class_elements' => [
