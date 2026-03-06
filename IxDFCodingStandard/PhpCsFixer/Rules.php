@@ -8,10 +8,12 @@ namespace IxDFCodingStandard\PhpCsFixer;
  */
 final class Rules
 {
-    /** @var array<string, mixed>|null */
+    // phpcs:ignore SlevomatCodingStandard.TypeHints.DisallowMixedTypeHint.DisallowedMixedTypeHint
+    /** @var array<string, array<string, mixed>|bool>|null */
     private static ?array $rules = null;
 
-    /** @return array<string, mixed> */
+    // phpcs:ignore SlevomatCodingStandard.TypeHints.DisallowMixedTypeHint.DisallowedMixedTypeHint
+    /** @return array<string, array<string, mixed>|bool> */
     public static function get(): array
     {
         return self::$rules ??= require dirname(__DIR__, 2).'/.php-cs-fixer-rules.php';

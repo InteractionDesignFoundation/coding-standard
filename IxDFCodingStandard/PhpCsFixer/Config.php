@@ -12,7 +12,8 @@ use PhpCsFixer\Runner\Parallel\ParallelConfigFactory;
  */
 final class Config
 {
-    /** @param array<string, mixed> $ruleOverrides Rules to merge on top of the shared ruleset */
+    // phpcs:ignore SlevomatCodingStandard.TypeHints.DisallowMixedTypeHint.DisallowedMixedTypeHint
+    /** @param array<string, array<string, mixed>|bool> $ruleOverrides Rules to merge on top of the shared ruleset */
     public static function create(string $projectDir, array $ruleOverrides = [], ?Finder $finder = null): BaseConfig
     {
         $finder ??= self::defaultFinder($projectDir);
