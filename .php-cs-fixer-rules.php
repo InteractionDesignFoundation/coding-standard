@@ -48,7 +48,6 @@ return [
     'multiline_whitespace_before_semicolons' => ['strategy' => 'no_multi_line'],
     'no_alias_functions' => true,
     'no_binary_string' => true,
-    'no_superfluous_phpdoc_tags' => ['remove_inheritdoc' => true],
     'no_empty_comment' => true,
     'no_empty_phpdoc' => true,
     'no_empty_statement' => true,
