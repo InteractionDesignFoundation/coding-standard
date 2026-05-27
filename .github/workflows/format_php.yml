@@ -61,7 +61,7 @@ jobs:
 
       - name: Commit PHP code-style fixes (if any)
         if: ${{ steps.check_php_cs.outcome == 'failure' }}
-        uses: EndBug/add-and-commit@v9
+        uses: EndBug/add-and-commit@290ea2c423ad77ca9c62ae0f5b224379612c0321 # v10
         with:
           message: "#15000 🪄️ Apply coding style fixes to PHP"
           author_name: GitHub Actions
