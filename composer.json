@@ -7,12 +7,12 @@
         "php": "^8.3",
         "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
         "friendsofphp/php-cs-fixer": "^3.89",
-        "slevomat/coding-standard": "^8.25",
+        "slevomat/coding-standard": "^8.29",
         "squizlabs/php_codesniffer": "^4.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^12.4",
-        "vimeo/psalm": "^6.13"
+        "vimeo/psalm": "^6.16"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

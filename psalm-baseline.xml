@@ -1,32 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="6.15.1@28dc127af1b5aecd52314f6f645bafc10d0e11f9">
-  <file src="IxDFCodingStandard/Helpers/ClassHelper.php">
-    <InternalClass>
-      <code><![CDATA[\SlevomatCodingStandard\Helpers\ClassHelper]]></code>
-    </InternalClass>
-  </file>
-  <file src="IxDFCodingStandard/Helpers/TokenHelper.php">
-    <InternalClass>
-      <code><![CDATA[\SlevomatCodingStandard\Helpers\TokenHelper]]></code>
-      <code><![CDATA[parent::NAME_TOKEN_CODES]]></code>
-    </InternalClass>
-  </file>
-  <file src="IxDFCodingStandard/PhpCsFixer/Config.php">
-    <LessSpecificReturnStatement>
-      <code><![CDATA[(new BaseConfig())
-            ->setParallelConfig(ParallelConfigFactory::detect())
-            ->setUsingCache(true)
-            ->setCacheFile($projectDir.'/.cache/.php-cs-fixer.cache')
-            ->setRiskyAllowed(true)
-            ->setIndent('    ')
-            ->setLineEnding("\n")
-            ->setRules(array_merge(Rules::get(), $ruleOverrides))
-            ->setFinder($finder)]]></code>
-    </LessSpecificReturnStatement>
-    <MoreSpecificReturnType>
-      <code><![CDATA[BaseConfig]]></code>
-    </MoreSpecificReturnType>
-  </file>
+<files psalm-version="6.16.1@f1f5de594dc76faf8784e02d3dc4716c91c6f6ac">
   <file src="IxDFCodingStandard/Sniffs/Classes/ForbidDirectClassInheritanceSniff.php">
     <UndefinedClass>
       <code><![CDATA[Sniff]]></code>
@@ -76,10 +49,5 @@
     <UndefinedClass>
       <code><![CDATA[AbstractVariableSniff]]></code>
     </UndefinedClass>
-  </file>
-  <file src="IxDFCodingStandard/TokenHelper.php">
-    <InternalClass>
-      <code><![CDATA[\SlevomatCodingStandard\Helpers\TokenHelper]]></code>
-    </InternalClass>
   </file>
 </files>

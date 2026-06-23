@@ -18,7 +18,8 @@ final class Config
     {
         $finder ??= self::defaultFinder($projectDir);
 
-        return (new BaseConfig())
+        $config = new BaseConfig();
+        $config
             ->setParallelConfig(ParallelConfigFactory::detect())
             ->setUsingCache(true)
             ->setCacheFile($projectDir.'/.cache/.php-cs-fixer.cache')
@@ -27,6 +28,8 @@ final class Config
             ->setLineEnding("\n")
             ->setRules(array_merge(Rules::get(), $ruleOverrides))
             ->setFinder($finder);
+
+        return $config;
     }
 
     private static function defaultFinder(string $projectDir): Finder
