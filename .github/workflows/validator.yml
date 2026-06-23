@@ -18,7 +18,7 @@ jobs:
           ref: ${{ github.head_ref }}
 
       - name: Setup PHP
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2
         with:
           php-version: 8.4
           coverage: none
@@ -29,7 +29,7 @@ jobs:
           echo "composer_dir={$(composer config cache-files-dir)}" >> $GITHUB_OUTPUT
 
       - name: Retrieve Composer‘s cache
-        uses: actions/cache@v5
+        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
         with:
           path: ${{ steps.composer-cache.outputs.composer_dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -40,6 +40,6 @@ jobs:
         run: "composer install --no-interaction --no-progress --no-scripts"
 
       - name: Validate ruleset
-        uses: szepeviktor/phpcs-ruleset-validator@v0.4.0
+        uses: szepeviktor/phpcs-ruleset-validator@f07738521ac7d7dd31ccec1920022e6fae617bcb # v0.4.0
         with:
           xml_ruleset: IxDFCodingStandard/ruleset.xml
