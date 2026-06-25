@@ -60,6 +60,10 @@ final class Rules
                     'inheritdoc' => 'inheritDoc',
                 ],
             ],
+            'global_namespace_import' => [
+                'import_classes' => false,
+                'import_constants' => false,
+            ],
             'modernize_types_casting' => true,
             'mb_str_functions' => true,
             'multiline_whitespace_before_semicolons' => ['strategy' => 'no_multi_line'],
@@ -91,17 +95,15 @@ final class Rules
             'nullable_type_declaration_for_default_null_value' => true,
             'object_operator_without_whitespace' => true,
             'ordered_imports' => ['imports_order' => ['class', 'function', 'const']],
-            /*
-             * @see https://github.com/slevomat/coding-standard/issues/1620#issuecomment-1758006718
-             * 'ordered_class_elements' => [
+            'ordered_class_elements' => [
                 'order' => [
                     'use_trait',
                     'constant',
                     'case', // for enums only
                     'property',
                     'method',
-                ]
-            ],*/
+                ],
+            ],
             'php_unit_attributes' => true,
             'php_unit_construct' => true,
             'php_unit_dedicate_assert' => ['target' => 'newest'],
