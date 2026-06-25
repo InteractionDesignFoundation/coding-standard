@@ -23,7 +23,6 @@ final class Config
         $config
             ->setParallelConfig(ParallelConfigFactory::detect())
             ->setUsingCache(true)
-            ->setCacheFile($projectDir.'/.cache/.php-cs-fixer.cache')
             ->setRiskyAllowed(true)
             ->setIndent('    ')
             ->setLineEnding("\n")

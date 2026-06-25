@@ -38,12 +38,13 @@ return Config::create(__DIR__, ruleOverrides: [
 ```
 
 ```php
-// Provide your own Finder.
+// Provide your own Finder and use your cache path.
 use PhpCsFixer\Finder;
 
 $finder = Finder::create()->in(__DIR__)->name('*.php');
 
-return Config::create(__DIR__, finder: $finder);
+return Config::create(__DIR__, finder: $finder)
+    ->setCacheFile($projectDir.'/.cache/.php-cs-fixer.cache');
 ```
 
 Need only the rules array (e.g. to compose your own config)?
