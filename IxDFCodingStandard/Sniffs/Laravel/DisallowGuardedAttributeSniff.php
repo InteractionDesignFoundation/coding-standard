@@ -24,7 +24,7 @@ final class DisallowGuardedAttributeSniff extends AbstractScopeSniff
     }
 
     /** @inheritDoc */
-    protected function processTokenWithinScope(File $phpcsFile, $varPointer, $currScope)
+    protected function processTokenWithinScope(File $phpcsFile, $varPointer, $currScope): void
     {
         $varToken = $phpcsFile->getTokens()[$varPointer];
 
@@ -57,7 +57,7 @@ final class DisallowGuardedAttributeSniff extends AbstractScopeSniff
     }
 
     /** @inheritDoc */
-    protected function processTokenOutsideScope(File $phpcsFile, $stackPtr)
+    protected function processTokenOutsideScope(File $phpcsFile, $stackPtr): void
     {
         // nothing to do here
     }

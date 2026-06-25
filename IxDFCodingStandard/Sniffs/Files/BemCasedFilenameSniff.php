@@ -5,7 +5,9 @@ namespace IxDFCodingStandard\Sniffs\Files;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
 
-/** Checks that all file names are BEM-cased. */
+/**
+ * Checks that all file names are BEM-cased.
+ */
 final class BemCasedFilenameSniff implements Sniff
 {
     private const ERROR_TOO_MANY_DELIMITERS = 'TooManyElementModifiers';

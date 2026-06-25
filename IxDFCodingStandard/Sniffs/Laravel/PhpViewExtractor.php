@@ -15,10 +15,10 @@ final class PhpViewExtractor
             return false;
         }
 
-        return $tokens[$position - 1]['type'] === 'T_WHITESPACE' &&
-            $tokens[$position]['content'] === 'view' &&
-            $tokens[$position + 1]['content'] === '(' &&
-            $tokens[$position + 2]['type'] === 'T_CONSTANT_ENCAPSED_STRING';
+        return $tokens[$position - 1]['type'] === 'T_WHITESPACE'
+            && $tokens[$position]['content'] === 'view'
+            && $tokens[$position + 1]['content'] === '('
+            && $tokens[$position + 2]['type'] === 'T_CONSTANT_ENCAPSED_STRING';
     }
 
     /** @param array<array<string>> $tokens */
