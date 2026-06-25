@@ -10,6 +10,7 @@ namespace IxDFCodingStandard\PhpCsFixer;
  */
 final class Rules
 {
+    // phpcs:disable SlevomatCodingStandard.Functions.FunctionLength.FunctionLength -- a flat rule list, not logic
     // phpcs:ignore SlevomatCodingStandard.TypeHints.DisallowMixedTypeHint.DisallowedMixedTypeHint
     /** @return array<string, array<string, mixed>|bool> */
     public static function get(): array
@@ -133,4 +134,5 @@ final class Rules
             'yoda_style' => ['equal' => false, 'identical' => false, 'less_and_greater' => false],
         ];
     }
+    // phpcs:enable SlevomatCodingStandard.Functions.FunctionLength.FunctionLength
 }
