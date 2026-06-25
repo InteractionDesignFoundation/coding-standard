@@ -44,10 +44,10 @@ use PhpCsFixer\Finder;
 $finder = Finder::create()->in(__DIR__)->name('*.php');
 
 return Config::create(__DIR__, finder: $finder)
-    ->setCacheFile($projectDir.'/.cache/.php-cs-fixer.cache');
+    ->setCacheFile('./.cache/.php-cs-fixer.cache');
 ```
 
-Need only the rules array (e.g. to compose your own config)?
+Need only the rule array (e.g. to compose your own config)?
 
 ```php
 $rules = \IxDFCodingStandard\PhpCsFixer\Rules::get();
