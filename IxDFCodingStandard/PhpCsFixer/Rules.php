@@ -55,6 +55,11 @@ final class Rules
                     'version',
                 ],
             ],
+            'general_phpdoc_tag_rename' => [
+                'replacements' => [
+                    'inheritdoc' => 'inheritDoc',
+                ],
+            ],
             'modernize_types_casting' => true,
             'mb_str_functions' => true,
             'multiline_whitespace_before_semicolons' => ['strategy' => 'no_multi_line'],
