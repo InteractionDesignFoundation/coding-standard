@@ -7,7 +7,9 @@ use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
 use PHP_CodeSniffer\Util\Tokens;
 
-/** Inspired by {@see \SlevomatCodingStandard\Sniffs\Functions\StrictCallSniff}. */
+/**
+ * Inspired by {@see \SlevomatCodingStandard\Sniffs\Functions\StrictCallSniff}.
+ */
 final class MissingOptionalArgumentSniff implements Sniff
 {
     public const CODE_MISSING_OPTIONAL_ARGUMENT = 'MissingOptionalArgument';
@@ -50,7 +52,7 @@ final class MissingOptionalArgumentSniff implements Sniff
 
         if ($isMethodCall) {
             $fqcn = $this->getClassNameOfMethodCall($phpcsFile, $stringPointer);
-            $fullyQualifiedFunctionName = "$fqcn::$functionName";
+            $fullyQualifiedFunctionName = "{$fqcn}::{$functionName}";
 
             if (! array_key_exists($fullyQualifiedFunctionName, $this->staticMethods)) {
                 return;

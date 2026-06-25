@@ -4,7 +4,7 @@ namespace IxDFCodingStandard\Sniffs\Laravel;
 
 use BadMethodCallException;
 
-/** phpcs:disable IxDFCodingStandard.Laravel.NonExistingBladeTemplate.TemplateNotFound */
+// phpcs:disable IxDFCodingStandard.Laravel.NonExistingBladeTemplate.TemplateNotFound -- directive, kept as a line comment so PHP-CS-Fixer does not turn it into a multi-line doc block
 final class BladeTemplateExtractor
 {
     private const INVALID_METHOD_CALL = 'Invalid method call';
