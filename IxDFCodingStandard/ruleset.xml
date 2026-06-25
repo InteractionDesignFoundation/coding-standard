@@ -13,52 +13,18 @@
     <arg value="s"/>
     <arg name="report-width" value="120"/>
 
-    <!-- PSR2 ruleset: -->
-    <!-- Disallow else if in favor of elseif -->
-    <rule ref="PSR2.ControlStructures.ElseIfDeclaration.NotAllowed">
-        <type>error</type>
-    </rule>
-    <!-- PSR2 ruleset end. -->
-
-    <!-- PSR12 ruleset (includes PSR1 + most of PSR2 + some Generic rules). -->
-    <rule ref="PSR12">
-        <!-- Not ready for readonly classes (PHP 8.2) -->
+    <!--
+        PSR1/PSR12 formatting is fully covered by PHP-CS-Fixer's @PER-CS3x0 (PER-CS is the successor to PSR-12),
+        so we do not run the PSR12 sniffs here. We keep only the PSR1 structural sniffs that PHP-CS-Fixer cannot enforce.
+    -->
+    <rule ref="PSR1.Files.SideEffects">
+        <!-- A file may both declare symbols and have side effects (e.g. Laravel routes/config). -->
         <exclude name="PSR1.Files.SideEffects.FoundWithSymbols"/>
-
-        <!-- Need to exclude concatenation rule but there is no such option :( -->
-        <exclude name="PSR12.Operators.OperatorSpacing"/>
-        <!-- We use <?php declare(strict_types=1);\n as more readable option -->
-        <exclude name="PSR12.Files.OpenTag.NotAlone"/>
-        <!-- checked by SlevomatCodingStandard.Namespaces.UseSpacing -->
-        <exclude name="PSR12.Files.FileHeader"/>
-        <exclude name="PSR12.ControlStructures.ControlStructureSpacing.FirstExpressionLine"/>
-
-        <!-- Conflicts with PHP-CS-Fixer's single_line_empty_body from PER2x0-->
-        <exclude name="PSR2.Classes.ClassDeclaration.OpenBraceNewLine"/>
-        <!-- checked by PSR12.ControlStructures.ControlStructureSpacing -->
-        <exclude name="PSR2.ControlStructures.ControlStructureSpacing.SpacingAfterOpenBrace"/>
-        <!-- checked by SlevomatCodingStandard.Namespaces.UseSpacing -->
-        <exclude name="PSR2.Namespaces.UseDeclaration.SpaceAfterLastUse"/>
-        <!-- checked by SlevomatCodingStandard.Namespaces.NamespaceSpacing -->
-        <exclude name="PSR2.Namespaces.NamespaceDeclaration.BlankLineAfter"/>
-        <!-- checked by SlevomatCodingStandard.Operators.SpreadOperatorSpacing -->
-        <exclude name="Squiz.Functions.FunctionDeclarationArgumentSpacing.SpacingAfterVariadic"/>
-        <!-- checked by SlevomatCodingStandard.TypeHints.ReturnTypeHintSpacing -->
-        <exclude name="PSR12.Functions.ReturnTypeDeclaration"/>
-        <!-- checked by SlevomatCodingStandard.Classes.TraitUseSpacing -->
-        <exclude name="PSR12.Traits.UseDeclaration"/>
-        <!-- checked by SlevomatCodingStandard.TypeHints.ReturnTypeHintSpacing.WhitespaceAfterNullabilitySymbol -->
-        <exclude name="PSR12.Functions.NullableTypeDeclaration.WhitespaceFound"/>
     </rule>
-    <!-- PSR12 ruleset end. -->
+    <rule ref="PSR1.Classes.ClassDeclaration"/>
+    <rule ref="PSR1.Methods.CamelCapsMethodName"/>
 
     <!-- Generic ruleset: -->
-    <!-- Force array element indentation with 4 spaces -->
-    <rule ref="Generic.Arrays.ArrayIndent">
-        <exclude name="Generic.Arrays.ArrayIndent.CloseBraceNotNewLine"/>
-    </rule>
-    <!-- Forbid `array(...)` -->
-    <rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
     <!-- Forbid duplicate classes -->
     <rule ref="Generic.Classes.DuplicateClassName"/>
     <!-- Forbid empty statements -->
@@ -68,8 +34,6 @@
     </rule>
     <!-- Warn about variable assignments inside conditions -->
     <rule ref="Generic.CodeAnalysis.AssignmentInCondition"/>
-    <!-- Forbid final methods in final classes -->
-    <rule ref="Generic.CodeAnalysis.UnnecessaryFinalModifier"/>
     <!-- Forbid useless empty method overrides -->
     <rule ref="Generic.CodeAnalysis.UselessOverridingMethod"/>
     <!-- Detects the usage of one and the same incrementer into an outer and an inner -->
@@ -86,8 +50,6 @@
     </rule>
     <!-- Ensure there is a single class/interface/trait per file -->
     <rule ref="Generic.Files.OneObjectStructurePerFile"/>
-    <!-- Force whitespace after a type cast -->
-    <rule ref="Generic.Formatting.SpaceAfterCast"/>
     <!--
     <rule ref="Generic.Formatting.SpaceAfterNot"/>&lt;!&ndash; Force whitespace after `!` &ndash;&gt;
     -->
@@ -107,8 +69,6 @@
     <rule ref="Generic.PHP.CharacterBeforePHPOpeningTag"/>
     <!-- Forbid deprecated functions -->
     <rule ref="Generic.PHP.DeprecatedFunctions"/>
-    <!-- Forbid short open tag -->
-    <rule ref="Generic.PHP.DisallowShortOpenTag"/>
     <!-- Array values are specified by using a string representation of the array. -->
     <rule ref="Generic.PHP.ForbiddenFunctions">
         <properties>
@@ -163,18 +123,12 @@
     <rule ref="Generic.VersionControl.GitMergeConflict"/>
     <!-- Generic ruleset end. -->
 
-    <!-- @see https://github.com/squizlabs/PHP_CodeSniffer/issues/3875 , remove the exclusion when then fix it released plus update min version -->
-    <rule ref="Generic.WhiteSpace.ScopeIndent">
-        <exclude name="Generic.WhiteSpace.ScopeIndent.IncorrectExact"/>
-    </rule>
-
     <!-- SlevomatCoding ruleset: -->
     <rule ref="SlevomatCodingStandard.Arrays.DisallowImplicitArrayCreation"/>
     <!-- Array must have keys specified for either all or none of the values. -->
     <rule ref="SlevomatCodingStandard.Arrays.DisallowPartiallyKeyed"/>
     <rule ref="SlevomatCodingStandard.Arrays.MultiLineArrayEndBracketPlacement"/>
     <rule ref="SlevomatCodingStandard.Arrays.SingleLineArrayWhitespace"/>
-    <rule ref="SlevomatCodingStandard.Arrays.TrailingArrayComma"/>
     <rule ref="SlevomatCodingStandard.Attributes.AttributeAndTargetSpacing">
         <!-- For code like private function processUser(Member $member, #[\SensitiveParameter] string $password): void -->
         <exclude name="SlevomatCodingStandard.Attributes.AttributeAndTargetSpacing.IncorrectLinesCountBetweenAttributeAndTarget"/>
@@ -188,8 +142,6 @@
     <rule ref="SlevomatCodingStandard.Classes.ClassMemberSpacing"/>
     <rule ref="SlevomatCodingStandard.Classes.ConstantSpacing"/>
     <rule ref="SlevomatCodingStandard.Classes.DisallowLateStaticBindingForConstants"/>
-    <rule ref="SlevomatCodingStandard.Classes.DisallowMultiConstantDefinition"/>
-    <rule ref="SlevomatCodingStandard.Classes.DisallowMultiPropertyDefinition"/>
     <rule ref="SlevomatCodingStandard.Classes.DisallowStringExpressionPropertyFetch"/>
     <rule ref="SlevomatCodingStandard.Classes.EnumCaseSpacing"/>
     <rule ref="SlevomatCodingStandard.Classes.MethodSpacing"/>
@@ -220,7 +172,6 @@
             <property name="linesCountBetweenAnnotationsGroups" value="0"/>
         </properties>
     </rule>
-    <rule ref="SlevomatCodingStandard.Commenting.EmptyComment"/>
     <rule ref="SlevomatCodingStandard.Commenting.ForbiddenAnnotations"/>
     <rule ref="SlevomatCodingStandard.Commenting.ForbiddenComments">
         <properties>
@@ -248,18 +199,13 @@
     </rule>
     <rule ref="SlevomatCodingStandard.ControlStructures.DisallowContinueWithoutIntegerOperandInSwitch"/>
     <rule ref="SlevomatCodingStandard.ControlStructures.DisallowTrailingMultiLineTernaryOperator"/>
-    <rule ref="SlevomatCodingStandard.ControlStructures.DisallowYodaComparison"/>
     <rule ref="SlevomatCodingStandard.ControlStructures.LanguageConstructWithParentheses"/>
-    <!-- Requires new with parentheses. -->
-    <rule ref="SlevomatCodingStandard.ControlStructures.NewWithParentheses"/>
     <rule ref="SlevomatCodingStandard.ControlStructures.RequireMultiLineCondition"/>
     <rule ref="SlevomatCodingStandard.ControlStructures.RequireMultiLineTernaryOperator">
         <properties>
             <property name="lineLengthLimit" value="120"/>
         </properties>
     </rule>
-    <rule ref="SlevomatCodingStandard.ControlStructures.RequireNullCoalesceEqualOperator"/>
-    <rule ref="SlevomatCodingStandard.ControlStructures.RequireNullCoalesceOperator"/>
     <rule ref="SlevomatCodingStandard.ControlStructures.RequireNullSafeObjectOperator"/>
     <rule ref="SlevomatCodingStandard.ControlStructures.RequireShortTernaryOperator"/>
     <rule ref="SlevomatCodingStandard.ControlStructures.RequireSingleLineCondition"/>
@@ -301,7 +247,6 @@
     <rule ref="SlevomatCodingStandard.Functions.StrictCall"/>
     <rule ref="SlevomatCodingStandard.Functions.UnusedInheritedVariablePassedToClosure"/>
     <rule ref="SlevomatCodingStandard.Functions.UselessParameterDefaultValue"/>
-    <rule ref="SlevomatCodingStandard.Namespaces.AlphabeticallySortedUses"/>
     <rule ref="SlevomatCodingStandard.Namespaces.DisallowGroupUse"/>
     <rule ref="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation">
         <properties>
@@ -311,7 +256,6 @@
         </properties>
     </rule>
     <rule ref="SlevomatCodingStandard.Namespaces.FullyQualifiedGlobalConstants"/>
-    <rule ref="SlevomatCodingStandard.Namespaces.MultipleUsesPerLine"/>
     <rule ref="SlevomatCodingStandard.Namespaces.NamespaceDeclaration"/>
     <rule ref="SlevomatCodingStandard.Namespaces.NamespaceSpacing"/>
     <rule ref="SlevomatCodingStandard.Namespaces.RequireOneNamespaceInFile"/>
@@ -321,7 +265,6 @@
         </properties>
         <severity>6</severity>
     </rule>
-    <rule ref="SlevomatCodingStandard.Namespaces.UseDoesNotStartWithBackslash"/>
     <rule ref="SlevomatCodingStandard.Namespaces.UseFromSameNamespace"/>
     <rule ref="SlevomatCodingStandard.Namespaces.UseSpacing">
         <properties>
@@ -330,7 +273,6 @@
     </rule>
     <rule ref="SlevomatCodingStandard.Namespaces.UselessAlias"/>
     <rule ref="SlevomatCodingStandard.Operators.DisallowEqualOperators"/>
-    <rule ref="SlevomatCodingStandard.Operators.NegationOperatorSpacing"/>
     <rule ref="SlevomatCodingStandard.Operators.RequireCombinedAssignmentOperator"/>
     <rule ref="SlevomatCodingStandard.Operators.RequireOnlyStandaloneIncrementAndDecrementOperators"/>
     <rule ref="SlevomatCodingStandard.Operators.SpreadOperatorSpacing"/>
@@ -345,9 +287,6 @@
     <rule ref="SlevomatCodingStandard.PHP.OptimizedFunctionsWithoutUnpacking"/>
     <rule ref="SlevomatCodingStandard.PHP.ReferenceSpacing"/>
     <rule ref="SlevomatCodingStandard.PHP.RequireNowdoc"/>
-    <rule ref="SlevomatCodingStandard.PHP.ShortList"/>
-    <rule ref="SlevomatCodingStandard.PHP.TypeCast"/>
-    <rule ref="SlevomatCodingStandard.PHP.UselessSemicolon"/>
     <rule ref="SlevomatCodingStandard.Strings.DisallowVariableParsing"/>
     <rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes">
         <properties>
@@ -359,7 +298,6 @@
     <rule ref="SlevomatCodingStandard.TypeHints.DNFTypeHintFormat"/>
     <rule ref="SlevomatCodingStandard.TypeHints.LongTypeHints"/>
     <rule ref="SlevomatCodingStandard.TypeHints.NullTypeHintOnLastPosition"/>
-    <rule ref="SlevomatCodingStandard.TypeHints.NullableTypeForNullDefaultValue"/>
     <rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHint">
         <!-- Native type hints may break inheritance -->
         <exclude name="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint"/>
@@ -396,6 +334,8 @@
             <property name="traversableTypeHints" type="array">
                 <element value="\Illuminate\Database\Eloquent\Collection"/>
                 <element value="\Illuminate\Support\Collection"/>
+                <element value="\Illuminate\Support\Enumerable"/>
+                <element value="\Illuminate\Support\LazyCollection"/>
                 <element value="\Illuminate\Pagination\AbstractCursorPaginator"/>
                 <element value="\Illuminate\Pagination\AbstractPaginator"/>
                 <element value="\Illuminate\Pagination\CursorPaginator"/>
@@ -416,8 +356,6 @@
     <!-- SlevomatCoding end. -->
 
     <!-- Squiz ruleset: -->
-    <!-- Don't use a space like $array [$key] -->
-    <rule ref="Squiz.Arrays.ArrayBracketSpacing"/>
     <!-- Checks for empty catch clause without a comment. -->
     <rule ref="Squiz.Commenting.EmptyCatchComment"/>
     <!-- Force phpDoc alignment -->
@@ -486,43 +424,10 @@
     <rule ref="Squiz.Scope.MemberVarScope"/>
     <!-- Checks for usage of $this in static methods, which will cause runtime errors. -->
     <rule ref="Squiz.Scope.StaticThisUsage"/>
-    <!-- Makes sure there are no spaces around the concatenation operator. -->
-    <rule ref="Squiz.Strings.ConcatenationSpacing">
-        <properties>
-            <property name="ignoreNewlines" value="true"/>
-        </properties>
-    </rule>
     <!-- Use singular quotes by default -->
     <rule ref="Squiz.Strings.DoubleQuoteUsage.NotRequired"/>
     <!-- Forbid braces around string in `echo` -->
     <rule ref="Squiz.Strings.EchoedStrings"/>
-    <!-- Require space around logical operators -->
-    <rule ref="Squiz.WhiteSpace.LogicalOperatorSpacing"/>
-    <!-- Forbid superfluous whitespaces -->
-    <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace">
-        <properties>
-            <!-- Turned on by PSR2 -> turning back off -->
-            <property name="ignoreBlankLines" value="false"/>
-        </properties>
-    </rule>
-    <!-- Forbid spaces around `->` operator -->
-    <rule ref="Squiz.WhiteSpace.ObjectOperatorSpacing">
-        <properties>
-            <property name="ignoreNewlines" value="true"/>
-        </properties>
-    </rule>
-    <!-- It's like PRS-12 OperatorSpacing rule, but has do not check for concatenation -->
-    <rule ref="Squiz.WhiteSpace.OperatorSpacing">
-        <properties>
-            <property name="ignoreNewlines" value="true"/>
-        </properties>
-    </rule>
-    <!-- Forbid spaces before semicolon `;` -->
-    <rule ref="Squiz.WhiteSpace.SemicolonSpacing"/>
-    <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace.EmptyLines">
-        <!-- Turned off by PSR2 -> turning back on -->
-        <severity>5</severity>
-    </rule>
     <!-- Squiz ruleset end. -->
 
     <!--IxDFCodingStandard custom rules: -->

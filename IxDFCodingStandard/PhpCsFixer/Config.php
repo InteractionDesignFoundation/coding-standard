@@ -9,6 +9,7 @@ use PhpCsFixer\Runner\Parallel\ParallelConfigFactory;
 /**
  * Pre-configured PHP-CS-Fixer config factory for IxDF projects.
  * @see README.md for usage examples
+ * @api
  */
 final class Config
 {
