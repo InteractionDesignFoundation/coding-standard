@@ -16,6 +16,7 @@ return [
     '@PHP8x4Migration' => true,
     '@PHP8x4Migration:risky' => true,
     '@PHPUnit10x0Migration:risky' => true,
+    'use_arrow_functions' => false, // long closure syntax is sometimes more readable; do not force fn() (pulled in by @PHP8x4Migration:risky)
     'new_with_parentheses' => ['anonymous_class' => true], // It will be changed in PHP-CS-Fixer v4.0 (but we want to enforce it), see https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/pull/8148
     // overrides for PER-CS2.0/PER-CS3.0
     'concat_space' => ['spacing' => 'none'], // make strings shorter "'hello' . $name . '!'" => "'hello'.$name.'!'"
@@ -77,7 +78,6 @@ return [
     'normalize_index_brace' => true,
     'nullable_type_declaration' => ['syntax' => 'question_mark'],
     'nullable_type_declaration_for_default_null_value' => true,
-    'numeric_literal_separator' => ['strategy' => 'use_separator', 'override_existing' => false],
     'object_operator_without_whitespace' => true,
     'ordered_imports' => ['imports_order' => ['class', 'function', 'const']],
     /*
