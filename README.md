@@ -5,30 +5,15 @@
 
 # IxDF Coding Standard
 
-An opinionated coding standard for PHP/Laravel projects. Provides two independent tools — use either one or both together:
+An opinionated coding standard for PHP/Laravel projects. It ships two independent tools that you can use separately or together:
 
-- **PHP_CodeSniffer** — custom sniffs for strict types and Laravel conventions
-- **PHP-CS-Fixer** — shared config with 80+ rules based on PER-CS 3.0
+- **PHP-CS-Fixer** — shared config based on the [latest PER Coding Style](https://www.php-fig.org/per/coding-style/) (currently PER-CS 3.0), plus formatting and modernization rules.
+- **PHP_CodeSniffer** — custom sniffs for strict types and Laravel conventions.
 
 ## Installation
 
 ```shell
 composer require --dev interaction-design-foundation/coding-standard
-```
-
-## PHP_CodeSniffer
-
-Create `phpcs.xml` in your project root:
-```xml
-<?xml version="1.0"?>
-<ruleset name="My Coding Standard">
-    <rule ref="IxDFCodingStandard"/>
-    <file>app</file>
-    <file>config</file>
-    <file>database</file>
-    <file>routes</file>
-    <file>tests</file>
-</ruleset>
 ```
 
 ## PHP-CS-Fixer
@@ -43,18 +28,17 @@ use IxDFCodingStandard\PhpCsFixer\Config;
 return Config::create(__DIR__);
 ```
 
-With rule overrides:
+`Config::create()` ships a sensible default Finder and enables parallel runs, risky rules, and caching. Two optional arguments let you adjust it:
 
 ```php
+// Override individual rules.
 return Config::create(__DIR__, ruleOverrides: [
     'final_public_method_for_abstract_class' => false,
 ]);
 ```
 
-With a custom Finder:
-
 ```php
-use IxDFCodingStandard\PhpCsFixer\Config;
+// Provide your own Finder.
 use PhpCsFixer\Finder;
 
 $finder = Finder::create()->in(__DIR__)->name('*.php');
@@ -62,27 +46,48 @@ $finder = Finder::create()->in(__DIR__)->name('*.php');
 return Config::create(__DIR__, finder: $finder);
 ```
 
-If you only need the rules array:
+Need only the rules array (e.g. to compose your own config)?
+
 ```php
 $rules = \IxDFCodingStandard\PhpCsFixer\Rules::get();
 ```
 
-## Usage
+Run it:
 
 ```shell
-vendor/bin/phpcs          # check with PHP_CodeSniffer
-vendor/bin/phpcbf         # fix with PHP_CodeSniffer
-vendor/bin/php-cs-fixer fix --dry-run --diff   # check with PHP-CS-Fixer
-vendor/bin/php-cs-fixer fix                    # fix with PHP-CS-Fixer
+vendor/bin/php-cs-fixer fix --dry-run --diff   # check
+vendor/bin/php-cs-fixer fix                     # fix
 ```
 
-### Composer scripts (recommended)
+## PHP_CodeSniffer
 
-Add to your `composer.json`:
+Create `phpcs.xml` in your project root:
+
+```xml
+<?xml version="1.0"?>
+<ruleset name="My Coding Standard">
+    <rule ref="IxDFCodingStandard"/>
+    <file>app</file>
+    <file>config</file>
+    <file>database</file>
+    <file>routes</file>
+    <file>tests</file>
+</ruleset>
+```
+
+Run it:
+
+```shell
+vendor/bin/phpcs    # check
+vendor/bin/phpcbf   # fix
+```
+
+## Composer scripts (recommended)
+
+Wire both tools into `composer.json` so the whole team runs them the same way:
 
 ```json
 "scripts": {
-    "cs": "@cs:fix",
     "cs:check": ["@php-cs-fixer:dry", "@phpcs"],
     "cs:fix": ["@php-cs-fixer", "@phpcbf"],
     "phpcs": "phpcs -p -s --colors --report-full --report-summary",
@@ -92,11 +97,7 @@ Add to your `composer.json`:
 }
 ```
 
-Then run:
-
 ```shell
-composer cs:check       # run both tools in check mode
-composer cs:fix         # run both tools in fix mode
-composer phpcs          # PHP_CodeSniffer only
-composer php-cs-fixer   # PHP-CS-Fixer only
+composer cs:check   # check with both tools
+composer cs:fix     # fix with both tools
 ```

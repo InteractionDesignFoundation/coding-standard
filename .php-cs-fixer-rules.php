@@ -3,13 +3,19 @@
 /**
  * Shared PHP-CS-Fixer rules for PER projects.
  * @see https://localheinz.com/articles/2023/03/10/sharing-configurations-for-php-cs-fixer-across-projects/
- * How to use:
- * $rules = require __DIR__.'/vendor/interaction-design-foundation/php-cs-fixer-rules.php';
+ *
+ * Prefer the autoloaded API: \IxDFCodingStandard\PhpCsFixer\Rules::get() (or Config::create()).
+ * This raw file is the no-autoloader fallback; require it directly when needed:
+ * $rules = require __DIR__.'/vendor/interaction-design-foundation/coding-standard/.php-cs-fixer-rules.php';
  * $config->setRules($rules);
  */
 return [
     // Basic PER Coding Style 3.0 ruleset plus our overrides for it, see https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/master/doc/ruleSets/PER-CS3x0.rst
     '@PER-CS3x0' => true, // https://www.php-fig.org/per/coding-style/
+    // Auto-modernize syntax to the target PHP/PHPUnit version. Renovate bumps PHP-CS-Fixer, so new migration rules arrive for free.
+    '@PHP8x4Migration' => true,
+    '@PHP8x4Migration:risky' => true,
+    '@PHPUnit10x0Migration:risky' => true,
     'new_with_parentheses' => ['anonymous_class' => true], // It will be changed in PHP-CS-Fixer v4.0 (but we want to enforce it), see https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/pull/8148
     // overrides for PER-CS2.0/PER-CS3.0
     'concat_space' => ['spacing' => 'none'], // make strings shorter "'hello' . $name . '!'" => "'hello'.$name.'!'"
@@ -71,6 +77,7 @@ return [
     'normalize_index_brace' => true,
     'nullable_type_declaration' => ['syntax' => 'question_mark'],
     'nullable_type_declaration_for_default_null_value' => true,
+    'numeric_literal_separator' => ['strategy' => 'use_separator', 'override_existing' => false],
     'object_operator_without_whitespace' => true,
     'ordered_imports' => ['imports_order' => ['class', 'function', 'const']],
     /*

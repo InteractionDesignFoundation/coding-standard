@@ -5,6 +5,7 @@ namespace IxDFCodingStandard\PhpCsFixer;
 /**
  * Shared PHP-CS-Fixer rules for IxDF projects.
  * @see https://mlocati.github.io/php-cs-fixer-configurator/
+ * @api
  */
 final class Rules
 {
