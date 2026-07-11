@@ -1,0 +1,46 @@
+name: Coding standard
+
+on:
+  push:
+    paths:
+      - '**.php'
+      - '**.xml'
+      - 'composer.*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: coding-standard-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  coding-standard:
+    name: Coding standard
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2
+        with:
+          php-version: 8.4
+          coverage: none
+
+      - name: Install Composer dependencies
+        uses: ramsey/composer-install@65e4f84970763564f46a70b8a54b90d033b3bdda # 4.0.0
+        with:
+          composer-options: '--no-scripts'
+
+      - name: Apply Rector
+        run: composer rector
+
+      - name: Apply Coding Standard
+        run: composer cs
+
+      - name: Commit Fixes (if any)
+        uses: stefanzweifel/git-auto-commit-action@b863ae1933cb653a53c021fe36dbb774e1fb9403 # v5.2.0
+        with:
+          commit_message: 'style: apply coding standard'

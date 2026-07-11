@@ -34,7 +34,7 @@
         "sort-packages": true
     },
     "scripts": {
-        "cs": "@cs:fix",
+        "cs": ["@php-cs-fixer", "@cs:fix"],
         "cs:fix": "phpcbf -p --colors --cache=.cache/phpcs",
         "php-cs-fixer": "php-cs-fixer fix --no-interaction",
         "rector": "rector",

@@ -24,8 +24,9 @@ Two tools, two roles, meant to run together:
 ```shell
 composer require --dev interaction-design-foundation/coding-standard
 ```
+## Configuration
 
-## PHP-CS-Fixer
+### PHP-CS-Fixer
 
 Create `.php-cs-fixer.php` in your project root:
 
@@ -67,7 +68,7 @@ Run it:
 vendor/bin/php-cs-fixer fix
 ```
 
-## PHP_CodeSniffer
+### PHP_CodeSniffer
 
 Create `phpcs.xml` in your project root:
 
@@ -93,7 +94,7 @@ vendor/bin/phpcbf   # fix
 vendor/bin/phpcs    # check (dry-run)
 ```
 
-## Composer scripts (recommended)
+### Composer scripts (recommended)
 
 Wire both tools into `composer.json` so the whole team runs them the same way:
 
@@ -116,25 +117,5 @@ composer cs
 
 ## Continuous integration
 
-Run the fixer in CI and commit the result back, so the branch is always formatted without blocking the build. Example GitHub Actions workflow (`.github/workflows/coding-standard.yml`):
-
-```yaml
-name: Coding standard
-
-on: [push, pull_request]
-
-jobs:
-    cs:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v4
-            - uses: shivammathur/setup-php@v2
-              with:
-                  php-version: '8.4'
-                  coverage: none
-            - run: composer install --no-interaction --no-progress --prefer-dist
-            - run: composer cs
-            - uses: stefanzweifel/git-auto-commit-action@b863ae1933cb653a53c021fe36dbb774e1fb9403 # v5.2.0
-              with:
-                  commit_message: 'style: apply coding standard'
-```
+Run the fixer in CI and commit the result back, so the branch is always formatted without blocking the build.
+This repository dogfoods that pattern; copy its workflow as a starting point: [`.github/workflows/coding-standard.yml`](.github/workflows/coding-standard.yml).
