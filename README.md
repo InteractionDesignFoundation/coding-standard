@@ -1,11 +1,11 @@
+# IxDF PHP Coding Standard
+
 [![Tests](https://github.com/InteractionDesignFoundation/coding-standard/actions/workflows/test.yml/badge.svg)](https://github.com/InteractionDesignFoundation/coding-standard/actions/workflows/test.yml)
 [![PHP Psalm](https://github.com/InteractionDesignFoundation/coding-standard/actions/workflows/psalm.yml/badge.svg)](https://github.com/InteractionDesignFoundation/coding-standard/actions/workflows/psalm.yml)
 [![PHP Psalm Level](https://shepherd.dev/github/InteractionDesignFoundation/coding-standard/level.svg)](https://shepherd.dev/github/InteractionDesignFoundation/coding-standard)
 [![PHP Psalm Type Coverage](https://shepherd.dev/github/InteractionDesignFoundation/coding-standard/coverage.svg)](https://shepherd.dev/github/InteractionDesignFoundation/coding-standard)
 
-# IxDF PHP Coding Standard
-
-An opinionated coding standard for PHP and Laravel projects, built on [PER-CS 3.0](https://www.php-fig.org/per/coding-style/).
+An opinionated coding standard for PHP and Laravel projects, built on [PER-CS 3](https://www.php-fig.org/per/coding-style/).
 Focuses on:
  - **High signal-to-noise ratio** (concise but informative PHPDoc, e.g. array shapes)
  - **Strict, explicit code**: `strict_types`, strict comparisons, final by default, no magic (`extract()`, variable variables, superglobals)
@@ -14,7 +14,7 @@ Focuses on:
  - **PHP and Laravel best practices** (enforced, not just suggested)
 
 Two tools, two roles, meant to run together:
-- **PHP-CS-Fixer** (primary): fast PER-CS 3+ auto-formatting and modernization rules.
+- **PHP-CS-Fixer** (primary): fast auto-formatting and modernization rules.
 - **PHP_CodeSniffer** (supplementary): structural and semantic checks PHP-CS-Fixer cannot express (strict types, Laravel conventions, naming, complexity).
 
 > [!TIP]
