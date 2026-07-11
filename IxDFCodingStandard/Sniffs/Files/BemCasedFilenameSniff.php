@@ -8,14 +8,14 @@ use PHP_CodeSniffer\Sniffs\Sniff;
 /** Checks that all file names are BEM-cased. */
 final class BemCasedFilenameSniff implements Sniff
 {
-    private const ERROR_TOO_MANY_DELIMITERS = 'TooManyElementModifiers';
-    private const ERROR_TOO_MANY_MODIFIERS = 'TooManyElementModifiers';
-    private const ERROR_INVALID_CHARACTERS = 'InvalidCharacters';
+    private const string ERROR_TOO_MANY_DELIMITERS = 'TooManyElementModifiers';
+    private const string ERROR_TOO_MANY_MODIFIERS = 'TooManyElementModifiers';
+    private const string ERROR_INVALID_CHARACTERS = 'InvalidCharacters';
 
-    private const MODIFIER_DELIMITER = '--';
-    private const ELEMENT_DELIMITER = '__';
-    private const BEM_FILE_NAME_PATTERN = '/^(?:(?:__)?[a-z][a-zA-Z0-9]*(?:--[\w][a-zA-Z0-9]*)?)+?\.blade\.php$/';
-    private const BLADE_COMPONENT_FILE_NAME_PATTERN = '/^([a-z]+(-[a-z]+)+)\.blade\.php$/';
+    private const string MODIFIER_DELIMITER = '--';
+    private const string ELEMENT_DELIMITER = '__';
+    private const string BEM_FILE_NAME_PATTERN = '/^(?:(?:__)?[a-z][a-zA-Z0-9]*(?:--[\w][a-zA-Z0-9]*)?)+?\.blade\.php$/';
+    private const string BLADE_COMPONENT_FILE_NAME_PATTERN = '/^([a-z]+(-[a-z]+)+)\.blade\.php$/';
 
     /** @var array<string, bool> */
     private array $checkedFiles = [];

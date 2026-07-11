@@ -8,7 +8,7 @@ use PHP_CodeSniffer\Sniffs\Sniff;
 
 final class RequireCustomAbortMessageSniff implements Sniff
 {
-    private const CODE_MISSING_PARAMETER = 'MissingRequiredAbortParameter';
+    private const string CODE_MISSING_PARAMETER = 'MissingRequiredAbortParameter';
 
     /** @var array<string, int> Where value is a number of required parameters */
     private array $functionsWithMinParameters = [
@@ -86,7 +86,7 @@ final class RequireCustomAbortMessageSniff implements Sniff
             return;
         }
 
-        $functionName = strtolower($tokens[$functionPointer]['content']);
+        $functionName = strtolower((string) $tokens[$functionPointer]['content']);
 
         if (! \in_array($functionName, $this->functionNames, true)) {
             return;

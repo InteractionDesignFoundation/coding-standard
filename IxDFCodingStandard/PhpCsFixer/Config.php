@@ -9,6 +9,7 @@ use PhpCsFixer\Runner\Parallel\ParallelConfigFactory;
 /**
  * Pre-configured PHP-CS-Fixer config factory for IxDF projects.
  * @see README.md for usage examples
+ * @api
  */
 final class Config
 {
@@ -22,7 +23,6 @@ final class Config
         $config
             ->setParallelConfig(ParallelConfigFactory::detect())
             ->setUsingCache(true)
-            ->setCacheFile($projectDir.'/.cache/.php-cs-fixer.cache')
             ->setRiskyAllowed(true)
             ->setIndent('    ')
             ->setLineEnding("\n")

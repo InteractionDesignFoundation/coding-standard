@@ -7,8 +7,8 @@ use PHP_CodeSniffer\Sniffs\Sniff;
 
 final class NonExistingBladeTemplateSniff implements Sniff
 {
-    public const CODE_TEMPLATE_NOT_FOUND = 'TemplateNotFound';
-    public const CODE_UNKNOWN_VIEW_NAMESPACE = 'UnknownViewNamespace';
+    public const string CODE_TEMPLATE_NOT_FOUND = 'TemplateNotFound';
+    public const string CODE_UNKNOWN_VIEW_NAMESPACE = 'UnknownViewNamespace';
 
     /** @var list<non-empty-string> The same as for config('view.paths') */
     public array $viewPaths = [
@@ -30,8 +30,8 @@ final class NonExistingBladeTemplateSniff implements Sniff
     /** @var string|null Cached base directory */
     private ?string $resolvedBaseDir = null;
 
-    private BladeTemplateExtractor $bladeExtractor;
-    private PhpViewExtractor $phpExtractor;
+    private readonly BladeTemplateExtractor $bladeExtractor;
+    private readonly PhpViewExtractor $phpExtractor;
 
     public function __construct()
     {
@@ -132,7 +132,7 @@ final class NonExistingBladeTemplateSniff implements Sniff
 
         // 2. Custom namespace
         if ($hasCustomNamespace) {
-            $namespace = (string) $matches[1];
+            $namespace = $matches[1];
 
             if (!isset($this->viewNamespaces[$namespace])) {
                 throw new \OutOfBoundsException("Unable to find view namespace “{$namespace}” in viewNamespaces property.");

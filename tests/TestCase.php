@@ -2,6 +2,4 @@
 
 namespace IxDFCodingStandard;
 
-abstract class TestCase extends \SlevomatCodingStandard\Sniffs\TestCase
-{
-}
+abstract class TestCase extends \SlevomatCodingStandard\Sniffs\TestCase {}

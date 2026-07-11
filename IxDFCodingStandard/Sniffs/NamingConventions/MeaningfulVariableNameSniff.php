@@ -35,7 +35,7 @@ final class MeaningfulVariableNameSniff extends AbstractVariableSniff
     protected function processVariable(File $phpcsFile, $stackPtr): void
     {
         $tokens = $phpcsFile->getTokens();
-        $varName = ltrim($tokens[$stackPtr]['content'], '$');
+        $varName = ltrim((string) $tokens[$stackPtr]['content'], '$');
 
         if ($this->checkForProhibitedVariableNames($varName)) {
             $error = 'Variable "%s" has not very meaningful, searchable or pronounceable name';
@@ -52,7 +52,7 @@ final class MeaningfulVariableNameSniff extends AbstractVariableSniff
     protected function processMemberVar(File $phpcsFile, $stackPtr): void
     {
         $tokens = $phpcsFile->getTokens();
-        $varName = ltrim($tokens[$stackPtr]['content'], '$');
+        $varName = ltrim((string) $tokens[$stackPtr]['content'], '$');
 
         if ($this->checkForProhibitedVariableNames($varName)) {
             $error = 'Variable "%s" has not very meaningful, searchable or pronounceable name';
@@ -72,7 +72,7 @@ final class MeaningfulVariableNameSniff extends AbstractVariableSniff
 
         $subject = $tokens[$stackPtr]['content'];
 
-        if (preg_match_all('|[^\\\]\$([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)|', $subject, $matches) !== 0) {
+        if (preg_match_all('|[^\\\]\$([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)|', (string) $subject, $matches) !== 0) {
             foreach ($matches[1] as $varName) {
                 // If it’s a php reserved var, then it's ok.
                 if (isset($this->phpReservedVars[$varName]) === true) {

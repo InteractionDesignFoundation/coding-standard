@@ -1,5 +1,9 @@
 <?xml version="1.0"?>
 <ruleset name="IxDFCodingStandard (package version)">
+    <!-- Paths to check -->
+    <file>IxDFCodingStandard</file>
+    <file>tests</file>
+
     <!-- Include all rules from the IxDF Coding Standard -->
     <rule ref="./IxDFCodingStandard/ruleset.xml"/>
 
@@ -14,10 +18,6 @@
     <rule ref="PSR1.Methods.CamelCapsMethodName.NotCamelCaps">
         <exclude-pattern>./tests*</exclude-pattern>
     </rule>
-
-    <!-- Paths to check -->
-    <file>IxDFCodingStandard</file>
-    <file>tests</file>
 
     <exclude-pattern>.cache</exclude-pattern>
     <exclude-pattern>tests/**/data/*</exclude-pattern>

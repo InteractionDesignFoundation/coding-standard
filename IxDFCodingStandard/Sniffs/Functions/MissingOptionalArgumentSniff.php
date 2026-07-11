@@ -10,7 +10,7 @@ use PHP_CodeSniffer\Util\Tokens;
 /** Inspired by {@see \SlevomatCodingStandard\Sniffs\Functions\StrictCallSniff}. */
 final class MissingOptionalArgumentSniff implements Sniff
 {
-    public const CODE_MISSING_OPTIONAL_ARGUMENT = 'MissingOptionalArgument';
+    public const string CODE_MISSING_OPTIONAL_ARGUMENT = 'MissingOptionalArgument';
 
     /** @var array<string, int> */
     public array $functions = [];
@@ -37,7 +37,7 @@ final class MissingOptionalArgumentSniff implements Sniff
         $parenthesisCloserPointer = $tokens[$parenthesisOpenerPointer]['parenthesis_closer'];
         assert(is_int($parenthesisCloserPointer));
 
-        $functionName = strtolower(ltrim($tokens[$stringPointer]['content'], '\\'));
+        $functionName = strtolower(ltrim((string) $tokens[$stringPointer]['content'], '\\'));
 
         $previousPointer = TokenHelper::findPreviousEffective($phpcsFile, $stringPointer - 1);
 
@@ -50,7 +50,7 @@ final class MissingOptionalArgumentSniff implements Sniff
 
         if ($isMethodCall) {
             $fqcn = $this->getClassNameOfMethodCall($phpcsFile, $stringPointer);
-            $fullyQualifiedFunctionName = "$fqcn::$functionName";
+            $fullyQualifiedFunctionName = "{$fqcn}::{$functionName}";
 
             if (! array_key_exists($fullyQualifiedFunctionName, $this->staticMethods)) {
                 return;
@@ -134,12 +134,7 @@ final class MissingOptionalArgumentSniff implements Sniff
         if ($tokens[$operator]['code'] === \T_DOUBLE_COLON) {
             // Get the string before the double colon, which should be the class name or self, parent, etc.
             $prev = $phpcsFile->findPrevious(Tokens::$emptyTokens, $operator - 1, null, true);
-            if (
-                $tokens[$prev]['code'] === \T_STRING
-                || $tokens[$prev]['code'] === \T_SELF
-                || $tokens[$prev]['code'] === \T_PARENT
-                || $tokens[$prev]['code'] === \T_STATIC
-            ) {
+            if (in_array($tokens[$prev]['code'], [\T_STRING, \T_SELF, \T_PARENT, \T_STATIC], true)) {
                 return $tokens[$prev]['content'];
             }
         }

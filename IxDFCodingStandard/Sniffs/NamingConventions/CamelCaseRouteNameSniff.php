@@ -7,9 +7,9 @@ use PHP_CodeSniffer\Sniffs\Sniff;
 
 final class CamelCaseRouteNameSniff implements Sniff
 {
-    public const CODE_NOT_CAMEL_CASE_ROUTE_NAME = 'NotCamelCaseRouteName';
+    public const string CODE_NOT_CAMEL_CASE_ROUTE_NAME = 'NotCamelCaseRouteName';
 
-    private const PATTERN_CAMEL_CASE = '/^[^-_\s]++$/';
+    private const string PATTERN_CAMEL_CASE = '/^[^-_\s]++$/';
 
     /** @inheritDoc */
     public function register(): array
@@ -56,13 +56,6 @@ final class CamelCaseRouteNameSniff implements Sniff
     private function isCamelCase(string $routeName): bool
     {
         $parts = explode('.', $routeName);
-
-        foreach ($parts as $part) {
-            if (preg_match(self::PATTERN_CAMEL_CASE, $part) !== 1) {
-                return false;
-            }
-        }
-
-        return true;
+        return array_all($parts, static fn($part): bool => !(preg_match(self::PATTERN_CAMEL_CASE, (string) $part) !== 1));
     }
 }

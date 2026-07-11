@@ -8,8 +8,8 @@ use PHP_CodeSniffer\Sniffs\AbstractScopeSniff;
 
 final class DisallowGuardedAttributeSniff extends AbstractScopeSniff
 {
-    public const CODE_EMPTY_GUARDED = 'EmptyGuarded';
-    public const CODE_NON_EMPTY_GUARDED = 'NonEmptyGuarded';
+    public const string CODE_EMPTY_GUARDED = 'EmptyGuarded';
+    public const string CODE_NON_EMPTY_GUARDED = 'NonEmptyGuarded';
 
     /**
      * A list of tokenizers this sniff supports.
@@ -24,7 +24,7 @@ final class DisallowGuardedAttributeSniff extends AbstractScopeSniff
     }
 
     /** @inheritDoc */
-    protected function processTokenWithinScope(File $phpcsFile, $varPointer, $currScope)
+    protected function processTokenWithinScope(File $phpcsFile, $varPointer, $currScope): void
     {
         $varToken = $phpcsFile->getTokens()[$varPointer];
 
@@ -57,7 +57,7 @@ final class DisallowGuardedAttributeSniff extends AbstractScopeSniff
     }
 
     /** @inheritDoc */
-    protected function processTokenOutsideScope(File $phpcsFile, $stackPtr)
+    protected function processTokenOutsideScope(File $phpcsFile, $stackPtr): void
     {
         // nothing to do here
     }
