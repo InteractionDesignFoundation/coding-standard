@@ -234,7 +234,7 @@
     <rule ref="SlevomatCodingStandard.Functions.FunctionLength">
         <properties>
             <!-- Default value is 20. -->
-            <property name="maxLinesLength" value="40"/>
+            <property name="maxLinesLength" value="70"/>
         </properties>
     </rule>
     <rule ref="SlevomatCodingStandard.Functions.RequireArrowFunction">
