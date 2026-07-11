@@ -74,12 +74,13 @@ Create `phpcs.xml` in your project root:
 ```xml
 <?xml version="1.0"?>
 <ruleset name="My Coding Standard">
-    <rule ref="IxDFCodingStandard"/>
     <file>app</file>
     <file>config</file>
     <file>database</file>
     <file>routes</file>
     <file>tests</file>
+
+    <rule ref="IxDFCodingStandard"/>
 </ruleset>
 ```
 
