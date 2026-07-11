@@ -8,8 +8,10 @@
 An opinionated coding standard for PHP and Laravel projects, built on [PER-CS 3.0](https://www.php-fig.org/per/coding-style/).
 Focuses on:
  - **High signal-to-noise ratio** (concise but informative PHPDoc, e.g. array shapes)
+ - **Strict, explicit code**: `strict_types`, strict comparisons, final by default, no magic (`extract()`, variable variables, superglobals)
  - **Harmony with static analysis tools** (PHPStan, Psalm, Rector, etc.)
- - **Auto-fixing** (violations are not only reported but fixed automatically, when possible)
+ - **Auto-fixing over reporting** (violations are not only reported but fixed automatically, when possible)
+ - **PHP and Laravel best practices** (enforced, not just suggested)
 
 Two tools, two roles, meant to run together:
 - **PHP-CS-Fixer** (primary): fast PER-CS 3+ auto-formatting and modernization rules.

@@ -22,7 +22,10 @@
         <exclude name="PSR1.Files.SideEffects.FoundWithSymbols"/>
     </rule>
     <rule ref="PSR1.Classes.ClassDeclaration"/>
-    <rule ref="PSR1.Methods.CamelCapsMethodName"/>
+    <rule ref="PSR1.Methods.CamelCapsMethodName">
+        <!-- PHP-CS-Fixer's php_unit_method_casing renames test methods to snake_case -->
+        <exclude-pattern>*/tests/*</exclude-pattern>
+    </rule>
 
     <!-- Generic ruleset: -->
     <!-- Forbid duplicate classes -->
@@ -32,8 +35,6 @@
         <!-- But allow empty catch -->
         <exclude name="Generic.CodeAnalysis.EmptyStatement.DetectedCatch"/>
     </rule>
-    <!-- Warn about variable assignments inside conditions -->
-    <rule ref="Generic.CodeAnalysis.AssignmentInCondition"/>
     <!-- Forbid useless empty method overrides -->
     <rule ref="Generic.CodeAnalysis.UselessOverridingMethod"/>
     <!-- Detects the usage of one and the same incrementer into an outer and an inner -->
@@ -48,11 +49,6 @@
             <property name="ignoreComments" value="true"/>
         </properties>
     </rule>
-    <!-- Ensure there is a single class/interface/trait per file -->
-    <rule ref="Generic.Files.OneObjectStructurePerFile"/>
-    <!--
-    <rule ref="Generic.Formatting.SpaceAfterNot"/>&lt;!&ndash; Force whitespace after `!` &ndash;&gt;
-    -->
     <!-- Checks how many level deep that code is nested within a function. -->
     <rule ref="Generic.Metrics.NestingLevel">
         <properties>
@@ -69,55 +65,27 @@
     <rule ref="Generic.PHP.CharacterBeforePHPOpeningTag"/>
     <!-- Forbid deprecated functions -->
     <rule ref="Generic.PHP.DeprecatedFunctions"/>
-    <!-- Array values are specified by using a string representation of the array. -->
+    <!--
+        Only functions PHP-CS-Fixer cannot handle are listed here.
+        Aliases (join, sizeof, chop, …) are fixed by no_alias_functions,
+        intval/boolval/… by modernize_types_casting, rand/mt_rand by random_api_migration,
+        print by no_mixed_echo_print, is_null by the is_null fixer.
+    -->
     <rule ref="Generic.PHP.ForbiddenFunctions">
         <properties>
             <property name="forbiddenFunctions" type="array">
                 <element key="array_push" value="null"/>
-                <element key="chop" value="rtrim"/>
-                <element key="close" value="closedir"/>
-                <element key="create_function" value="null"/>
                 <!-- See https://youtu.be/8rdTSYljts4?t=2932 -->
                 <element key="extract" value="null"/>
                 <element key="compact" value="null"/>
-                <element key="delete" value="unset"/>
-                <element key="doubleval" value="floatval"/>
-                <element key="fputs" value="fwrite"/>
-                <element key="ini_alter" value="ini_alter"/>
-                <element key="is_double" value="is_float"/>
-                <element key="is_integer" value="is_int"/>
-                <element key="is_long" value="is_int"/>
-                <element key="is_null" value="null"/>
-                <element key="is_real" value="is_float"/>
-                <element key="is_writeable" value="is_writable"/>
-                <element key="join" value="implode"/>
-                <element key="key_exists" value="array_key_exists"/>
-                <element key="pos" value="current"/>
-                <element key="print" value="echo"/>
-                <element key="show_source" value="highlight_file"/>
-                <element key="sizeof" value="count"/>
-                <element key="strchr" value="strstr"/>
                 <element key="die" value="null"/>
                 <element key="exit" value="null"/>
                 <element key="env" value="config"/>
-                <element key="intval" value="(int)"/>
-                <element key="floatval" value="(float)"/>
-                <element key="doubleval" value="(float)"/>
-                <element key="boolval" value="(bool)"/>
-                <element key="strval" value="(string)"/>
-                <element key="mt_rand" value="random_int"/>
-                <element key="rand" value="random_int"/>
                 <element key="var_dump" value="null"/>
             </property>
         </properties>
         <!-- Added to ignore env() in config files, it's better to remove it and use env() in a separate rule. -->
         <exclude-pattern>.config/*</exclude-pattern>
-    </rule>
-    <rule ref="Generic.Strings.UnnecessaryStringConcat">
-        <!-- But multiline is useful for readability -->
-        <properties>
-            <property name="allowMultiline" value="true"/>
-        </properties>
     </rule>
     <!-- Detects merge conflict artifacts left in files -->
     <rule ref="Generic.VersionControl.GitMergeConflict"/>
@@ -128,7 +96,6 @@
     <!-- Array must have keys specified for either all or none of the values. -->
     <rule ref="SlevomatCodingStandard.Arrays.DisallowPartiallyKeyed"/>
     <rule ref="SlevomatCodingStandard.Arrays.MultiLineArrayEndBracketPlacement"/>
-    <rule ref="SlevomatCodingStandard.Arrays.SingleLineArrayWhitespace"/>
     <rule ref="SlevomatCodingStandard.Attributes.AttributeAndTargetSpacing">
         <!-- For code like private function processUser(Member $member, #[\SensitiveParameter] string $password): void -->
         <exclude name="SlevomatCodingStandard.Attributes.AttributeAndTargetSpacing.IncorrectLinesCountBetweenAttributeAndTarget"/>
@@ -137,7 +104,6 @@
     <rule ref="SlevomatCodingStandard.Attributes.DisallowMultipleAttributesPerLine"/>
     <rule ref="SlevomatCodingStandard.Attributes.RequireAttributeAfterDocComment"/>
     <rule ref="SlevomatCodingStandard.Classes.BackedEnumTypeSpacing"/>
-    <rule ref="SlevomatCodingStandard.Classes.ClassConstantVisibility"/>
     <rule ref="SlevomatCodingStandard.Classes.ClassLength"/>
     <rule ref="SlevomatCodingStandard.Classes.ClassMemberSpacing"/>
     <rule ref="SlevomatCodingStandard.Classes.ConstantSpacing"/>
@@ -149,15 +115,12 @@
     <rule ref="SlevomatCodingStandard.Classes.ParentCallSpacing"/>
     <rule ref="SlevomatCodingStandard.Classes.PropertyDeclaration"/>
     <rule ref="SlevomatCodingStandard.Classes.PropertySpacing"/>
-    <rule ref="SlevomatCodingStandard.Classes.RequireAbstractOrFinal"/>
     <rule ref="SlevomatCodingStandard.Classes.RequireMultiLineMethodSignature"/>
-    <rule ref="SlevomatCodingStandard.Classes.RequireSelfReference"/>
     <rule ref="SlevomatCodingStandard.Classes.RequireSingleLineMethodSignature"/>
     <rule ref="SlevomatCodingStandard.Classes.SuperfluousErrorNaming"/>
     <rule ref="SlevomatCodingStandard.Classes.SuperfluousExceptionNaming"/>
     <rule ref="SlevomatCodingStandard.Classes.SuperfluousInterfaceNaming"/>
     <rule ref="SlevomatCodingStandard.Classes.SuperfluousTraitNaming"/>
-    <rule ref="SlevomatCodingStandard.Classes.TraitUseDeclaration"/>
     <rule ref="SlevomatCodingStandard.Classes.TraitUseSpacing">
         <properties>
             <property name="linesCountBeforeFirstUse" value="0"/>
@@ -172,7 +135,6 @@
             <property name="linesCountBetweenAnnotationsGroups" value="0"/>
         </properties>
     </rule>
-    <rule ref="SlevomatCodingStandard.Commenting.ForbiddenAnnotations"/>
     <rule ref="SlevomatCodingStandard.Commenting.ForbiddenComments">
         <properties>
             <property name="forbiddenCommentPatterns" type="array">
@@ -189,9 +151,11 @@
         <exclude name="SlevomatCodingStandard.Commenting.InlineDocCommentDeclaration.MissingVariable"/>
         <include-pattern>routes/</include-pattern>
     </rule>
+    <!-- Allow cognitive complexity up to 10, report anything above -->
     <rule ref="SlevomatCodingStandard.Complexity.Cognitive">
         <properties>
-            <property name="maxComplexity" value="10"/>
+            <property name="warningThreshold" value="11"/>
+            <property name="errorThreshold" value="11"/>
         </properties>
     </rule>
     <rule ref="SlevomatCodingStandard.ControlStructures.AssignmentInCondition"/>
@@ -200,7 +164,6 @@
     </rule>
     <rule ref="SlevomatCodingStandard.ControlStructures.DisallowContinueWithoutIntegerOperandInSwitch"/>
     <rule ref="SlevomatCodingStandard.ControlStructures.DisallowTrailingMultiLineTernaryOperator"/>
-    <rule ref="SlevomatCodingStandard.ControlStructures.LanguageConstructWithParentheses"/>
     <rule ref="SlevomatCodingStandard.ControlStructures.RequireMultiLineCondition"/>
     <rule ref="SlevomatCodingStandard.ControlStructures.RequireMultiLineTernaryOperator">
         <properties>
@@ -208,7 +171,6 @@
         </properties>
     </rule>
     <rule ref="SlevomatCodingStandard.ControlStructures.RequireNullSafeObjectOperator"/>
-    <rule ref="SlevomatCodingStandard.ControlStructures.RequireShortTernaryOperator"/>
     <rule ref="SlevomatCodingStandard.ControlStructures.RequireSingleLineCondition"/>
     <rule ref="SlevomatCodingStandard.ControlStructures.RequireTernaryOperator"/>
     <rule ref="SlevomatCodingStandard.ControlStructures.UselessIfConditionWithReturn"/>
@@ -217,11 +179,6 @@
     <rule ref="SlevomatCodingStandard.Exceptions.ReferenceThrowableOnly"/>
     <rule ref="SlevomatCodingStandard.Exceptions.RequireNonCapturingCatch"/>
     <rule ref="SlevomatCodingStandard.Files.FileLength"/>
-    <rule ref="SlevomatCodingStandard.Functions.ArrowFunctionDeclaration">
-        <properties>
-            <property name="spacesCountAfterKeyword" value="0"/>
-        </properties>
-    </rule>
     <rule ref="SlevomatCodingStandard.Functions.DisallowEmptyFunction"/>
     <rule ref="SlevomatCodingStandard.Functions.DisallowTrailingCommaInCall"/>
     <rule ref="SlevomatCodingStandard.Functions.DisallowTrailingCommaInClosureUse">
@@ -244,10 +201,7 @@
         </properties>
     </rule>
     <rule ref="SlevomatCodingStandard.Functions.RequireSingleLineCall"/>
-    <rule ref="SlevomatCodingStandard.Functions.StaticClosure"/>
-    <rule ref="SlevomatCodingStandard.Functions.StrictCall"/>
     <rule ref="SlevomatCodingStandard.Functions.UnusedInheritedVariablePassedToClosure"/>
-    <rule ref="SlevomatCodingStandard.Functions.UselessParameterDefaultValue"/>
     <rule ref="SlevomatCodingStandard.Namespaces.DisallowGroupUse"/>
     <rule ref="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation">
         <properties>
@@ -256,23 +210,9 @@
             </property>
         </properties>
     </rule>
-    <rule ref="SlevomatCodingStandard.Namespaces.FullyQualifiedGlobalConstants"/>
     <rule ref="SlevomatCodingStandard.Namespaces.NamespaceDeclaration"/>
-    <rule ref="SlevomatCodingStandard.Namespaces.NamespaceSpacing"/>
     <rule ref="SlevomatCodingStandard.Namespaces.RequireOneNamespaceInFile"/>
-    <rule ref="SlevomatCodingStandard.Namespaces.UnusedUses">
-        <properties>
-            <property name="searchAnnotations" value="true"/>
-        </properties>
-        <severity>6</severity>
-    </rule>
     <rule ref="SlevomatCodingStandard.Namespaces.UseFromSameNamespace"/>
-    <rule ref="SlevomatCodingStandard.Namespaces.UseSpacing">
-        <properties>
-            <property name="linesCountBetweenUseTypes" value="1"/>
-        </properties>
-    </rule>
-    <rule ref="SlevomatCodingStandard.Namespaces.UselessAlias"/>
     <rule ref="SlevomatCodingStandard.Operators.DisallowEqualOperators"/>
     <rule ref="SlevomatCodingStandard.Operators.RequireCombinedAssignmentOperator"/>
     <rule ref="SlevomatCodingStandard.Operators.RequireOnlyStandaloneIncrementAndDecrementOperators"/>
@@ -287,8 +227,6 @@
     <rule ref="SlevomatCodingStandard.PHP.ForbiddenClasses"/>
     <rule ref="SlevomatCodingStandard.PHP.OptimizedFunctionsWithoutUnpacking"/>
     <rule ref="SlevomatCodingStandard.PHP.ReferenceSpacing"/>
-    <rule ref="SlevomatCodingStandard.PHP.RequireNowdoc"/>
-    <rule ref="SlevomatCodingStandard.Strings.DisallowVariableParsing"/>
     <rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes">
         <properties>
             <property name="declareOnFirstLine" value="true"/>
@@ -297,8 +235,6 @@
     </rule>
     <rule ref="SlevomatCodingStandard.TypeHints.DisallowMixedTypeHint"/>
     <rule ref="SlevomatCodingStandard.TypeHints.DNFTypeHintFormat"/>
-    <rule ref="SlevomatCodingStandard.TypeHints.LongTypeHints"/>
-    <rule ref="SlevomatCodingStandard.TypeHints.NullTypeHintOnLastPosition"/>
     <rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHint">
         <!-- Native type hints may break inheritance -->
         <exclude name="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint"/>
@@ -362,11 +298,6 @@
     <!-- Squiz ruleset: -->
     <!-- Checks for empty catch clause without a comment. -->
     <rule ref="Squiz.Commenting.EmptyCatchComment"/>
-    <!-- Force phpDoc alignment -->
-    <rule ref="Squiz.Commenting.DocCommentAlignment">
-        <!-- Allow extra spaces after star, i.e. for indented annotations -->
-        <exclude name="Squiz.Commenting.DocCommentAlignment.SpaceAfterStar"/>
-    </rule>
     <!-- Force rules for function PHPDoc -->
     <rule ref="Squiz.Commenting.FunctionComment">
         <!-- Allow `@throws` without description -->
@@ -406,10 +337,6 @@
         <!-- It is too strict - we are more flexible -->
         <exclude name="Squiz.Commenting.FunctionComment.ThrowsNoFullStop"/>
     </rule>
-    <!-- Forbid class being in a file with different name -->
-    <rule ref="Squiz.Classes.ClassFileName"/>
-    <!-- Forbid `AND` and `OR`, require `&&` and `||` -->
-    <rule ref="Squiz.Operators.ValidLogicalOperators"/>
     <!-- Force camelCase variables -->
     <rule ref="Squiz.NamingConventions.ValidVariableName">
         <!-- Eloquent attributes -->
@@ -418,20 +345,12 @@
     </rule>
     <!-- Forbid `global` -->
     <rule ref="Squiz.PHP.GlobalKeyword"/>
-    <!-- Require PHP function calls in lowercase -->
-    <rule ref="Squiz.PHP.LowercasePHPFunctions"/>
     <!-- Discourages the use of debug functions. -->
     <rule ref="Squiz.PHP.DiscouragedFunctions"/>
     <!-- Warns about code that can never been executed. -->
     <rule ref="Squiz.PHP.NonExecutableCode"/>
-    <!-- Verifies that class members have scope modifiers. -->
-    <rule ref="Squiz.Scope.MemberVarScope"/>
     <!-- Checks for usage of $this in static methods, which will cause runtime errors. -->
     <rule ref="Squiz.Scope.StaticThisUsage"/>
-    <!-- Use singular quotes by default -->
-    <rule ref="Squiz.Strings.DoubleQuoteUsage.NotRequired"/>
-    <!-- Forbid braces around string in `echo` -->
-    <rule ref="Squiz.Strings.EchoedStrings"/>
     <!-- Squiz ruleset end. -->
 
     <!--IxDFCodingStandard custom rules: -->
