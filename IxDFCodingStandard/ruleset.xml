@@ -40,7 +40,7 @@
     <rule ref="Generic.CodeAnalysis.JumbledIncrementer"/>
     <rule ref="Generic.CodeAnalysis.UnconditionalIfStatement"/>
     <rule ref="Generic.Commenting.Fixme"/>
-    <!-- Warn above 120 characters, fail above 220 -->
+    <!-- Warn above 160 characters, fail above 220 -->
     <rule ref="Generic.Files.LineLength">
         <properties>
             <property name="lineLimit" value="160"/>
@@ -189,10 +189,11 @@
         <exclude name="SlevomatCodingStandard.Commenting.InlineDocCommentDeclaration.MissingVariable"/>
         <include-pattern>routes/</include-pattern>
     </rule>
-    <rule ref="SlevomatCodingStandard.Commenting.RequireOneLineDocComment"/>
-    <rule ref="SlevomatCodingStandard.Commenting.RequireOneLinePropertyDocComment"/>
-    <rule ref="SlevomatCodingStandard.Commenting.UselessFunctionDocComment"/>
-    <rule ref="SlevomatCodingStandard.Complexity.Cognitive"/>
+    <rule ref="SlevomatCodingStandard.Complexity.Cognitive">
+        <properties>
+            <property name="maxComplexity" value="10"/>
+        </properties>
+    </rule>
     <rule ref="SlevomatCodingStandard.ControlStructures.AssignmentInCondition"/>
     <rule ref="SlevomatCodingStandard.ControlStructures.BlockControlStructureSpacing">
         <exclude name="SlevomatCodingStandard.ControlStructures.BlockControlStructureSpacing.IncorrectLinesCountBeforeControlStructure"/>
