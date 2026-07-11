@@ -43,7 +43,7 @@
     <!-- Warn above 120 characters, fail above 220 -->
     <rule ref="Generic.Files.LineLength">
         <properties>
-            <property name="lineLimit" value="120"/>
+            <property name="lineLimit" value="160"/>
             <property name="absoluteLineLimit" value="220"/>
             <property name="ignoreComments" value="true"/>
         </properties>
