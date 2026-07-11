@@ -30,7 +30,7 @@ jobs:
           echo "composer_dir={$(composer config cache-files-dir)}" >> $GITHUB_OUTPUT
 
       - name: Retrieve Composer‘s cache
-        uses: actions/cache@2c8a9bd7457de244a408f35966fab2fb45fda9c8 # v6
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
         with:
           path: ${{ steps.composer-cache.outputs.composer_dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
@@ -41,7 +41,7 @@ jobs:
         run: "composer install --no-interaction --no-progress --no-scripts"
 
       - name: Retrieve PHPCS‘s cache
-        uses: actions/cache@2c8a9bd7457de244a408f35966fab2fb45fda9c8 # v6
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
         with:
           path: .cache/phpcs
           key: ${{ runner.os }}-phpcs-${{ hashFiles('phpcs.xml') }}
