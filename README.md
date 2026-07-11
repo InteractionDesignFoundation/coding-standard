@@ -40,7 +40,7 @@ return Config::create(__DIR__, ruleOverrides: []);
 
 <details>
 <summary>Customisation (optional)</summary>
-`Config::create()` ships a sensible default Finder and enables parallel runs, risky rules, and caching.
+<code>Config::create()</code> ships a sensible default Finder and enables parallel runs, risky rules, and caching.
 You can customize it by using your Finder instance and by overriding individual rules:
 
 ```php
@@ -83,7 +83,7 @@ Create `phpcs.xml` in your project root:
 </ruleset>
 ```
 
-On top of the Generic, PSR1, Squiz and Slevomat rulesets, `IxDFCodingStandard` ships its own sniffs.
+On top of the Generic, PSR and Slevomat rulesets, `IxDFCodingStandard` ships its own sniffs.
 Some run by default; some are opt-in. See [docs/README.md](docs/README.md) for the full list and configuration.
 
 Run it:
@@ -95,13 +95,14 @@ vendor/bin/phpcs    # check (dry-run)
 
 ## Composer scripts (recommended)
 
-Wire both tools into `composer.json` so the whole team runs them the same way, using simple command:
+Wire both tools into `composer.json` so the whole team runs them the same way:
 
 ```shell
 composer cs
 ```
 
-edit `composer.json` file:
+`cs` fixes files in place. Edit `composer.json`:
+
 ```json
 {
     "scripts": {
@@ -111,4 +112,29 @@ edit `composer.json` file:
         "php-cs-fixer": "php-cs-fixer fix --no-interaction --ansi --quiet"
     }
 }
+```
+
+## Continuous integration
+
+Run the fixer in CI and commit the result back, so the branch is always formatted without blocking the build. Example GitHub Actions workflow (`.github/workflows/coding-standard.yml`):
+
+```yaml
+name: Coding standard
+
+on: [push, pull_request]
+
+jobs:
+    cs:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: shivammathur/setup-php@v2
+              with:
+                  php-version: '8.4'
+                  coverage: none
+            - run: composer install --no-interaction --no-progress --prefer-dist
+            - run: composer cs
+            - uses: stefanzweifel/git-auto-commit-action@b863ae1933cb653a53c021fe36dbb774e1fb9403 # v5.2.0
+              with:
+                  commit_message: 'style: apply coding standard'
 ```
