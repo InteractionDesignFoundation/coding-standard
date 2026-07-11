@@ -3,12 +3,21 @@
 [![PHP Psalm Level](https://shepherd.dev/github/InteractionDesignFoundation/coding-standard/level.svg)](https://shepherd.dev/github/InteractionDesignFoundation/coding-standard)
 [![PHP Psalm Type Coverage](https://shepherd.dev/github/InteractionDesignFoundation/coding-standard/coverage.svg)](https://shepherd.dev/github/InteractionDesignFoundation/coding-standard)
 
-# IxDF Coding Standard
+# IxDF PHP Coding Standard
 
-An opinionated coding standard for PHP/Laravel projects. The two tools play different roles and are meant to run together:
+An opinionated coding standard for PHP and Laravel projects, built on [PER-CS 3.0](https://www.php-fig.org/per/coding-style/).
+Focuses on:
+ - **High signal-to-noise ratio** (concise but informative PHPDoc, e.g. array shapes)
+ - **Harmony with static analysis tools** (PHPStan, Psalm, Rector, etc.)
+ - **Auto-fixing** (violations are not only reported but fixed automatically, when possible)
+ - **PHP and Laravel best practices** (enforced, not just suggested)
 
-- **PHP-CS-Fixer** (primary) — shared config based on the [latest PER Coding Style](https://www.php-fig.org/per/coding-style/) (currently PER-CS 3.0), plus formatting and modernization rules. It owns all code formatting and auto-fixes it.
-- **PHP_CodeSniffer** (supplementary) — adds the structural and semantic checks PHP-CS-Fixer cannot enforce (strict types, Laravel conventions, naming, complexity). Formatting rules already covered by PHP-CS-Fixer are intentionally **not** duplicated here, so PHP_CodeSniffer is not a complete standard on its own.
+Two tools, two roles, meant to run together:
+- **PHP-CS-Fixer** (primary): fast PER-CS 3+ auto-formatting and modernization rules.
+- **PHP_CodeSniffer** (supplementary): structural and semantic checks PHP-CS-Fixer cannot express (strict types, Laravel conventions, naming, complexity).
+
+> [!TIP]
+> This repository is a part of the IxDF toolchain for PHP. Better to use together with Rector, PHPStan, and Psalm.
 
 ## Installation
 
@@ -25,26 +34,24 @@ Create `.php-cs-fixer.php` in your project root:
 
 use IxDFCodingStandard\PhpCsFixer\Config;
 
-return Config::create(__DIR__);
+// @see https://mlocati.github.io/php-cs-fixer-configurator/ for ruleOverrides options.
+return Config::create(__DIR__, ruleOverrides: []);
 ```
 
-`Config::create()` ships a sensible default Finder and enables parallel runs, risky rules, and caching. Two optional arguments let you adjust it:
+<details>
+<summary>Customisation (optional)</summary>
+`Config::create()` ships a sensible default Finder and enables parallel runs, risky rules, and caching.
+You can customize it by using your Finder instance and by overriding individual rules:
 
 ```php
-// Override individual rules.
-return Config::create(__DIR__, ruleOverrides: [
-    'final_public_method_for_abstract_class' => false,
-]);
-```
-
-```php
-// Provide your own Finder and use your cache path.
 use PhpCsFixer\Finder;
 
 $finder = Finder::create()->in(__DIR__)->name('*.php');
 
-return Config::create(__DIR__, finder: $finder)
-    ->setCacheFile('./.cache/.php-cs-fixer.cache');
+// Override individual rules, your own Finder and use your cache path
+return Config::create(__DIR__, finder: $finder, ruleOverrides: [
+    'final_public_method_for_abstract_class' => false,
+])->setCacheFile('./.cache/.php-cs-fixer.cache');
 ```
 
 Need only the rule array (e.g. to compose your own config)?
@@ -52,12 +59,12 @@ Need only the rule array (e.g. to compose your own config)?
 ```php
 $rules = \IxDFCodingStandard\PhpCsFixer\Rules::get();
 ```
+</details>
 
 Run it:
 
 ```shell
-vendor/bin/php-cs-fixer fix --dry-run --diff   # check
-vendor/bin/php-cs-fixer fix                     # fix
+vendor/bin/php-cs-fixer fix
 ```
 
 ## PHP_CodeSniffer
@@ -76,29 +83,32 @@ Create `phpcs.xml` in your project root:
 </ruleset>
 ```
 
+On top of the Generic, PSR1, Squiz and Slevomat rulesets, `IxDFCodingStandard` ships its own sniffs.
+Some run by default; some are opt-in. See [docs/README.md](docs/README.md) for the full list and configuration.
+
 Run it:
 
 ```shell
-vendor/bin/phpcs    # check
 vendor/bin/phpcbf   # fix
+vendor/bin/phpcs    # check (dry-run)
 ```
 
 ## Composer scripts (recommended)
 
-Wire both tools into `composer.json` so the whole team runs them the same way:
-
-```json
-"scripts": {
-    "cs:check": ["@php-cs-fixer:dry", "@phpcs"],
-    "cs:fix": ["@php-cs-fixer", "@phpcbf"],
-    "phpcs": "phpcs -p -s --colors --report-full --report-summary",
-    "phpcbf": "phpcbf -p --colors",
-    "php-cs-fixer": "php-cs-fixer fix --no-interaction --ansi --quiet",
-    "php-cs-fixer:dry": "php-cs-fixer fix --no-interaction --ansi --verbose --dry-run"
-}
-```
+Wire both tools into `composer.json` so the whole team runs them the same way, using simple command:
 
 ```shell
-composer cs:check   # check with both tools
-composer cs:fix     # fix with both tools
+composer cs
+```
+
+edit `composer.json` file:
+```json
+{
+    "scripts": {
+        "cs": ["@php-cs-fixer", "@phpcbf"],
+        "phpcbf": "phpcbf -p",
+        "phpcs": "phpcs -p -s --report-full --report-summary",
+        "php-cs-fixer": "php-cs-fixer fix --no-interaction --ansi --quiet"
+    }
+}
 ```
