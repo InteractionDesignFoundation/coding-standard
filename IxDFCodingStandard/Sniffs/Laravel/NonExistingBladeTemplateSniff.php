@@ -132,7 +132,7 @@ final class NonExistingBladeTemplateSniff implements Sniff
 
         // 2. Custom namespace
         if ($hasCustomNamespace) {
-            $namespace = (string) $matches[1];
+            $namespace = $matches[1];
 
             if (!isset($this->viewNamespaces[$namespace])) {
                 throw new \OutOfBoundsException("Unable to find view namespace “{$namespace}” in viewNamespaces property.");
