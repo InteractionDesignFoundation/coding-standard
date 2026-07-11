@@ -2,11 +2,9 @@
 
 namespace IxDFCodingStandard\Sniffs\Laravel;
 
-use BadMethodCallException;
-
 final class PhpViewExtractor
 {
-    private const INVALID_METHOD_CALL = 'Invalid method call';
+    private const string INVALID_METHOD_CALL = 'Invalid method call';
 
     /** @param array<array<string>> $tokens */
     public function isViewFunction(array $tokens, int $position): bool
@@ -25,7 +23,7 @@ final class PhpViewExtractor
     public function getViewFunctionTemplateName(array $tokens, int $position): string
     {
         if (!$this->isViewFunction($tokens, $position)) {
-            throw new BadMethodCallException(self::INVALID_METHOD_CALL);
+            throw new \BadMethodCallException(self::INVALID_METHOD_CALL);
         }
 
         return mb_trim($tokens[$position + 2]['content'], '\'"');

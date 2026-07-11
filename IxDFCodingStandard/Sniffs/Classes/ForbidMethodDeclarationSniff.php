@@ -8,13 +8,13 @@ use PHP_CodeSniffer\Sniffs\Sniff;
 
 final class ForbidMethodDeclarationSniff implements Sniff
 {
-    public const FORBIDDEN_METHOD_DECLARATION = 'ForbiddenMethodDeclaration';
+    public const string FORBIDDEN_METHOD_DECLARATION = 'ForbiddenMethodDeclaration';
 
     /**
      * A list of forbidden to declare methods.
      * @var array<string, string>
      */
-    public $forbiddenMethods = [];
+    public array $forbiddenMethods = [];
 
     /** @return list<int> */
     public function register(): array

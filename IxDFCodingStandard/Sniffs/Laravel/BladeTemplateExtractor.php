@@ -2,24 +2,22 @@
 
 namespace IxDFCodingStandard\Sniffs\Laravel;
 
-use BadMethodCallException;
-
 // phpcs:disable IxDFCodingStandard.Laravel.NonExistingBladeTemplate.TemplateNotFound -- directive, kept as a line comment so PHP-CS-Fixer does not turn it into a multi-line doc block
 final class BladeTemplateExtractor
 {
-    private const INVALID_METHOD_CALL = 'Invalid method call';
+    private const string INVALID_METHOD_CALL = 'Invalid method call';
 
     // @include, @component, @extends
-    private const INCLUDE_BLADE_DIRECTIVE = '/@(include|component|extends)\(\'([^\']++)\'/';
+    private const string INCLUDE_BLADE_DIRECTIVE = '/@(include|component|extends)\(\'([^\']++)\'/';
 
     // @includeIf, @includeWhen
-    private const CONDITIONAL_INCLUDE_BLADE_DIRECTIVE = '/@(includeIf|includeWhen)\([^,]++,\s*+\'([^\']++)\'/';
+    private const string CONDITIONAL_INCLUDE_BLADE_DIRECTIVE = '/@(includeIf|includeWhen)\([^,]++,\s*+\'([^\']++)\'/';
 
     // @includeFirst, @componentFirst - takes array parameter: @includeFirst(['view1', 'view2'])
-    private const FIRST_BLADE_DIRECTIVE = '/@(includeFirst|componentFirst)\(\s*+\[\s*+\'([^\']++)\'/';
+    private const string FIRST_BLADE_DIRECTIVE = '/@(includeFirst|componentFirst)\(\s*+\[\s*+\'([^\']++)\'/';
 
     // @each directive: @each('view.name', $items, 'item', 'empty.view')
-    private const EACH_BLADE_DIRECTIVE = '/@each\(\s*+\'([^\']++)\'/';
+    private const string EACH_BLADE_DIRECTIVE = '/@each\(\s*+\'([^\']++)\'/';
 
     public function isBladeIncludeDirective(string $tokenContent): bool
     {
@@ -44,14 +42,14 @@ final class BladeTemplateExtractor
     public function getBladeTemplateName(string $tokenContent): string
     {
         if (!$this->isBladeIncludeDirective($tokenContent)) {
-            throw new BadMethodCallException(self::INVALID_METHOD_CALL);
+            throw new \BadMethodCallException(self::INVALID_METHOD_CALL);
         }
 
         $matches = [];
         preg_match(self::INCLUDE_BLADE_DIRECTIVE, $tokenContent, $matches);
 
         if (!isset($matches[2])) {
-            throw new BadMethodCallException(self::INVALID_METHOD_CALL);
+            throw new \BadMethodCallException(self::INVALID_METHOD_CALL);
         }
 
         return $matches[2];
@@ -60,14 +58,14 @@ final class BladeTemplateExtractor
     public function getConditionalBladeTemplateName(string $tokenContent): string
     {
         if (!$this->isConditionalBladeIncludeDirective($tokenContent)) {
-            throw new BadMethodCallException(self::INVALID_METHOD_CALL);
+            throw new \BadMethodCallException(self::INVALID_METHOD_CALL);
         }
 
         $matches = [];
         preg_match(self::CONDITIONAL_INCLUDE_BLADE_DIRECTIVE, $tokenContent, $matches);
 
         if (!isset($matches[2])) {
-            throw new BadMethodCallException(self::INVALID_METHOD_CALL);
+            throw new \BadMethodCallException(self::INVALID_METHOD_CALL);
         }
 
         return $matches[2];
@@ -76,14 +74,14 @@ final class BladeTemplateExtractor
     public function getEachBladeTemplateName(string $tokenContent): string
     {
         if (!$this->isEachBladeDirective($tokenContent)) {
-            throw new BadMethodCallException(self::INVALID_METHOD_CALL);
+            throw new \BadMethodCallException(self::INVALID_METHOD_CALL);
         }
 
         $matches = [];
         preg_match(self::EACH_BLADE_DIRECTIVE, $tokenContent, $matches);
 
         if (!isset($matches[1])) {
-            throw new BadMethodCallException(self::INVALID_METHOD_CALL);
+            throw new \BadMethodCallException(self::INVALID_METHOD_CALL);
         }
 
         return $matches[1];
@@ -92,14 +90,14 @@ final class BladeTemplateExtractor
     public function getFirstBladeTemplateName(string $tokenContent): string
     {
         if (!$this->isFirstBladeDirective($tokenContent)) {
-            throw new BadMethodCallException(self::INVALID_METHOD_CALL);
+            throw new \BadMethodCallException(self::INVALID_METHOD_CALL);
         }
 
         $matches = [];
         preg_match(self::FIRST_BLADE_DIRECTIVE, $tokenContent, $matches);
 
         if (!isset($matches[2])) {
-            throw new BadMethodCallException(self::INVALID_METHOD_CALL);
+            throw new \BadMethodCallException(self::INVALID_METHOD_CALL);
         }
 
         return $matches[2];

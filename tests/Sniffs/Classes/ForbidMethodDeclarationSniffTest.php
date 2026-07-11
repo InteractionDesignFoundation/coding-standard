@@ -11,7 +11,7 @@ use PHPUnit\Framework\Attributes\Test;
 #[CoversClass(ForbidMethodDeclarationSniff::class)]
 final class ForbidMethodDeclarationSniffTest extends TestCase
 {
-    private const FORBIDDEN_METHODS = [
+    private const array FORBIDDEN_METHODS = [
         ForbiddenParent::class.'::shouldSend' => '\App\Notifications\Support\ShouldCheckConditionsBeforeSendingOut::shouldBeSent',
     ];
 

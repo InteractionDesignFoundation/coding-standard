@@ -12,6 +12,7 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^12.4",
+        "rector/rector": "^2.5",
         "vimeo/psalm": "^6.16"
     },
     "minimum-stability": "dev",
@@ -34,10 +35,9 @@
     },
     "scripts": {
         "cs": "@cs:fix",
-        "cs:check": "phpcs -p -s --colors --report-full --report-summary --cache=.cache/phpcs",
         "cs:fix": "phpcbf -p --colors --cache=.cache/phpcs",
-        "php-cs-fixer": "php-cs-fixer fix --no-interaction --ansi",
-        "php-cs-fixer:check": "php-cs-fixer fix --dry-run --diff --no-interaction --ansi",
+        "php-cs-fixer": "php-cs-fixer fix --no-interaction",
+        "rector": "rector",
         "sa": "@psalm",
         "psalm": "psalm --config=psalm.xml",
         "psalm:bl": "@psalm --set-baseline=psalm-baseline.xml --long-progress --no-cache",
