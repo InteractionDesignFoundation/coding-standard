@@ -89,8 +89,8 @@ final class Rules
             'no_short_bool_cast' => true,
             'no_singleline_whitespace_before_semicolons' => true,
             'no_spaces_around_offset' => true,
-            // allow_mixed: keep `@return mixed` on magic methods (__call etc.), PHPCS requires at least a @return annotation there
-            'no_superfluous_phpdoc_tags' => ['allow_mixed' => true],
+            // 'no_superfluous_phpdoc_tags' is deliberately NOT enabled: it removes annotations Psalm/PHPStan rely on
+            // (`@return static` for template resolution, `@return mixed` on magic methods) and cannot be configured to keep them.
             'no_trailing_comma_in_singleline' => [
                 'elements' => ['arguments', 'array', 'group_import'], // excludes 'array_destructuring' enabled by default
             ],
