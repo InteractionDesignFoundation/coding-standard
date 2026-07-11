@@ -16,7 +16,7 @@ Two tools, two roles, meant to run together:
 - **PHP_CodeSniffer** (supplementary): structural and semantic checks PHP-CS-Fixer cannot express (strict types, Laravel conventions, naming, complexity).
 
 > [!TIP]
-> This repository is a part of the IxDF toolchain for PHP. Better to use together with Rector, PHPStan, and Psalm.
+> This repository is a part of the IxDF toolchain for PHP: Rector ➝ Coding Standard Fixers ➝ PHPStan + Psalm.
 
 ## 1. Installation
 
