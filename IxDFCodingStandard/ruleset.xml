@@ -115,6 +115,8 @@
     <rule ref="SlevomatCodingStandard.Classes.ParentCallSpacing"/>
     <rule ref="SlevomatCodingStandard.Classes.PropertyDeclaration"/>
     <rule ref="SlevomatCodingStandard.Classes.PropertySpacing"/>
+    <!-- Report-only replacement for PHP-CS-Fixer's final_class, which would auto-finalize extended classes and break code -->
+    <rule ref="SlevomatCodingStandard.Classes.RequireAbstractOrFinal"/>
     <rule ref="SlevomatCodingStandard.Classes.RequireMultiLineMethodSignature"/>
     <rule ref="SlevomatCodingStandard.Classes.RequireSingleLineMethodSignature"/>
     <rule ref="SlevomatCodingStandard.Classes.SuperfluousErrorNaming"/>
@@ -201,6 +203,8 @@
         </properties>
     </rule>
     <rule ref="SlevomatCodingStandard.Functions.RequireSingleLineCall"/>
+    <!-- Report-only replacement for PHP-CS-Fixer's static_lambda, which would break closures Laravel rebinds via Closure::bind (macros, Blade, Pest) -->
+    <rule ref="SlevomatCodingStandard.Functions.StaticClosure"/>
     <rule ref="SlevomatCodingStandard.Functions.UnusedInheritedVariablePassedToClosure"/>
     <rule ref="SlevomatCodingStandard.Namespaces.DisallowGroupUse"/>
     <rule ref="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation">

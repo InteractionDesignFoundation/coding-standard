@@ -52,7 +52,7 @@ $finder = Finder::create()->in(__DIR__)->name('*.php');
 
 // Override individual rules, your own Finder and use your cache path
 return Config::create(__DIR__, finder: $finder, ruleOverrides: [
-    'final_public_method_for_abstract_class' => false,
+    'final_class' => true,
 ])->setCacheFile('./.cache/.php-cs-fixer.cache');
 ```
 

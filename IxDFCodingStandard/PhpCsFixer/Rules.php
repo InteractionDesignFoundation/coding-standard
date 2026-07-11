@@ -11,10 +11,14 @@ namespace IxDFCodingStandard\PhpCsFixer;
 final class Rules
 {
     // phpcs:disable SlevomatCodingStandard.Functions.FunctionLength.FunctionLength -- a flat rule list, not logic
-    // phpcs:ignore SlevomatCodingStandard.TypeHints.DisallowMixedTypeHint.DisallowedMixedTypeHint
-    /** @return array<string, array<string, mixed>|bool> */
+    // phpcs:disable SlevomatCodingStandard.TypeHints.DisallowMixedTypeHint.DisallowedMixedTypeHint
+    /**
+     * @see https://mlocati.github.io/php-cs-fixer-configurator/
+     * @return array<string, array<string, mixed>|bool>
+     */
     public static function get(): array
     {
+        // phpcs:enable SlevomatCodingStandard.TypeHints.DisallowMixedTypeHint.DisallowedMixedTypeHint
         return [
             // Basic PER Coding Style 3.0 ruleset plus our overrides for it, see https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/master/doc/ruleSets/PER-CS3x0.rst
             '@PER-CS3x0' => true, // https://www.php-fig.org/per/coding-style/
@@ -36,10 +40,11 @@ final class Rules
             'binary_operator_spaces' => ['default' => 'single_space'],
             'cast_spaces' => ['space' => 'single'],
             'class_attributes_separation' => ['elements' => ['method' => 'one']],
-            'declare_strict_types' => true,
+            'declare_strict_types' => true, // risky
             'explicit_string_variable' => true,
-            'final_class' => true,
-            'final_public_method_for_abstract_class' => true,
+            // 'final_class' is deliberately NOT enabled: it cannot see subclasses in other files and finalizes extended classes.
+            // The report-only SlevomatCodingStandard.Classes.RequireAbstractOrFinal sniff enforces the same policy safely.
+            'final_public_method_for_abstract_class' => true, // risky
             'general_phpdoc_annotation_remove' => [
                 'annotations' => [
                     // '@api' is intentionally NOT removed: it marks the supported public/BC surface.
@@ -66,19 +71,19 @@ final class Rules
                 'import_constants' => false,
             ],
             'heredoc_to_nowdoc' => true,
-            'is_null' => true,
-            'logical_operators' => true,
-            'modernize_types_casting' => true,
-            'mb_str_functions' => true,
+            'is_null' => true, // risky
+            'logical_operators' => true, // risky
+            'modernize_types_casting' => true, // risky
+            'mb_str_functions' => true, // risky
             'multiline_whitespace_before_semicolons' => ['strategy' => 'no_multi_line'],
-            'native_constant_invocation' => ['strict' => false], // non-strict: keep `\` on userland global constants (e.g. PHPCS token constants)
+            'native_constant_invocation' => ['strict' => false], // risky; non-strict: keep `\` on userland global constants (e.g. PHPCS token constants)
             'native_function_casing' => true,
             'no_binary_string' => true,
             'no_empty_comment' => true,
             'no_empty_phpdoc' => true,
             'no_empty_statement' => true,
             'no_extra_blank_lines' => ['tokens' => ['extra', 'curly_brace_block']],
-            'no_homoglyph_names' => true,
+            'no_homoglyph_names' => true, // risky
             'no_leading_namespace_whitespace' => true,
             'no_mixed_echo_print' => true,
             'no_short_bool_cast' => true,
@@ -91,8 +96,8 @@ final class Rules
             'no_unneeded_braces' => true,
             'no_unneeded_control_parentheses' => true,
             'no_unneeded_import_alias' => true,
-            'no_unneeded_final_method' => true,
-            'no_unreachable_default_argument_value' => true,
+            'no_unneeded_final_method' => true, // risky
+            'no_unreachable_default_argument_value' => true, // risky
             'no_unused_imports' => true,
             'no_useless_concat_operator' => true,
             'no_useless_return' => true,
@@ -112,17 +117,17 @@ final class Rules
                 ],
             ],
             'php_unit_attributes' => true,
-            'php_unit_construct' => true,
-            'php_unit_dedicate_assert' => ['target' => 'newest'],
-            'php_unit_expectation' => true,
+            'php_unit_construct' => true, // risky
+            'php_unit_dedicate_assert' => ['target' => 'newest'], // risky
+            'php_unit_expectation' => true, // risky
             'php_unit_fqcn_annotation' => true,
             'php_unit_method_casing' => ['case' => 'snake_case'],
-            'php_unit_no_expectation_annotation' => true,
-            'php_unit_set_up_tear_down_visibility' => true,
-            'php_unit_strict' => true,
-            'php_unit_test_annotation' => ['style' => 'annotation'],
+            'php_unit_no_expectation_annotation' => true, // risky
+            'php_unit_set_up_tear_down_visibility' => true, // risky
+            'php_unit_strict' => true, // risky
+            'php_unit_test_annotation' => ['style' => 'annotation'], // risky
             'phpdoc_align' => ['align' => 'left'],
-            'phpdoc_array_type' => true,
+            'phpdoc_array_type' => true, // risky
             'phpdoc_indent' => true,
             'phpdoc_line_span' => [
                 'case' => 'single',
@@ -141,17 +146,18 @@ final class Rules
             'phpdoc_types' => true,
             'phpdoc_types_order' => ['null_adjustment' => 'always_last', 'sort_algorithm' => 'none'],
             'protected_to_private' => true,
-            'psr_autoloading' => true,
-            'self_accessor' => true,
+            'psr_autoloading' => true, // risky
+            'self_accessor' => true, // risky
             'self_static_accessor' => true,
             'single_line_comment_spacing' => true,
             'single_line_comment_style' => ['comment_types' => ['asterisk', 'hash']],
             'single_quote' => true,
             'space_after_semicolon' => true,
             'standardize_not_equals' => true,
-            'static_lambda' => true,
-            'strict_param' => true,
-            'ternary_to_elvis_operator' => true,
+            // 'static_lambda' is deliberately NOT enabled: Laravel rebinds closures via Closure::bind (macros, Blade, Pest), static closures break there.
+            // The report-only SlevomatCodingStandard.Functions.StaticClosure sniff enforces the same policy safely.
+            'strict_param' => true, // risky
+            'ternary_to_elvis_operator' => true, // risky
             'ternary_to_null_coalescing' => true,
             'trim_array_spaces' => true,
             // Deliberately narrower than PER-CS 2.0+ (arrays only, not arguments/parameters/match):
