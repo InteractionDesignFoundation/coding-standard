@@ -10,7 +10,6 @@ Focuses on:
  - **High signal-to-noise ratio** (concise but informative PHPDoc, e.g. array shapes)
  - **Harmony with static analysis tools** (PHPStan, Psalm, Rector, etc.)
  - **Auto-fixing** (violations are not only reported but fixed automatically, when possible)
- - **PHP and Laravel best practices** (enforced, not just suggested)
 
 Two tools, two roles, meant to run together:
 - **PHP-CS-Fixer** (primary): fast PER-CS 3+ auto-formatting and modernization rules.
@@ -19,12 +18,12 @@ Two tools, two roles, meant to run together:
 > [!TIP]
 > This repository is a part of the IxDF toolchain for PHP. Better to use together with Rector, PHPStan, and Psalm.
 
-## Installation
+## 1. Installation
 
 ```shell
 composer require --dev interaction-design-foundation/coding-standard
 ```
-## Configuration
+## 2. Configuration
 
 ### PHP-CS-Fixer
 
@@ -115,7 +114,7 @@ composer cs
 }
 ```
 
-## Continuous integration
+## 3. Continuous integration
 
 Run the fixer in CI and commit the result back, so the branch is always formatted without blocking the build.
 This repository dogfoods that pattern; copy its workflow as a starting point: [`.github/workflows/coding-standard.yml`](.github/workflows/coding-standard.yml).
