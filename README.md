@@ -8,14 +8,14 @@
 An opinionated coding standard for PHP and Laravel projects, built on [PER-CS 3](https://www.php-fig.org/per/coding-style/).
 Focuses on:
  - **High signal-to-noise ratio** (concise but informative PHPDoc, e.g. array shapes)
- - **Strict, explicit code**: `strict_types`, strict comparisons, final by default, no magic (`extract()`, variable variables, superglobals)
+ - **Strict, explicit code**: `strict_types`, strict comparisons, final by default, no magic
  - **Harmony with static analysis tools** (PHPStan, Psalm, Rector, etc.)
  - **Auto-fixing over reporting** (violations are not only reported but fixed automatically, when possible)
  - **PHP and Laravel best practices** (enforced, not just suggested)
 
 Two tools, two roles, meant to run together:
 - **PHP-CS-Fixer** (primary): fast auto-formatting and modernization rules.
-- **PHP_CodeSniffer** (supplementary): structural and semantic checks PHP-CS-Fixer cannot express (strict types, Laravel conventions, naming, complexity).
+- **PHP_CodeSniffer** (supplementary): structural and semantic checks PHP-CS-Fixer cannot express (complexity, Laravel conventions, naming).
 
 > [!TIP]
 > This repository is a part of the IxDF toolchain for PHP: Rector ➝ Coding Standard Fixers ➝ PHPStan + Psalm.
