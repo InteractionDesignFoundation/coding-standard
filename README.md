@@ -29,6 +29,8 @@ composer require --dev interaction-design-foundation/coding-standard
 
 ### PHP-CS-Fixer
 
+Primary formatter.
+
 Create `.php-cs-fixer.php` in your project root:
 
 ```php
@@ -71,6 +73,8 @@ vendor/bin/php-cs-fixer fix
 
 ### PHP_CodeSniffer
 
+Supplementary (optional) formatter.
+
 Create `phpcs.xml` in your project root:
 
 ```xml
@@ -86,7 +90,7 @@ Create `phpcs.xml` in your project root:
 </ruleset>
 ```
 
-On top of the Generic, PSR and Slevomat rulesets, `IxDFCodingStandard` ships its own sniffs.
+On top of the Generic, PSR and [Slevomat](https://github.com/slevomat/coding-standard) rulesets, `IxDFCodingStandard` ships its own sniffs.
 Some run by default; some are opt-in. See [docs/README.md](docs/README.md) for the full list and configuration.
 
 Run it:
