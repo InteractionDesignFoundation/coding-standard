@@ -125,7 +125,9 @@ final class Rules
             'php_unit_method_casing' => ['case' => 'snake_case'],
             'php_unit_no_expectation_annotation' => true, // risky
             'php_unit_set_up_tear_down_visibility' => true, // risky
-            'php_unit_strict' => true, // risky
+            // Delegated to Rector's AssertEqualsToSameRector, which only rewrites provably-scalar assertions;
+            // this fixer converts assertEquals→assertSame for objects/arrays too, breaking value comparisons.
+            'php_unit_strict' => false,
             'php_unit_test_annotation' => ['style' => 'annotation'], // risky
             'phpdoc_align' => ['align' => 'left'],
             'phpdoc_array_type' => true, // risky
