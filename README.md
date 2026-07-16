@@ -10,7 +10,7 @@ Focuses on:
  - **High signal-to-noise ratio** (concise but informative PHPDoc, e.g. array shapes)
  - **Strict, explicit code**: `strict_types`, strict comparisons, final by default, no magic
  - **Harmony with static analysis tools** (PHPStan, Psalm, Rector, etc.)
- - **Auto-fixing over reporting** (violations are not only reported but fixed automatically, when possible)
+ - **Auto-fixing over reporting** (violations are not only reported but also fixed automatically, when possible)
  - **PHP and Laravel best practices** (enforced, not just suggested)
 
 Two tools, two roles, meant to run together:
@@ -43,7 +43,7 @@ return Config::create(__DIR__, ruleOverrides: []);
 ```
 
 <details>
-<summary>Customisation (optional)</summary>
+<summary>Customization (optional)</summary>
 <code>Config::create()</code> ships a sensible default Finder and enables parallel runs, risky rules, and caching.
 You can customize it by using your Finder instance and by overriding individual rules:
 
