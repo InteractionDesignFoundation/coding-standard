@@ -1,11 +1,24 @@
-# IxDF PHP Coding Standard
+<p align="center">
+<a href="https://www.interaction-design.org" target="_blank">
+<picture>
+<source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/InteractionDesignFoundation/coding-standard/main/art/logo_gdt_dark.svg">
+<img src="https://raw.githubusercontent.com/InteractionDesignFoundation/coding-standard/main/art/logo_gdt_light.svg" alt="IxDF PHP Coding Standard" width="200">
+</picture>
+</a>
+</p>
 
-[![Tests](https://github.com/InteractionDesignFoundation/coding-standard/actions/workflows/test.yml/badge.svg)](https://github.com/InteractionDesignFoundation/coding-standard/actions/workflows/test.yml)
-[![PHP Psalm](https://github.com/InteractionDesignFoundation/coding-standard/actions/workflows/psalm.yml/badge.svg)](https://github.com/InteractionDesignFoundation/coding-standard/actions/workflows/psalm.yml)
-[![PHP Psalm Level](https://shepherd.dev/github/InteractionDesignFoundation/coding-standard/level.svg)](https://shepherd.dev/github/InteractionDesignFoundation/coding-standard)
-[![PHP Psalm Type Coverage](https://shepherd.dev/github/InteractionDesignFoundation/coding-standard/coverage.svg)](https://shepherd.dev/github/InteractionDesignFoundation/coding-standard)
+<p align="center">
+<a href="https://github.com/InteractionDesignFoundation/coding-standard/actions/workflows/test.yml"><img src="https://github.com/InteractionDesignFoundation/coding-standard/actions/workflows/test.yml/badge.svg" alt="Tests"></a>
+<a href="https://github.com/InteractionDesignFoundation/coding-standard/actions/workflows/psalm.yml"><img src="https://github.com/InteractionDesignFoundation/coding-standard/actions/workflows/psalm.yml/badge.svg" alt="PHP Psalm"></a>
+<a href="https://shepherd.dev/github/InteractionDesignFoundation/coding-standard"><img src="https://shepherd.dev/github/InteractionDesignFoundation/coding-standard/level.svg" alt="PHP Psalm Level"></a>
+<a href="https://shepherd.dev/github/InteractionDesignFoundation/coding-standard"><img src="https://shepherd.dev/github/InteractionDesignFoundation/coding-standard/coverage.svg" alt="PHP Psalm Type Coverage"></a>
+<a href="https://packagist.org/packages/interaction-design-foundation/coding-standard"><img src="https://img.shields.io/packagist/dt/interaction-design-foundation/coding-standard" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/interaction-design-foundation/coding-standard"><img src="https://img.shields.io/packagist/v/interaction-design-foundation/coding-standard" alt="Latest Stable Version"></a>
+</p>
 
-An opinionated coding standard for PHP and Laravel projects, built on [PER-CS 3](https://www.php-fig.org/per/coding-style/).
+## IxDF PHP Coding Standard
+
+An opinionated coding standard for PHP and Laravel projects, built on [PER-CS3.0](https://www.php-fig.org/per/coding-style/).
 Focuses on:
  - **High signal-to-noise ratio** (concise but informative PHPDoc, e.g. array shapes)
  - **Strict, explicit code**: `strict_types`, strict comparisons, final by default, no magic
