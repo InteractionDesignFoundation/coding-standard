@@ -2,7 +2,7 @@
 <a href="https://www.interaction-design.org" target="_blank">
 <picture>
 <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/InteractionDesignFoundation/coding-standard/main/art/logo_gdt_dark.svg">
-<img src="https://raw.githubusercontent.com/InteractionDesignFoundation/coding-standard/main/art/logo_gdt_light.svg" alt="IxDF PHP Coding Standard" width="200">
+<img src="https://raw.githubusercontent.com/InteractionDesignFoundation/coding-standard/main/art/logo_gdt_light.svg" alt="IxDF PHP Coding Standard" width="600">
 </picture>
 </a>
 </p>
