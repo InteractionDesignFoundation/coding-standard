@@ -56,6 +56,6 @@ final class CamelCaseRouteNameSniff implements Sniff
     private function isCamelCase(string $routeName): bool
     {
         $parts = explode('.', $routeName);
-        return array_all($parts, static fn($part): bool => !(preg_match(self::PATTERN_CAMEL_CASE, (string) $part) !== 1));
+        return array_all($parts, static fn($part): bool => !(preg_match(self::PATTERN_CAMEL_CASE, $part) !== 1));
     }
 }
