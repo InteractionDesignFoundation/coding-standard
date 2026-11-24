@@ -17,7 +17,7 @@ final class Config
     /** @param array<string, array<string, mixed>|bool> $ruleOverrides Rules to merge on top of the shared ruleset */
     public static function create(string $projectDir, array $ruleOverrides = [], ?Finder $finder = null): BaseConfig
     {
-        $finder ??= self::defaultFinder($projectDir);
+        $finder ??= self::finder($projectDir);
 
         $config = new BaseConfig();
         $config
@@ -32,7 +32,11 @@ final class Config
         return $config;
     }
 
-    private static function defaultFinder(string $projectDir): Finder
+    /**
+     * Default Finder; extend it rather than building one from scratch, so the excludes below still apply.
+     * PhpCsFixer\Finder lints gitignored files, and only exclude() prunes the walk (ignoreVCSIgnored() filters after descending).
+     */
+    public static function finder(string $projectDir): Finder
     {
         return Finder::create()
             ->in($projectDir)
@@ -41,7 +45,6 @@ final class Config
                 '.docker',
                 'bootstrap/cache',
                 'node_modules',
-                'public',
                 'storage',
                 'vendor',
             ])

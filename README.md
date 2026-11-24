@@ -58,12 +58,13 @@ return Config::create(__DIR__, ruleOverrides: []);
 <details>
 <summary>Customization (optional)</summary>
 <code>Config::create()</code> ships a sensible default Finder and enables parallel runs, risky rules, and caching.
-You can customize it by using your Finder instance and by overriding individual rules:
+To customize the Finder, extend <code>Config::finder()</code> rather than building one from scratch:
+it skips gitignored files and keeps heavy directories (<code>.cache</code>, <code>node_modules</code>, <code>storage</code>, <code>vendor</code>) out of the walk.
 
 ```php
-use PhpCsFixer\Finder;
-
-$finder = Finder::create()->in(__DIR__)->name('*.php');
+$finder = Config::finder(__DIR__)
+    ->exclude(['tools'])
+    ->notName('server.php');
 
 // Override individual rules, your own Finder and use your cache path
 return Config::create(__DIR__, finder: $finder, ruleOverrides: [
