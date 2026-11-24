@@ -2,7 +2,7 @@
 
 namespace IxDFCodingStandard\Sniffs\Laravel;
 
-use IxDFCodingStandard\TokenHelper;
+use IxDFCodingStandard\Helpers\TokenHelper;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
 
