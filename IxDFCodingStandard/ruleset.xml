@@ -59,7 +59,7 @@
         </properties>
     </rule>
     <rule ref="Generic.NamingConventions.UpperCaseConstantName"/>
-    <!-- Forbid backtick operator -->
+    <!-- Forbid backtick operator (PHP-CS-Fixer's backtick_to_shell_exec converts the commands it can convert safely) -->
     <rule ref="Generic.PHP.BacktickOperator"/>
     <!-- Forbid any content before opening tag -->
     <rule ref="Generic.PHP.CharacterBeforePHPOpeningTag"/>
@@ -70,6 +70,7 @@
         Aliases (join, sizeof, chop, …) are fixed by no_alias_functions,
         intval/boolval/… by modernize_types_casting, rand/mt_rand by random_api_migration,
         print by no_mixed_echo_print, is_null by the is_null fixer.
+        array_push stays listed: the array_push fixer rewrites single-value calls only.
     -->
     <rule ref="Generic.PHP.ForbiddenFunctions">
         <properties>
@@ -96,14 +97,9 @@
     <!-- Array must have keys specified for either all or none of the values. -->
     <rule ref="SlevomatCodingStandard.Arrays.DisallowPartiallyKeyed"/>
     <rule ref="SlevomatCodingStandard.Arrays.MultiLineArrayEndBracketPlacement"/>
-    <rule ref="SlevomatCodingStandard.Attributes.AttributeAndTargetSpacing">
-        <!-- For code like private function processUser(Member $member, #[\SensitiveParameter] string $password): void -->
-        <exclude name="SlevomatCodingStandard.Attributes.AttributeAndTargetSpacing.IncorrectLinesCountBetweenAttributeAndTarget"/>
-    </rule>
     <rule ref="SlevomatCodingStandard.Attributes.DisallowAttributesJoining"/>
     <rule ref="SlevomatCodingStandard.Attributes.DisallowMultipleAttributesPerLine"/>
     <rule ref="SlevomatCodingStandard.Attributes.RequireAttributeAfterDocComment"/>
-    <rule ref="SlevomatCodingStandard.Classes.BackedEnumTypeSpacing"/>
     <rule ref="SlevomatCodingStandard.Classes.ClassLength"/>
     <rule ref="SlevomatCodingStandard.Classes.ClassMemberSpacing"/>
     <rule ref="SlevomatCodingStandard.Classes.ConstantSpacing"/>
@@ -113,10 +109,12 @@
     <rule ref="SlevomatCodingStandard.Classes.MethodSpacing"/>
     <rule ref="SlevomatCodingStandard.Classes.ModernClassNameReference"/>
     <rule ref="SlevomatCodingStandard.Classes.ParentCallSpacing"/>
-    <rule ref="SlevomatCodingStandard.Classes.PropertyDeclaration"/>
     <rule ref="SlevomatCodingStandard.Classes.PropertySpacing"/>
-    <!-- Report-only replacement for PHP-CS-Fixer's final_class, which would auto-finalize extended classes and break code -->
-    <rule ref="SlevomatCodingStandard.Classes.RequireAbstractOrFinal"/>
+    <!--
+        Replacement for PHP-CS-Fixer's final_class, which would auto-finalize extended classes and break code.
+        phpcs-only: phpcbf would add `final` the same way, so the sniff only reports.
+    -->
+    <rule ref="SlevomatCodingStandard.Classes.RequireAbstractOrFinal" phpcs-only="true"/>
     <rule ref="SlevomatCodingStandard.Classes.RequireMultiLineMethodSignature"/>
     <rule ref="SlevomatCodingStandard.Classes.RequireSingleLineMethodSignature"/>
     <rule ref="SlevomatCodingStandard.Classes.SuperfluousErrorNaming"/>
@@ -129,7 +127,6 @@
             <property name="linesCountAfterLastUseWhenLastInClass" value="0"/>
         </properties>
     </rule>
-    <rule ref="SlevomatCodingStandard.Classes.UselessLateStaticBinding"/>
     <rule ref="SlevomatCodingStandard.Commenting.DeprecatedAnnotationDeclaration"/>
     <rule ref="SlevomatCodingStandard.Commenting.DocCommentSpacing">
         <properties>
@@ -164,8 +161,6 @@
     <rule ref="SlevomatCodingStandard.ControlStructures.BlockControlStructureSpacing">
         <exclude name="SlevomatCodingStandard.ControlStructures.BlockControlStructureSpacing.IncorrectLinesCountBeforeControlStructure"/>
     </rule>
-    <rule ref="SlevomatCodingStandard.ControlStructures.DisallowContinueWithoutIntegerOperandInSwitch"/>
-    <rule ref="SlevomatCodingStandard.ControlStructures.DisallowTrailingMultiLineTernaryOperator"/>
     <rule ref="SlevomatCodingStandard.ControlStructures.RequireMultiLineCondition"/>
     <rule ref="SlevomatCodingStandard.ControlStructures.RequireMultiLineTernaryOperator">
         <properties>
@@ -183,11 +178,6 @@
     <rule ref="SlevomatCodingStandard.Files.FileLength"/>
     <rule ref="SlevomatCodingStandard.Functions.DisallowEmptyFunction"/>
     <rule ref="SlevomatCodingStandard.Functions.DisallowTrailingCommaInCall"/>
-    <rule ref="SlevomatCodingStandard.Functions.DisallowTrailingCommaInClosureUse">
-        <properties>
-            <property name="onlySingleLine" value="true"/>
-        </properties>
-    </rule>
     <rule ref="SlevomatCodingStandard.Functions.DisallowTrailingCommaInDeclaration"/>
     <!-- Forbid long functions and methods -->
     <rule ref="SlevomatCodingStandard.Functions.FunctionLength">
@@ -196,17 +186,14 @@
             <property name="maxLinesLength" value="70"/>
         </properties>
     </rule>
-    <rule ref="SlevomatCodingStandard.Functions.RequireArrowFunction">
-        <properties>
-            <!-- Allow using long function syntax: in some case it's more readable -->
-            <property name="enable" value="false"/>
-        </properties>
-    </rule>
     <rule ref="SlevomatCodingStandard.Functions.RequireSingleLineCall"/>
-    <!-- Report-only replacement for PHP-CS-Fixer's static_lambda, which would break closures Laravel rebinds via Closure::bind (macros, Blade, Pest) -->
-    <rule ref="SlevomatCodingStandard.Functions.StaticClosure"/>
+    <!--
+        Replacement for PHP-CS-Fixer's static_lambda, which would break closures Laravel rebinds via Closure::bind (macros, Blade, Pest).
+        phpcs-only: phpcbf would add `static` the same way, so the sniff only reports.
+    -->
+    <rule ref="SlevomatCodingStandard.Functions.StaticClosure" phpcs-only="true"/>
+    <!-- PHP-CS-Fixer's lambda_not_used_import fixes most cases; this also catches unused by-reference imports (`use (&$a)`) -->
     <rule ref="SlevomatCodingStandard.Functions.UnusedInheritedVariablePassedToClosure"/>
-    <rule ref="SlevomatCodingStandard.Namespaces.DisallowGroupUse"/>
     <rule ref="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation">
         <properties>
             <property name="ignoredAnnotationNames" type="array">
@@ -214,10 +201,10 @@
             </property>
         </properties>
     </rule>
-    <rule ref="SlevomatCodingStandard.Namespaces.NamespaceDeclaration"/>
     <rule ref="SlevomatCodingStandard.Namespaces.RequireOneNamespaceInFile"/>
-    <rule ref="SlevomatCodingStandard.Namespaces.UseFromSameNamespace"/>
-    <rule ref="SlevomatCodingStandard.Operators.DisallowEqualOperators"/>
+    <!-- phpcs-only: phpcbf would blindly rewrite `==` to `===`, changing behavior for mixed-type operands (e.g. `$int == '1'`) -->
+    <rule ref="SlevomatCodingStandard.Operators.DisallowEqualOperators" phpcs-only="true"/>
+    <!-- PHP-CS-Fixer's long_to_shorthand_operator fixes most cases; this also covers **=, <<= and >>= -->
     <rule ref="SlevomatCodingStandard.Operators.RequireCombinedAssignmentOperator"/>
     <rule ref="SlevomatCodingStandard.Operators.RequireOnlyStandaloneIncrementAndDecrementOperators"/>
     <rule ref="SlevomatCodingStandard.Operators.SpreadOperatorSpacing"/>
@@ -228,7 +215,6 @@
         <exclude name="SlevomatCodingStandard.PHP.DisallowReference.DisallowedAssigningByReference"/>
         <exclude name="SlevomatCodingStandard.PHP.DisallowReference.DisallowedPassingByReference"/>
     </rule>
-    <rule ref="SlevomatCodingStandard.PHP.ForbiddenClasses"/>
     <rule ref="SlevomatCodingStandard.PHP.OptimizedFunctionsWithoutUnpacking"/>
     <rule ref="SlevomatCodingStandard.PHP.ReferenceSpacing"/>
     <rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes">
@@ -238,7 +224,6 @@
         </properties>
     </rule>
     <rule ref="SlevomatCodingStandard.TypeHints.DisallowMixedTypeHint"/>
-    <rule ref="SlevomatCodingStandard.TypeHints.DNFTypeHintFormat"/>
     <rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHint">
         <!-- Native type hints may break inheritance -->
         <exclude name="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint"/>
@@ -254,7 +239,6 @@
             </property>
         </properties>
     </rule>
-    <rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHintSpacing"/>
     <rule ref="SlevomatCodingStandard.TypeHints.PropertyTypeHint">
         <properties>
             <property name="traversableTypeHints" type="array">
@@ -287,7 +271,6 @@
         <!-- Not compatible with Laravel -->
         <exclude name="SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingNativeTypeHint"/>
     </rule>
-    <rule ref="SlevomatCodingStandard.TypeHints.ReturnTypeHintSpacing"/>
     <rule ref="SlevomatCodingStandard.TypeHints.UselessConstantTypeHint"/>
     <rule ref="SlevomatCodingStandard.Variables.DisallowSuperGlobalVariable"/>
     <rule ref="SlevomatCodingStandard.Variables.DisallowVariableVariable"/>

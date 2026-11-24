@@ -36,14 +36,16 @@ final class Rules
             // Please keep these rules alphabetically
             'align_multiline_comment' => ['comment_type' => 'phpdocs_only'],
             'array_indentation' => true,
+            'array_push' => true, // risky; single-value calls only, Generic.PHP.ForbiddenFunctions reports the rest
             'assign_null_coalescing_to_coalesce_equal' => true,
+            'backtick_to_shell_exec' => true, // only safe commands; Generic.PHP.BacktickOperator reports the rest
             'binary_operator_spaces' => ['default' => 'single_space'],
             'cast_spaces' => ['space' => 'single'],
             'class_attributes_separation' => ['elements' => ['method' => 'one']],
             'declare_strict_types' => true, // risky
             'explicit_string_variable' => true,
             // 'final_class' is deliberately NOT enabled: it cannot see subclasses in other files and finalizes extended classes.
-            // The report-only SlevomatCodingStandard.Classes.RequireAbstractOrFinal sniff enforces the same policy safely.
+            // The SlevomatCodingStandard.Classes.RequireAbstractOrFinal sniff (phpcs-only, so phpcbf never applies it) enforces the same policy safely.
             'final_public_method_for_abstract_class' => true, // risky
             'general_phpdoc_annotation_remove' => [
                 'annotations' => [
@@ -72,7 +74,9 @@ final class Rules
             ],
             'heredoc_to_nowdoc' => true,
             'is_null' => true, // risky
+            'lambda_not_used_import' => true,
             'logical_operators' => true, // risky
+            'long_to_shorthand_operator' => true, // risky
             'modernize_types_casting' => true, // risky
             'mb_str_functions' => true, // risky
             'multiline_whitespace_before_semicolons' => ['strategy' => 'no_multi_line'],
@@ -152,14 +156,20 @@ final class Rules
             'psr_autoloading' => true, // risky
             'self_accessor' => true, // risky
             'self_static_accessor' => true,
+            'single_import_per_statement' => ['group_to_single_imports' => true],
             'single_line_comment_spacing' => true,
             'single_line_comment_style' => ['comment_types' => ['asterisk', 'hash']],
             'single_quote' => true,
+            'single_space_around_construct' => [
+                // all constructs followed by a single space (fixer default); keep PER-CS's preceded-by list
+                'constructs_preceded_by_a_single_space' => ['as', 'else', 'elseif', 'use_lambda'],
+            ],
             'space_after_semicolon' => true,
             'standardize_not_equals' => true,
             // 'static_lambda' is deliberately NOT enabled: Laravel rebinds closures via Closure::bind (macros, Blade, Pest), static closures break there.
-            // The report-only SlevomatCodingStandard.Functions.StaticClosure sniff enforces the same policy safely.
+            // The SlevomatCodingStandard.Functions.StaticClosure sniff (phpcs-only, so phpcbf never applies it) enforces the same policy safely.
             'strict_param' => true, // risky
+            'switch_continue_to_break' => true,
             'ternary_to_elvis_operator' => true, // risky
             'ternary_to_null_coalescing' => true,
             'trim_array_spaces' => true,
