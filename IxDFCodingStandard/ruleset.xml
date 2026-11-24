@@ -85,8 +85,10 @@
                 <element key="var_dump" value="null"/>
             </property>
         </properties>
-        <!-- Added to ignore env() in config files, it's better to remove it and use env() in a separate rule. -->
-        <exclude-pattern>.config/*</exclude-pattern>
+    </rule>
+    <!-- env() is allowed in config files only; `env` is the sole entry with an alternative, so only its error code is excluded there -->
+    <rule ref="Generic.PHP.ForbiddenFunctions.FoundWithAlternative">
+        <exclude-pattern>*/config/*</exclude-pattern>
     </rule>
     <!-- Detects merge conflict artifacts left in files -->
     <rule ref="Generic.VersionControl.GitMergeConflict"/>
